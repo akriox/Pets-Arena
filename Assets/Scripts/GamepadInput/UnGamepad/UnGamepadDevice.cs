@@ -150,4 +150,12 @@ public class UnGamepadDevice : GamepadDevice
 		return currentState.GetTrigger (trigger);
 		
 	}
+
+	public override void StartVibration(float leftMotor, float rightMotor){
+
+	}
+
+	public override void StopVibration(){
+
+	}
 }

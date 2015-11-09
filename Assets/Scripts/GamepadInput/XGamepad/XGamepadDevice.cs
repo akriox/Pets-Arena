@@ -119,6 +119,14 @@ public class XGamepadDevice : GamepadDevice
 		return 0;
 	}
 
+	public override void StartVibration(float leftMotor, float rightMotor){
+		GamePad.SetVibration((PlayerIndex)deviceId, leftMotor, rightMotor);
+	}
+
+	public override void StopVibration(){
+		GamePad.SetVibration((PlayerIndex)deviceId, 0.0f, 0.0f);
+	}
+
 	public ButtonState GetButtonState(GamepadButton button, GamePadState state)
 	{
 		switch (button)

@@ -151,7 +151,7 @@ public class UnGamepadState
 	{
 		return values [(int)input];
 	}
-	
+
 	public void SetInputNormalized (UnGamepadConfig.InputTarget input, float valNormalized)
 	{
 		values [(int)input] = Mathf.Lerp (outputMin [(int)input], outputMax [(int)input], valNormalized); // map to output values

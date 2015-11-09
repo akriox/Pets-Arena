@@ -23,5 +23,7 @@ public abstract class GamepadDevice
 	public abstract bool GetButtonUp (GamepadButton buttonType);	
 	public abstract float GetAxis (GamepadAxis axis);
 	public abstract float GetTrigger(GamepadTrigger trigger);
+	public abstract void StartVibration(float leftMotor, float rightMotor);
+	public abstract void StopVibration();
 }
 
