@@ -61,10 +61,6 @@ public class Player : MonoBehaviour
 	}
 
 	void FixedUpdate(){
-
-		transform.position = new Vector3(Mathf.Clamp(transform.position.x, -27.0F, 22.0F), transform.position.y, Mathf.Clamp(transform.position.z, -20.7F, 13.25F));
-
-
 		if (paralyzed && currentParalyzedTime < paralyzedTime) {
 			renderer.material.SetColor("_Color", Color.gray);
 			RotateParalyzed ();

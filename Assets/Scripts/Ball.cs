@@ -56,7 +56,7 @@ public class Ball : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col)
 	{
-		if(col.gameObject.name == "Wall" && col.gameObject.name == "Ramp")
+		if(col.gameObject.name == "Wall")
 		{
 			Vector3 myCollisionNormal = col.contacts[0].normal;
 			myCollisionNormal = myCollisionNormal*bouncePower;
