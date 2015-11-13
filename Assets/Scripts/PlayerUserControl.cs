@@ -16,12 +16,11 @@ public class PlayerUserControl : MonoBehaviour
 	private bool dashLeft;
 	private bool dashRight;
 	private Player.DashDir dir;
-
 	
 	private void Awake()
 	{
 		player = GetComponent<Player>();
-
+	
 		if (Camera.main != null)
 		{
 			cam = Camera.main.transform;
@@ -50,9 +49,10 @@ public class PlayerUserControl : MonoBehaviour
 		}
 	}
 
-	
+
 	private void FixedUpdate()
 	{
+
 		if (!player.paralyzed) {
 			dash = CrossPlatformInputManager.GetButtonDown("Jump"+playerNumber);
 			
