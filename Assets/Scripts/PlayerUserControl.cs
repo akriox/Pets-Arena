@@ -15,6 +15,7 @@ public class PlayerUserControl : MonoBehaviour
 	private bool dash;
 	private bool dashLeft;
 	private bool dashRight;
+	private bool triggerDown = false;
 	private Player.DashDir dir;
 	
 	private void Awake()
@@ -35,8 +36,9 @@ public class PlayerUserControl : MonoBehaviour
 	
 	private void Update()
 	{
-		float h = CrossPlatformInputManager.GetAxis("Horizontal"+playerNumber);
-		float v = CrossPlatformInputManager.GetAxis("Vertical"+playerNumber);
+
+		float h = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickX);
+		float v = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickY);
 
 		if (cam != null)
 		{
@@ -54,7 +56,7 @@ public class PlayerUserControl : MonoBehaviour
 	{
 
 		if (!player.paralyzed) {
-			dash = CrossPlatformInputManager.GetButtonDown("Jump"+playerNumber);
+			dash = GamepadInput.Instance.gamepads[playerNumber-1].GetButtonDown(GamepadButton.Action1);
 			
 			
 			if (move != previousMove && move != Vector3.zero)
@@ -80,21 +82,25 @@ public class PlayerUserControl : MonoBehaviour
 			dash = false;
 			
 			//////////////
-			
-			dashLeft = CrossPlatformInputManager.GetButtonDown ("DashLeft"+playerNumber);
-			dashRight = CrossPlatformInputManager.GetButtonDown ("DashRight"+playerNumber);
-			
+
+			dashLeft = GamepadInput.Instance.gamepads[playerNumber-1].GetAxis(GamepadAxis.LeftTrigger) > 0.5;
+			dashRight = GamepadInput.Instance.gamepads[playerNumber-1].GetAxis(GamepadAxis.RightTrigger) > 0.5;;
+
+			if(!dashLeft && !dashRight){
+				triggerDown = false;
+			}
 			
 			if(dashLeft)
 				dir = Player.DashDir.Left;
 			else if(dashRight)
 				dir = Player.DashDir.Right;
 			
-			if (dashRight || dashLeft)
+			if ((dashRight || dashLeft) && !triggerDown)
 			{
 				player.currentDashAttackTime = 0.0f;
 				player.dashAttackAllowed = false;
 				player.attacking = true;
+				triggerDown = true;
 			}
 			
 			if (player.currentDashAttackTime < player.dashAttackTime) {
@@ -106,6 +112,7 @@ public class PlayerUserControl : MonoBehaviour
 				dashRight = false;
 				dir = Player.DashDir.NA; 
 			}
+
 		}
 	}
 }

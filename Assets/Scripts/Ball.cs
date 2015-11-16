@@ -51,7 +51,6 @@ public class Ball : MonoBehaviour {
 	public IEnumerator switchKickOn() {
 		yield return new WaitForSeconds(stunDelay);
 		this.kicked = true;  
-		print ("test");
 	}
 
 	void OnCollisionEnter(Collision col)
@@ -75,7 +74,7 @@ public class Ball : MonoBehaviour {
 				rb.AddForce(kickVector, ForceMode.Impulse);
 				StartCoroutine("switchKickOn");
 			}
-			else if(this.kicked)
+			else if(this.kicked && !p.dashing)
 				p.paralyzed = true;
 		}
 
@@ -95,6 +94,12 @@ public class Ball : MonoBehaviour {
 			currentZone = Zone.B;
 		else if (col.gameObject.name == "Yellow Zone")
 			currentZone = Zone.Y;
+		else if (col.gameObject.name == "Neutral Zone")
+			currentZone = Zone.N;
+	}
+
+	void OnTriggerExit(Collider col){
+		currentZone = Zone.N;
 	}
 	
 }
