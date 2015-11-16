@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
 	public bool dashAllowed = true;
 	public Text dashUI;
 
+	public bool hasItem;
+	public Text itemUI;
+
 	public float dashTime = 1.0f;
 	public float dashSpeed = 5.0f;
 	public float dashStoppingSpeed = 0.1f;
@@ -54,10 +57,10 @@ public class Player : MonoBehaviour
 
 	private void Start()
 	{
+		itemUI.enabled = false;
 	}
 
 	void Update(){
-
 	}
 
 	void FixedUpdate(){
@@ -83,6 +86,11 @@ public class Player : MonoBehaviour
 			dashAllowed = true;
 			dashUI.text = "DASH";
 		}
+
+		if (hasItem)
+			itemUI.enabled = true;
+		else
+			itemUI.enabled = false;
 
 	}
 
