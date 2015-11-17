@@ -5,6 +5,7 @@ public class PickUp : MonoBehaviour {
 
 	public float rotationSpeed;
 	private Vector3 rotationVector;
+	public float duration;
 
 	// Use this for initialization
 	void Start () {
@@ -16,12 +17,15 @@ public class PickUp : MonoBehaviour {
 		transform.Rotate (rotationVector);
 	}
 
-	void OnCollisionEnter(Collision col)
+	void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.name == "Player") {
 			Player p = col.gameObject.GetComponent<Player>();
-			p.hasItem = true;
-			Destroy (gameObject);
+			if(!p.hasItem){
+				p.hasItem = true;
+				p.itemDuration = duration;
+				Destroy (gameObject);	
+			}
 		}
 	}
 }

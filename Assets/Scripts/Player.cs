@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
 
 	public bool hasItem;
 	public Text itemUI;
+	public float itemDuration;
+	public float currentItemDuration;
+	private float itemDurationSpeed = 0.0166f;
 
 	public float dashTime = 1.0f;
 	public float dashSpeed = 5.0f;
@@ -87,11 +90,17 @@ public class Player : MonoBehaviour
 			dashUI.text = "DASH";
 		}
 
-		if (hasItem)
+		if (hasItem && itemDuration > currentItemDuration) {
 			itemUI.enabled = true;
-		else
+			currentItemDuration += itemDurationSpeed;
+			itemUI.text = "ITEM (" + currentItemDuration.ToString("0.00") + " / " + itemDuration + ")";
+		} else {
+			hasItem = false;
+			itemUI.text = "ITEM";
 			itemUI.enabled = false;
-
+			currentItemDuration = 0;
+			itemDuration = 0;
+		}
 	}
 
 	void RotateParalyzed(){
