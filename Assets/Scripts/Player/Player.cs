@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
 	public float dashAttackCooldown;
 	public float currentDashAttackCooldown;
-	private float dashAttackCooldownSpeed = 0.0166f;
+	//private float dashAttackCooldownSpeed = 0.0166f;
 	public bool dashAttackAllowed = true;
 	
 	public float moveSpeed;
@@ -46,13 +46,14 @@ public class Player : MonoBehaviour
 	public bool attacking = false;
 	public bool paralyzed = false;
 
-	private Renderer renderer;
+	private Material _mat;
+	//private Renderer renderer;
 	private Color defaultColor;
 
-
 	void Awake(){
-		renderer = GetComponent<Renderer> ();
-		defaultColor = this.renderer.material.color;
+		_mat = GetComponent<Renderer>().material;
+		//renderer = GetComponent<Renderer> ();
+		defaultColor = this.GetComponent<Renderer>().material.color;
 		dashDirections = new Vector3[2];
 		dashDirections [(int) DashDir.Left] = new Vector3 (-1, 0, 0);
 		dashDirections [(int) DashDir.Right] = new Vector3 (1, 0, 0);
@@ -72,13 +73,15 @@ public class Player : MonoBehaviour
 
 
 		if (paralyzed && currentParalyzedTime < paralyzedTime) {
-			renderer.material.SetColor("_Color", Color.gray);
+			_mat.SetColor("_Color", Color.gray);
+			//renderer.material.SetColor("_Color", Color.gray);
 			RotateParalyzed ();
 			currentParalyzedTime += paralyzedTimeSpeed;
 		} else {
 			paralyzed = false;
 			currentParalyzedTime = 0;
-			renderer.material.SetColor("_Color", defaultColor);
+			_mat.SetColor("_Color", defaultColor);
+			//renderer.material.SetColor("_Color", defaultColor);
 		}
 
 		if (dashing == false && currentDashCooldown < dashCooldown) {

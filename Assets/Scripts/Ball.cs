@@ -17,12 +17,15 @@ public class Ball : MonoBehaviour {
 	public enum Zone {R, G, B, Y, N};
 	public Zone currentZone;
 
-	private Renderer renderer;
+	private Material _mat;
+	//private Renderer renderer;
 	private Color defaultColor;
 
 	void Awake(){
-		renderer = GetComponent<Renderer> ();
-		defaultColor = this.renderer.material.color;
+		_mat = GetComponent<Renderer>().material;
+		defaultColor = _mat.color;
+		//renderer = GetComponent<Renderer> ();
+		//defaultColor = this.GetComponent<Renderer>().material.color;
 	}
 
 	// Use this for initialization
@@ -44,7 +47,8 @@ public class Ball : MonoBehaviour {
 		}
 
 		if(kicked)
-			renderer.material.SetColor("_Color", Color.cyan);
+			_mat.SetColor("_Color", Color.cyan);
+			//renderer.material.SetColor("_Color", Color.cyan);
 
 	}
 
@@ -80,7 +84,8 @@ public class Ball : MonoBehaviour {
 
 		if(col.gameObject.name == "Field" && kicked)
 		{
-			renderer.material.SetColor("_Color", defaultColor);
+			_mat.SetColor("_Color", defaultColor);
+			//renderer.material.SetColor("_Color", defaultColor);
 			kicked = false;
 		}
 	}

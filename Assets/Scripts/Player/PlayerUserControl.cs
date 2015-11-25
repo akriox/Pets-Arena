@@ -17,6 +17,8 @@ public class PlayerUserControl : MonoBehaviour
 	private bool dashRight;
 	private bool triggerDown = false;
 	private Player.DashDir dir;
+
+	private bool gamepadAvailable;
 	
 	private void Awake()
 	{
@@ -32,22 +34,26 @@ public class PlayerUserControl : MonoBehaviour
 				"Warning: no main camera found. Player needs a Camera tagged \"MainCamera\", for camera-relative controls.");
 		}
 	}
-	
+
+	void Start(){
+		gamepadAvailable = GamepadInput.Instance.gamepads.Count >= playerNumber ? true : false;
+	}
 	
 	private void Update()
 	{
+		if(gamepadAvailable){
+			float h = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickX);
+			float v = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickY);
 
-		float h = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickX);
-		float v = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickY);
-
-		if (cam != null)
-		{
-			camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
-			move = (v*camForward + h*cam.right).normalized;
-		}
-		else
-		{
-			move = (v*Vector3.forward + h*Vector3.right).normalized;
+			if (cam != null)
+			{
+				camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
+				move = (v*camForward + h*cam.right).normalized;
+			}
+			else
+			{
+				move = (v*Vector3.forward + h*Vector3.right).normalized;
+			}
 		}
 	}
 
@@ -55,9 +61,9 @@ public class PlayerUserControl : MonoBehaviour
 	private void FixedUpdate()
 	{
 
-		if (!player.paralyzed) {
+		if (!player.paralyzed && gamepadAvailable) {
+
 			dash = GamepadInput.Instance.gamepads[playerNumber-1].GetButtonDown(GamepadButton.Action1);
-			
 			
 			if (move != previousMove && move != Vector3.zero)
 				player.Rotate (move);

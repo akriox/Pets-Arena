@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
+public class GameController : MonoBehaviour {
 
 	Ball ball;
-	Ball.Zone previousBallZone;
+	//Ball.Zone previousBallZone;
 
 	private float redScore;
 	private float greenScore;
@@ -17,19 +17,20 @@ public class GameManager : MonoBehaviour {
 	public Text blueScoreUI;
 	public Text yellowScoreUI;
 	
-	private GameObject redCylinder;
-	private GameObject greenCylinder;
-	private GameObject blueCylinder;
-	private GameObject yellowCylinder;
+	public GameObject redCylinder;
+	public GameObject greenCylinder;
+	public GameObject blueCylinder;
+	public GameObject yellowCylinder;
+
 	private GameObject previousCylinder;
 
-	private GameObject redPillar;
-	private GameObject greenPillar;
-	private GameObject bluePillar;
-	private GameObject yellowPillar;
+	//private GameObject redPillar;
+	//private GameObject greenPillar;
+	//private GameObject bluePillar;
+	//private GameObject yellowPillar;
 
 	private Material cylinderBaseMat;
-	private Material pillarBaseMat;
+	//private Material pillarBaseMat;
 
 	private Material redMat;
 	private Material greenMat;
@@ -46,20 +47,22 @@ public class GameManager : MonoBehaviour {
 
 		GameObject ballGo = GameObject.Find ("Ball");
 		ball = ballGo.GetComponent<Ball> ();
-		previousBallZone = Ball.Zone.N;
+		//previousBallZone = Ball.Zone.N;
 
+		/*
 		redCylinder = GameObject.Find ("Red Cylinder");
 		greenCylinder = GameObject.Find ("Green Cylinder");
 		blueCylinder = GameObject.Find ("Blue Cylinder");
 		yellowCylinder = GameObject.Find ("Yellow Cylinder");
+		*/
 
-		redPillar = GameObject.Find ("Red Pillar");
-		greenPillar = GameObject.Find ("Green Pillar");
-		bluePillar = GameObject.Find ("Blue Pillar");
-		yellowPillar = GameObject.Find ("Yellow Pillar");
+		//redPillar = GameObject.Find ("Red Pillar");
+		//greenPillar = GameObject.Find ("Green Pillar");
+		//bluePillar = GameObject.Find ("Blue Pillar");
+		//yellowPillar = GameObject.Find ("Yellow Pillar");
 
 		cylinderBaseMat = Resources.Load ("Materials/Cylinder", typeof(Material)) as Material;
-		pillarBaseMat = Resources.Load ("Materials/Pillar", typeof(Material)) as Material;
+		//pillarBaseMat = Resources.Load ("Materials/Pillar", typeof(Material)) as Material;
 		redMat = Resources.Load ("Materials/Red Cylinder", typeof(Material)) as Material;
 	    greenMat = Resources.Load ("Materials/Green Cylinder", typeof(Material)) as Material;
 	    blueMat = Resources.Load ("Materials/Blue Cylinder", typeof(Material)) as Material;
@@ -100,7 +103,6 @@ public class GameManager : MonoBehaviour {
 
 	void victoryCheck(){
 		if (!matchIsOver) {
-			print ("yellow score : "+yellowScore);
 			if(yellowScore > victoryScore){
 				victoryUI.enabled = true;
 				victoryUI.text = "J1"+victoryUI.text;
@@ -127,35 +129,35 @@ public class GameManager : MonoBehaviour {
 	void changePillarColor (){
 		if (ball.currentZone == Ball.Zone.R) {
 			redCylinder.GetComponent<Renderer> ().material = redMat;
-			redPillar.GetComponent<Renderer> ().material = redMat;
+			//redPillar.GetComponent<Renderer> ().material = redMat;
 		} else if (ball.currentZone == Ball.Zone.G) {
 			greenCylinder.GetComponent<Renderer> ().material = greenMat;
-			greenPillar.GetComponent<Renderer> ().material = greenMat;
+			//greenPillar.GetComponent<Renderer> ().material = greenMat;
 		} else if (ball.currentZone == Ball.Zone.B) {
 			blueCylinder.GetComponent<Renderer> ().material = blueMat;
-			bluePillar.GetComponent<Renderer> ().material = blueMat;
+			//bluePillar.GetComponent<Renderer> ().material = blueMat;
 		} else if (ball.currentZone == Ball.Zone.Y) {
 			yellowCylinder.GetComponent<Renderer>().material = yellowMat;
-			yellowPillar.GetComponent<Renderer>().material = yellowMat;
+			//yellowPillar.GetComponent<Renderer>().material = yellowMat;
 		}
 	}
 
 	void resetPillarColors(){
 		if (ball.currentZone != Ball.Zone.R) {
 			redCylinder.GetComponent<Renderer> ().material = cylinderBaseMat;
-			redPillar.GetComponent<Renderer> ().material = pillarBaseMat;
+			//redPillar.GetComponent<Renderer> ().material = pillarBaseMat;
 		}
 		if (ball.currentZone != Ball.Zone.G) {
 			greenCylinder.GetComponent<Renderer> ().material = cylinderBaseMat;
-			greenPillar.GetComponent<Renderer>().material = pillarBaseMat;
+			//greenPillar.GetComponent<Renderer>().material = pillarBaseMat;
 		}
 		if (ball.currentZone != Ball.Zone.B) {
 			blueCylinder.GetComponent<Renderer> ().material = cylinderBaseMat;
-			bluePillar.GetComponent<Renderer> ().material = pillarBaseMat;
+			//bluePillar.GetComponent<Renderer> ().material = pillarBaseMat;
 		}
 		if (ball.currentZone != Ball.Zone.Y) {
 			yellowCylinder.GetComponent<Renderer>().material = cylinderBaseMat;
-			yellowPillar.GetComponent<Renderer>().material = pillarBaseMat;
+			//yellowPillar.GetComponent<Renderer>().material = pillarBaseMat;
 		}
 	}
 }
