@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+	public GameObject ball;
+
+	private Behaviour halo;
 
 	public enum DashDir {Left=0, Right, NA};
 	public float dashAttackSpeed;
@@ -50,6 +53,8 @@ public class Player : MonoBehaviour
 	//private Renderer renderer;
 	private Color defaultColor;
 
+	public float gravityPull;
+
 	void Awake(){
 		_mat = GetComponent<Renderer>().material;
 		//renderer = GetComponent<Renderer> ();
@@ -62,6 +67,8 @@ public class Player : MonoBehaviour
 	private void Start()
 	{
 		itemUI.enabled = false;
+		ball = GameObject.Find ("Ball");
+		halo = (Behaviour) GetComponent ("Halo");
 	}
 
 	void Update(){
@@ -95,19 +102,30 @@ public class Player : MonoBehaviour
 
 		if (hasItem && itemDuration > currentItemDuration) {
 			itemUI.enabled = true;
+			halo.enabled = true;
 			currentItemDuration += itemDurationSpeed;
 			itemUI.text = "ITEM (" + currentItemDuration.ToString("0.00") + " / " + itemDuration + ")";
 		} else {
 			hasItem = false;
 			itemUI.text = "ITEM";
 			itemUI.enabled = false;
+			halo.enabled = false;
 			currentItemDuration = 0;
 			itemDuration = 0;
+		}
+
+		if (hasItem) {
+			AttractBall();
 		}
 	}
 
 	void RotateParalyzed(){
 		transform.RotateAround(transform.position, transform.up, 3.0f);
+	}
+
+	void AttractBall(){
+		ball.transform.LookAt (transform.position);
+		ball.GetComponent<Rigidbody>().AddForce(ball.transform.TransformDirection(Vector3.forward).normalized*gravityPull, ForceMode.Acceleration);
 	}
 
 	public void Move(Vector3 moveDirection)
@@ -138,7 +156,7 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.name == "PickUp") {
+		if (col.gameObject.tag == "PickUp") {
 			PickUp p = col.gameObject.GetComponent<PickUp>();
 			if(!hasItem){
 				hasItem = true;
