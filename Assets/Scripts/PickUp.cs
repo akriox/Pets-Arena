@@ -7,13 +7,27 @@ public class PickUp : MonoBehaviour {
 	private Vector3 rotationVector;
 	public float duration;
 
-	// Use this for initialization
 	void Start () {
 		rotationVector = new Vector3 (0, rotationSpeed, 0);
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		transform.Rotate (rotationVector);
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.tag == "Player") {
+			PowerUp p = other.GetComponent<PowerUp>();
+			if(!p.available){
+				p.available = true;
+
+				/*
+				 * TO DO : effect set randomly
+				*/
+				p.setEffect(PowerUp.attractBall);
+
+				Destroy (this.gameObject);	
+			}
+		}
 	}
 }

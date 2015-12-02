@@ -19,10 +19,12 @@ public class PlayerUserControl : MonoBehaviour
 	private Player.DashDir dir;
 
 	private bool gamepadAvailable;
+	private PowerUp _powerUp;
 	
 	private void Awake()
 	{
 		player = GetComponent<Player>();
+		_powerUp = GetComponent<PowerUp>();
 	
 		if (Camera.main != null)
 		{
@@ -34,13 +36,11 @@ public class PlayerUserControl : MonoBehaviour
 				"Warning: no main camera found. Player needs a Camera tagged \"MainCamera\", for camera-relative controls.");
 		}
 	}
-
-	void Start(){
-		gamepadAvailable = GamepadInput.Instance.gamepads.Count >= playerNumber ? true : false;
-	}
 	
 	private void Update()
 	{
+		gamepadAvailable = GamepadInput.Instance.gamepads.Count >= playerNumber ? true : false;
+
 		if(gamepadAvailable){
 			float h = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickX);
 			float v = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickY);
@@ -53,6 +53,13 @@ public class PlayerUserControl : MonoBehaviour
 			else
 			{
 				move = (v*Vector3.forward + h*Vector3.right).normalized;
+			}
+
+			if(GamepadInput.Instance.gamepads[playerNumber-1].GetButtonDown(GamepadButton.Action2) && _powerUp.available){
+				_powerUp.timestamp = Time.time;
+				_powerUp.activated = true;
+				_powerUp.available = false;
+				_powerUp.powerUI.text = "";
 			}
 		}
 	}
@@ -86,8 +93,6 @@ public class PlayerUserControl : MonoBehaviour
 			
 			player.Move(move);
 			dash = false;
-			
-			//////////////
 
 			dashLeft = GamepadInput.Instance.gamepads[playerNumber-1].GetAxis(GamepadAxis.LeftTrigger) > 0.5;
 			dashRight = GamepadInput.Instance.gamepads[playerNumber-1].GetAxis(GamepadAxis.RightTrigger) > 0.5;;

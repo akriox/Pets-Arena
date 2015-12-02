@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ball : MonoBehaviour {
+public class BallController : MonoBehaviour {
 
 	private Rigidbody rb;
 
@@ -13,31 +13,30 @@ public class Ball : MonoBehaviour {
 	public float kickPower;
 
 	public bool kicked = false;
+	public bool spiked = false;
 	public float stunDelay;
 	public enum Zone {R, G, B, Y, N};
 	public Zone currentZone;
 
 	private Material _mat;
-	//private Renderer renderer;
 	private Color defaultColor;
+
+	private Behaviour _halo;
 
 	void Awake(){
 		_mat = GetComponent<Renderer>().material;
 		defaultColor = _mat.color;
-		//renderer = GetComponent<Renderer> ();
-		//defaultColor = this.GetComponent<Renderer>().material.color;
+		_halo = (Behaviour) GetComponent ("Halo");
 	}
 
-	// Use this for initialization
+	void Update(){
+		_halo.enabled = spiked ? true : false;
+	}
+
 	void Start () {
 		currentZone = Zone.N;
 		rb = gameObject.GetComponent<Rigidbody>();
 		kickAngle = Mathf.Deg2Rad * kickAngle;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	void FixedUpdate(){
@@ -48,8 +47,6 @@ public class Ball : MonoBehaviour {
 
 		if(kicked)
 			_mat.SetColor("_Color", Color.cyan);
-			//renderer.material.SetColor("_Color", Color.cyan);
-
 	}
 
 	public IEnumerator switchKickOn() {
@@ -66,10 +63,8 @@ public class Ball : MonoBehaviour {
 			myCollisionNormal.y = 0;
 			rb.AddForce(myCollisionNormal, ForceMode.Impulse);
 		}
-
-
-
-		if (col.gameObject.name == "Player") {
+		
+		if (col.gameObject.tag == "Player") {
 			Player p = col.gameObject.GetComponent<Player>();
 
 			if(p.dashing){
@@ -80,27 +75,25 @@ public class Ball : MonoBehaviour {
 			}
 			else if(this.kicked && !p.dashing)
 				p.paralyzed = true;
+
+			if(this.spiked)
+				p.paralyzed = true;
 		}
 
 		if(col.gameObject.name == "Field" && kicked)
 		{
 			_mat.SetColor("_Color", defaultColor);
-			//renderer.material.SetColor("_Color", defaultColor);
 			kicked = false;
 		}
 	}
 
 	void OnTriggerEnter(Collider col){
-		if (col.gameObject.name == "Red Zone")
-			currentZone = Zone.R;
-		else if (col.gameObject.name == "Green Zone")
-			currentZone = Zone.G;
-		else if (col.gameObject.name == "Blue Zone")
-			currentZone = Zone.B;
-		else if (col.gameObject.name == "Yellow Zone")
-			currentZone = Zone.Y;
-		else if (col.gameObject.name == "Neutral Zone")
-			currentZone = Zone.N;
+		switch(col.gameObject.name){
+			case "Red Zone": currentZone = Zone.R; break;
+			case "Green Zone": currentZone = Zone.G; break;
+			case "Blue Zone": currentZone = Zone.B; break;
+			case "Yellow Zone": currentZone = Zone.Y; break;
+		}
 	}
 
 	void OnTriggerExit(Collider col){
