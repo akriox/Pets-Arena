@@ -24,7 +24,8 @@ public class PickUp : MonoBehaviour {
 				/*
 				 * TO DO : effect set randomly
 				*/
-				p.setEffect(PowerUp.attractBall);
+				//p.setEffect(PowerUp.attractBall);
+				p.setEffect(PowerUp.spikeBall);
 
 				Destroy (this.gameObject);	
 			}

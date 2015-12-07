@@ -7,6 +7,8 @@ public class PickUpSpawn : MonoBehaviour {
 	private List<Vector3> spawnPositions = new List<Vector3>();
 	public GameObject pickUpPrefab;
 
+	public float repeat = 10.0f;
+
 	GameObject previousPickUp;
 	int previousIndex = -1;
 
@@ -31,7 +33,7 @@ public class PickUpSpawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating("randomSpawn", 2, 5F);
+		InvokeRepeating("randomSpawn", 2.0f, repeat);
 	}
 	
 	// Update is called once per frame
