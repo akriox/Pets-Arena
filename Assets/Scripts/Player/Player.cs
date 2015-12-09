@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate(){
 
-		transform.position = new Vector3(Mathf.Clamp(transform.position.x, -27.0F, 22.0F), transform.position.y, Mathf.Clamp(transform.position.z, -20.7F, 13.25F));
+		transform.position = new Vector3(Mathf.Clamp(transform.position.x, -30.0F, 29.3F), transform.position.y, Mathf.Clamp(transform.position.z, -22.95F, 20.86F));
 		
 		if (paralyzed && currentParalyzedTime < paralyzedTime) {
 			_mat.SetColor("_Color", Color.gray);
