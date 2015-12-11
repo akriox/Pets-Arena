@@ -25,8 +25,11 @@ public class GameController : MonoBehaviour {
 	public Text victoryUI;
 	private bool matchIsOver;
 
+	public int scoringDirection;
+
 	void Awake() {
 		matchIsOver = false;
+		scoringDirection = 1;
 		GameObject ballGo = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = ballGo.GetComponent<BallController> ();
 	}
@@ -65,28 +68,29 @@ public class GameController : MonoBehaviour {
 	}
 
 	void updateScore (){
+		print ("scoring = " + scoringDirection);
 		switch(_ballController.currentZone){
 
 			case BallController.Zone.R:
-				redScore += 0.01f;
+				redScore += scoringDirection* 0.01f;
 				redScoreUI.text = redScore.ToString("0.00");
 				updateCylindersColors(1,0,0,0);
 				break;
 
 			case BallController.Zone.G: 
-				greenScore += 0.01f;
+				greenScore += scoringDirection*0.01f;
 				greenScoreUI.text = greenScore.ToString("0.00");
 				updateCylindersColors(0,1,0,0);
 				break;
 
 			case BallController.Zone.B: 
-				blueScore += 0.01f;
+				blueScore += scoringDirection*0.01f;
 				blueScoreUI.text = blueScore.ToString("0.00");
 				updateCylindersColors(0,0,1,0);
 				break;
 
 			case BallController.Zone.Y: 
-				yellowScore += 0.01f;
+				yellowScore += scoringDirection*0.01f;
 				yellowScoreUI.text = yellowScore.ToString("0.00");
 				updateCylindersColors(0,0,0,1);
 				break;

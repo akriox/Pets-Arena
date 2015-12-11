@@ -14,6 +14,8 @@ public class BallController : MonoBehaviour {
 
 	public bool kicked = false;
 	public bool spiked = false;
+	public bool trapped = false;
+	public bool bouncy = false;
 	public float stunDelay;
 	public enum Zone {R, G, B, Y, N};
 	public Zone currentZone;
@@ -47,11 +49,19 @@ public class BallController : MonoBehaviour {
 
 		if(kicked)
 			_mat.SetColor("_Color", Color.cyan);
+		if (trapped)
+			_mat.SetFloat ("_Metallic", 1f);
+		else
+			_mat.SetFloat ("_Metallic", 0);
+		if (bouncy)
+			_mat.SetFloat ("_Glossiness", 0);
+		else
+			_mat.SetFloat ("_Glossiness", 0.5f);
 	}
 
 	public IEnumerator switchKickOn() {
 		yield return new WaitForSeconds(stunDelay);
-		this.kicked = true;  
+		this.kicked = true;
 	}
 
 	void OnCollisionEnter(Collision col)
