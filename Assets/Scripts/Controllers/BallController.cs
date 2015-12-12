@@ -13,7 +13,6 @@ public class BallController : MonoBehaviour {
 	public float kickPower;
 
 	public bool kicked = false;
-	public bool spiked = false;
 	public bool trapped = false;
 	public bool bouncy = false;
 	public float stunDelay;
@@ -23,16 +22,9 @@ public class BallController : MonoBehaviour {
 	private Material _mat;
 	private Color defaultColor;
 
-	private Behaviour _halo;
-
 	void Awake(){
 		_mat = GetComponent<Renderer>().material;
 		defaultColor = _mat.color;
-		_halo = (Behaviour) GetComponent ("Halo");
-	}
-
-	void Update(){
-		_halo.enabled = spiked ? true : false;
 	}
 
 	void Start () {
@@ -84,9 +76,6 @@ public class BallController : MonoBehaviour {
 				StartCoroutine("switchKickOn");
 			}
 			else if(this.kicked && !p.dashing)
-				p.paralyzed = true;
-
-			if(this.spiked)
 				p.paralyzed = true;
 		}
 

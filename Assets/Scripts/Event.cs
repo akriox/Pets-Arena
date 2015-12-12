@@ -20,7 +20,6 @@ public class Event : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
-			PowerUp p = other.GetComponent<PowerUp>();
 			if(!_eventController.activated){
 				_eventController.activated = true;
 				_eventController.timestamp = Time.time;

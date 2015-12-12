@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
 
 	public float dashAttackCooldown;
 	public float currentDashAttackCooldown;
-	//private float dashAttackCooldownSpeed = 0.0166f;
 	public bool dashAttackAllowed = true;
 	
 	public float moveSpeed;

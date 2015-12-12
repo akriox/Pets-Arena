@@ -33,64 +33,57 @@ public class GameController : MonoBehaviour {
 		GameObject ballGo = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = ballGo.GetComponent<BallController> ();
 	}
-	
-	void FixedUpdate () {
-		updateScore ();
-		victoryCheck ();
 
-		if(matchIsOver && Input.GetKeyDown(KeyCode.R))
+	void Update(){
+		if (!matchIsOver){
+			updateScore ();
+			victoryCheck ();
+		}
+
+		if(Input.GetKeyDown(KeyCode.Escape))
+			Application.Quit();
+		if(Input.GetKeyDown(KeyCode.R))
 			Application.LoadLevel(Application.loadedLevel);
 	}
 
-	void victoryCheck(){
-		if (!matchIsOver) {
-			if(yellowScore > victoryScore){
-				victoryUI.enabled = true;
-				victoryUI.text = "Yellow"+victoryUI.text;
-				matchIsOver = true;
-			}
-			else if(redScore > victoryScore){
-				victoryUI.enabled = true;
-				victoryUI.text = "Red"+victoryUI.text;
-				matchIsOver = true;
-			}
-			else if(greenScore > victoryScore){
-				victoryUI.enabled = true;
-				victoryUI.text = "Green"+victoryUI.text;
-				matchIsOver = true;
-			}
-			else if(blueScore > victoryScore){
-				victoryUI.enabled = true;
-				victoryUI.text = "Blue"+victoryUI.text;
-				matchIsOver = true;
-			}
+	private void victoryCheck(){
+		if(yellowScore > victoryScore){
+			displayWinner("Yellow");
+		}
+		else if(redScore > victoryScore){
+			displayWinner("Red");
+		}
+		else if(greenScore > victoryScore){
+			displayWinner("Green");
+		}
+		else if(blueScore > victoryScore){
+			displayWinner("Blue");
 		}
 	}
 
-	void updateScore (){
-		print ("scoring = " + scoringDirection);
+	private void updateScore (){
 		switch(_ballController.currentZone){
 
 			case BallController.Zone.R:
-				redScore += scoringDirection* 0.01f;
+				redScore += scoringDirection * 0.01f;
 				redScoreUI.text = redScore.ToString("0.00");
 				updateCylindersColors(1,0,0,0);
 				break;
 
 			case BallController.Zone.G: 
-				greenScore += scoringDirection*0.01f;
+				greenScore += scoringDirection * 0.01f;
 				greenScoreUI.text = greenScore.ToString("0.00");
 				updateCylindersColors(0,1,0,0);
 				break;
 
 			case BallController.Zone.B: 
-				blueScore += scoringDirection*0.01f;
+				blueScore += scoringDirection * 0.01f;
 				blueScoreUI.text = blueScore.ToString("0.00");
 				updateCylindersColors(0,0,1,0);
 				break;
 
 			case BallController.Zone.Y: 
-				yellowScore += scoringDirection*0.01f;
+				yellowScore += scoringDirection * 0.01f;
 				yellowScoreUI.text = yellowScore.ToString("0.00");
 				updateCylindersColors(0,0,0,1);
 				break;
@@ -101,10 +94,16 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	void updateCylindersColors(int r, int g, int b, int y){
+	private void updateCylindersColors(int r, int g, int b, int y){
 		redCylinder.GetComponent<Renderer> ().material.color = r == 1 ? Color.red : Color.black;
 		greenCylinder.GetComponent<Renderer> ().material.color = g == 1 ? Color.green : Color.black;
 		blueCylinder.GetComponent<Renderer> ().material.color = b == 1 ? Color.blue : Color.black;
 		yellowCylinder.GetComponent<Renderer>().material.color = y == 1 ? Color.yellow : Color.black;
+	}
+
+	private void displayWinner(string winner){
+		victoryUI.enabled = true;
+		victoryUI.text = winner + victoryUI.text;
+		matchIsOver = true;
 	}
 }

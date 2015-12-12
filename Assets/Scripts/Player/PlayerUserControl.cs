@@ -10,8 +10,6 @@ public class PlayerUserControl : MonoBehaviour
 	private Vector3 previousMove = Vector3.zero;
 	public Vector3 move;
 
-	public Transform cam;
-	public Vector3 camForward;
 	private bool dash;
 	private bool dashLeft;
 	private bool dashRight;
@@ -25,16 +23,6 @@ public class PlayerUserControl : MonoBehaviour
 	{
 		player = GetComponent<Player>();
 		_powerUp = GetComponent<PowerUp>();
-	
-		if (Camera.main != null)
-		{
-			cam = Camera.main.transform;
-		}
-		else
-		{
-			Debug.LogWarning(
-				"Warning: no main camera found. Player needs a Camera tagged \"MainCamera\", for camera-relative controls.");
-		}
 	}
 	
 	private void Update()
@@ -45,15 +33,7 @@ public class PlayerUserControl : MonoBehaviour
 			float h = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickX);
 			float v = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickY);
 
-			if (cam != null)
-			{
-				camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
-				move = (v*camForward + h*cam.right).normalized;
-			}
-			else
-			{
-				move = (v*Vector3.forward + h*Vector3.right).normalized;
-			}
+			move = (v*Vector3.forward + h*Vector3.right).normalized;
 
 			if(GamepadInput.Instance.gamepads[playerNumber-1].GetButtonDown(GamepadButton.Action2) && _powerUp.available){
 				_powerUp.timestamp = Time.time;
@@ -87,7 +67,8 @@ public class PlayerUserControl : MonoBehaviour
 				move = new Vector3 (0, 0, player.dashSpeed);
 				move = player.transform.TransformDirection (move);
 				player.currentDashTime += player.dashStoppingSpeed;
-			} else {
+			} 
+			else{
 				player.dashing = false;
 			}
 			
@@ -117,13 +98,13 @@ public class PlayerUserControl : MonoBehaviour
 			if (player.currentDashAttackTime < player.dashAttackTime) {
 				player.DashAttack(dir);
 				player.currentDashAttackTime += player.dashAttackStoppingSpeed;
-			} else {
+			} 
+			else {
 				player.attacking = false;
 				dashLeft = false;
 				dashRight = false;
 				dir = Player.DashDir.NA; 
 			}
-
 		}
 	}
 }
