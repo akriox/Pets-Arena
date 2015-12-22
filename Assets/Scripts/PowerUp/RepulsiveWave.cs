@@ -5,7 +5,7 @@ public class RepulsiveWave {
 
 	public static string effectTag = "RepulsiveWave";
 	private LayerMask waveMask = 1 << 11;
-	private float waveRadius = 5.0f;
+	private float waveRadius = 8.0f;
 	private float waveForce = 10.0f;
 
 	public bool runEffect(Vector3 origin, Vector3 direction){
