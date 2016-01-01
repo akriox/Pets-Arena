@@ -18,6 +18,8 @@ public class PowerUp : MonoBehaviour {
 	private GameObject _ball;
 
 	public RepulsiveWave _repulsiveWave = new RepulsiveWave();
+	public GlobalStun _globalStun = new GlobalStun();
+	public Massivity _massivity = new Massivity();
 	
 	void Start () {
 		available = false;
@@ -28,6 +30,10 @@ public class PowerUp : MonoBehaviour {
 
 		line = GetComponent<LineRenderer>();
 		_attractBall.initLineRenderer(line);
+
+		_globalStun.init(this.gameObject);
+
+		_massivity.initScale = this.gameObject.transform.localScale;
 	}
 
 	void Update(){
@@ -42,6 +48,12 @@ public class PowerUp : MonoBehaviour {
 					break;
 				case "RepulsiveWave":
 					activated = _repulsiveWave.runEffect(transform.position, transform.forward);
+					break;
+				case "GlobalStun":
+					activated = _globalStun.runEffect();
+					break;
+				case "Massivity":
+					activated = _massivity.runEffect(this.gameObject, timestamp);
 					break;
 			}
 		}

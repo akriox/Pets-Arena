@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
 	public bool dashing = false;
 	public bool attacking = false;
 	public bool paralyzed = false;
+	public bool immune = false;
 
 	private Material _mat;
 	private Color defaultColor;
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour
 
 		transform.position = new Vector3(Mathf.Clamp(transform.position.x, -30.0F, 29.3F), transform.position.y, Mathf.Clamp(transform.position.z, -22.95F, 20.86F));
 		
-		if (paralyzed && currentParalyzedTime < paralyzedTime) {
+		if (paralyzed && currentParalyzedTime < paralyzedTime && !immune) {
 			_mat.SetColor("_Color", Color.gray);
 			RotateParalyzed ();
 			currentParalyzedTime += paralyzedTimeSpeed;
