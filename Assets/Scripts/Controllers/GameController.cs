@@ -6,10 +6,10 @@ public class GameController : MonoBehaviour {
 
 	private BallController _ballController;
 
-	private float redScore;
-	private float greenScore;
-	private float blueScore;
-	private float yellowScore;
+	public float redScore;
+	public float greenScore;
+	public float blueScore;
+	public float yellowScore;
 
 	public Text redScoreUI;
 	public Text greenScoreUI;

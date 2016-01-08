@@ -23,7 +23,7 @@ public class Event : MonoBehaviour {
 			if(!_eventController.activated){
 				_eventController.activated = true;
 				_eventController.timestamp = Time.time;
-				_eventController.setEffect(EventController.trapBall);
+				_eventController.setEffect(EventController.bouncyBall);
 				
 				Destroy (this.gameObject);	
 			}
