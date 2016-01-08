@@ -12,6 +12,8 @@ public class PickUpSpawn : MonoBehaviour {
 	GameObject previousPickUp;
 	int previousIndex = -1;
 
+	private int poolIndex = 0;
+
 	void Awake(){
 		spawnPositions.Add(new Vector3 (21.2f, 1.5f, 9.5f));
 		spawnPositions.Add(new Vector3 (-8.85f, 1.5f, 9.5f));
@@ -38,6 +40,10 @@ public class PickUpSpawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+			if(poolIndex == PowerUp.count-1){
+				poolIndex = 0;
+				PowerUp.shufflePool();
+			}
 	}
 
 	void randomSpawn(){
@@ -46,6 +52,8 @@ public class PickUpSpawn : MonoBehaviour {
 		while(index == previousIndex)
 			index = Random.Range (0, spawnPositions.Count - 1);
 		previousPickUp = Instantiate (pickUpPrefab, spawnPositions [index], Quaternion.identity) as GameObject;
+		previousPickUp.GetComponent<PickUp>().effectTag = PowerUp.pool[poolIndex];
+		poolIndex++;
 		previousIndex = index;
 	}
 }

@@ -24,14 +24,14 @@ public class SpawnController : MonoBehaviour {
 	public float SpawnInterval = 1.0f;
 
 	//nombre de faces sur le dé
-	public int DieFacesNumber = 6;
+	public int DiceFacesNumber = 6;
 	//nombre de faces de type Event sur le dé
 	public int EventFacesNumber = 4;
 	//nombre de faces de type Weapon sur le dé
 	public int WeaponFacesNumber = 2;
 
 	//faces du dés, « e » pour Event, « w » pour Weapon
-	string[] DieFaces;
+	string[] DiceFaces;
 
 	//prefabs de chaque Event
 	List<UnityEngine.Object> EventPrefabs = new List<UnityEngine.Object>();
@@ -63,7 +63,7 @@ public class SpawnController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		DieFaces = new string[DieFacesNumber];
+		DiceFaces = new string[DiceFacesNumber];
 		FillDie ();
 	}
 	
@@ -77,13 +77,13 @@ public class SpawnController : MonoBehaviour {
 
 	void FillDie(){
 		for (int i = 0; i<EventFacesNumber; i++)
-			DieFaces[i] = "e";
+			DiceFaces[i] = "e";
 		for (int j = EventFacesNumber-1; j<(EventFacesNumber+WeaponFacesNumber); j++)
-			DieFaces[j] = "w";
+			DiceFaces[j] = "w";
 	}
 
 	string RollDie(){
-		return DieFaces[UnityEngine.Random.Range(0, DieFacesNumber-1)];
+		return DiceFaces[UnityEngine.Random.Range(0, DiceFacesNumber-1)];
 	}
 
 	List<playerPointData> GetBarycenterData(){
