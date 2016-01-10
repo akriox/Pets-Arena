@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour {
 	public float victoryScore;
 	public Text victoryUI;
 	private bool matchIsOver;
+	public bool switchedZones;
 
 	public int scoringDirection;
 
@@ -62,35 +63,66 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void updateScore (){
-		switch(_ballController.currentZone){
-
+		if (!switchedZones) {
+			switch (_ballController.currentZone) {
 			case BallController.Zone.R:
 				redScore += scoringDirection * 0.01f;
-				redScoreUI.text = redScore.ToString("0.00");
-				updateCylindersColors(1,0,0,0);
+				redScoreUI.text = redScore.ToString ("0.00");
+				updateCylindersColors (1, 0, 0, 0);
 				break;
-
+				
 			case BallController.Zone.G: 
 				greenScore += scoringDirection * 0.01f;
-				greenScoreUI.text = greenScore.ToString("0.00");
-				updateCylindersColors(0,1,0,0);
+				greenScoreUI.text = greenScore.ToString ("0.00");
+				updateCylindersColors (0, 1, 0, 0);
 				break;
-
+				
 			case BallController.Zone.B: 
 				blueScore += scoringDirection * 0.01f;
-				blueScoreUI.text = blueScore.ToString("0.00");
-				updateCylindersColors(0,0,1,0);
+				blueScoreUI.text = blueScore.ToString ("0.00");
+				updateCylindersColors (0, 0, 1, 0);
+				break;
+				
+			case BallController.Zone.Y: 
+				yellowScore += scoringDirection * 0.01f;
+				yellowScoreUI.text = yellowScore.ToString ("0.00");
+				updateCylindersColors (0, 0, 0, 1);
+				break;
+				
+			case BallController.Zone.N:
+				updateCylindersColors (0, 0, 0, 0);
+				break;
+			}
+		} else {
+			switch (_ballController.currentZone) {
+			case BallController.Zone.R:
+				greenScore += scoringDirection * 0.01f;
+				greenScoreUI.text = greenScore.ToString ("0.00");
+				updateCylindersColors (0, 1, 0, 0);
+				break;
+				
+			case BallController.Zone.G: 
+				redScore += scoringDirection * 0.01f;
+				redScoreUI.text = redScore.ToString ("0.00");
+				updateCylindersColors (1, 0, 0, 0);
+				break;
+				
+			case BallController.Zone.B: 
+				yellowScore += scoringDirection * 0.01f;
+				yellowScoreUI.text = yellowScore.ToString ("0.00");
+				updateCylindersColors (0, 0, 0, 1);
 				break;
 
 			case BallController.Zone.Y: 
-				yellowScore += scoringDirection * 0.01f;
-				yellowScoreUI.text = yellowScore.ToString("0.00");
-				updateCylindersColors(0,0,0,1);
+				blueScore += scoringDirection * 0.01f;
+				blueScoreUI.text = blueScore.ToString ("0.00");
+				updateCylindersColors (0, 0, 1, 0);
 				break;
-
+				
 			case BallController.Zone.N:
-				updateCylindersColors(0,0,0,0);
+				updateCylindersColors (0, 0, 0, 0);
 				break;
+			}
 		}
 	}
 

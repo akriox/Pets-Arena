@@ -18,13 +18,18 @@ public class EventController : MonoBehaviour {
 	
 	public static Effect trapBall;
 	public static Effect bouncyBall;
+	public static Effect stretchBall;
 
 	private GameObject _ball;
+	public Vector3 initScale {get; set;}
+	private float scaleFactor = 0.0f;
+	private float speed = 5.0f;
+
 	private BallController _ballController;
 	private GameController _gameController;
 
 	public static string[] pool;
-	public static int count = 2;
+	public static int count = 4;
 
 	// Use this for initialization
 	void Start () {
@@ -32,18 +37,14 @@ public class EventController : MonoBehaviour {
 		
 		_ball = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = _ball.GetComponent<BallController>();
-
+		initScale = _ball.transform.localScale;
 		_gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-		
-		trapBall.tag = "TrapBall";
-		trapBall.duration = 8.0f;
-		
-		bouncyBall.tag = "BouncyBall";
-		bouncyBall.duration = 8.0f;
 
 		pool = new string[count];
 		pool[0] = "TrapBall";
 		pool[1] = "BouncyBall";
+		pool[2] = "StretchBall";
+		pool[3] = "SwitchedZones";
 	}
 	
 	// Update is called once per frame
@@ -60,12 +61,18 @@ public class EventController : MonoBehaviour {
 			case "BouncyBall":
 				BouncyBall ();
 				break;
+			case "StretchBall":
+				StretchBall();
+				break;
+			case "SwitchedZones":
+				SwitchedZones();
+				break;
 			}
 		}
 	}
 
 	void TrapBall(){
-		if (Time.time - this.timestamp <= trapBall.duration) {
+		if (Time.time - this.timestamp <= currentEffect.duration) {
 			eventUI.enabled = true;
 			_ballController.trapped = true;
 			_gameController.scoringDirection = -1;
@@ -78,7 +85,7 @@ public class EventController : MonoBehaviour {
 	}
 
 	void BouncyBall(){
-		if (Time.time - this.timestamp <= trapBall.duration) {
+		if (Time.time - this.timestamp <= currentEffect.duration) {
 			eventUI.enabled = true;
 			_ballController.bouncy = true;
 			_ballController.bouncePower *= 2f;
@@ -94,6 +101,32 @@ public class EventController : MonoBehaviour {
 			_ball.GetComponent<Collider>().material.staticFriction = 0.6f;
 			_ball.GetComponent<Collider>().material.dynamicFriction = 0.6f;
 			_ball.GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Minimum;
+			this.activated = false;
+		}
+	}
+
+	void StretchBall() {
+		if(Time.time - timestamp <= currentEffect.duration){
+			eventUI.enabled = true;
+			scaleFactor = Mathf.Clamp01(scaleFactor + speed * Time.deltaTime);
+			Vector3 stretchScale = new Vector3(initScale.x, initScale.y*1.5f, initScale.z);
+			_ball.transform.localScale = Vector3.Slerp(initScale, stretchScale, scaleFactor);
+		}
+		else{
+			eventUI.enabled = false;
+			_ball.transform.localScale = initScale;
+			this.activated = false;
+		}
+	}
+
+	void SwitchedZones(){
+		if(Time.time - timestamp <= currentEffect.duration){
+			eventUI.enabled = true;
+			_gameController.switchedZones = true;
+		}
+		else{
+			eventUI.enabled = false;
+			_gameController.switchedZones = false;
 			this.activated = false;
 		}
 	}
