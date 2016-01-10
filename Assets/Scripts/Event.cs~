@@ -15,12 +15,16 @@ public class Event : MonoBehaviour {
 		_eventController = GameObject.FindGameObjectWithTag("GameController").GetComponent<EventController>();
 		rotationVector = new Vector3 (rotationSpeed, 0, 0);
 	}
-	
+
+	void FixedUpdate(){
+		transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, 3F, 11F), transform.position.z);
+	}
+
 	void Update () {
 		transform.Rotate (rotationVector);
 	}
 	
-	void OnCollisionEnter(Collision other) {
+	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
 			if(!_eventController.activated){
 				_eventController.activated = true;

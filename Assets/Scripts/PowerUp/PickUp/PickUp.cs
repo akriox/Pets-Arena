@@ -17,13 +17,17 @@ public class PickUp : MonoBehaviour {
 		effectTag = PowerUp.pool[poolIndex];
 	}
 
+	void FixedUpdate(){
+		transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, 3F, 11F), transform.position.z);
+	}
+
 	void Update () {
 		transform.Rotate (rotationVector);
 	}
 
-	void OnCollisionEnter(Collision other) {
+	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
-			PowerUp p = other.gameObject.GetComponent<PowerUp>();
+			PowerUp p = other.GetComponent<PowerUp>();
 			if(!p.available){
 				p.available = true;
 				p.setEffect(this.effectTag);
