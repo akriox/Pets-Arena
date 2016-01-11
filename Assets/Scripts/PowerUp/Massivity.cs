@@ -4,7 +4,7 @@ using System.Collections;
 public class Massivity {
 
 	public static string effectTag = "Massivity";
-	private float duration = 3.0f;
+	private float duration = 5.0f;
 	public Vector3 initScale {get; set;}
 	private float scaleFactor = 0.0f;
 	private float speed = 5.0f;
