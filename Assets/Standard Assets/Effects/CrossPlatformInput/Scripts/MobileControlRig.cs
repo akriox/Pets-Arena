@@ -34,10 +34,7 @@ namespace UnityStandardAssets.CrossPlatformInput
                 if (system == null)
                 {//the scene have no event system, spawn one
                     GameObject o = new GameObject("EventSystem");
-
-                    o.AddComponent<UnityEngine.EventSystems.EventSystem>();
                     o.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
-                    o.AddComponent<UnityEngine.EventSystems.TouchInputModule>();
                 }
             }
         }

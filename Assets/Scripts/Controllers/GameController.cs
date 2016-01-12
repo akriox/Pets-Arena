@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
 	private BallController _ballController;
 
-	public float redScore;
-	public float greenScore;
-	public float blueScore;
-	public float yellowScore;
+	public float redScore { get; set; }
+    public float greenScore { get; set; }
+    public float blueScore { get; set; }
+    public float yellowScore { get; set; }
 
-	public Text redScoreUI;
+    public Text redScoreUI;
 	public Text greenScoreUI;
 	public Text blueScoreUI;
 	public Text yellowScoreUI;
@@ -41,10 +40,10 @@ public class GameController : MonoBehaviour {
 			victoryCheck ();
 		}
 
-		if(Input.GetKeyDown(KeyCode.Escape))
-			Application.Quit();
-		if(Input.GetKeyDown(KeyCode.R))
-			Application.LoadLevel(Application.loadedLevel);
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.LoadLevel(0);
+        if (Input.GetKeyDown(KeyCode.R))
+            Application.LoadLevel(Application.loadedLevel);
 	}
 
 	private void victoryCheck(){

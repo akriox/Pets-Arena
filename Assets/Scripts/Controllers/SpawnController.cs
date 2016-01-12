@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class SpawnController : MonoBehaviour {
 
@@ -45,7 +43,11 @@ public class SpawnController : MonoBehaviour {
 	//hauteur de spawn des objets
 	public float SpawnHeight;
 
-	void Awake(){
+    //pool commun d'armes
+    private string[] pool;
+    private int poolIndex;
+
+    void Awake(){
 		_gameController = gameObject.GetComponent<GameController> ();
 		_eventController = gameObject.GetComponent<EventController> ();
 		EventPositions.Add(new Vector2 (21.2f, 9.5f));
@@ -70,7 +72,15 @@ public class SpawnController : MonoBehaviour {
 	void Start () {
 		DiceFaces = new string[DiceFacesNumber];
 		FillDie ();
-	}
+
+        poolIndex = 0;
+        pool = new string[PowerUp.count];
+        pool[0] = AttractBall.effectTag;
+        pool[1] = RepulsiveWave.effectTag;
+        pool[2] = GlobalStun.effectTag;
+        pool[3] = Massivity.effectTag;
+        shufflePool();
+    }
 	
 	void Update(){
 		CurrentTimer += Time.deltaTime;
@@ -78,7 +88,12 @@ public class SpawnController : MonoBehaviour {
 			SpawnItem();
 			CurrentTimer = 0;
 		}
-	}
+
+        if (poolIndex > PowerUp.count-1){
+            shufflePool();
+            poolIndex = 0;
+        }
+    }
 
 	void FillDie(){
 		for (int i = 0; i<EventFacesNumber; i++)
@@ -178,7 +193,22 @@ public class SpawnController : MonoBehaviour {
 			Vector2 barycenter = ComputeBarycenterCoordinates();
 			Vector3 spawnPos = new Vector3(barycenter.x, SpawnHeight, barycenter.y);
 			previousPickUp = Instantiate (pickUpPrefab, spawnPos, Quaternion.identity) as GameObject;
-		}
-			
+            previousPickUp.GetComponent<PickUp>().effectTag = pool[poolIndex];
+            poolIndex++;
+        }	
 	}
+
+    private void shufflePool()
+    {
+        string tmp;
+        int i, j;
+
+        for (i = PowerUp.count - 1; i > 0; i--)
+        {
+            j = Random.Range(0, i);
+            tmp = pool[i];
+            pool[i] = pool[j];
+            pool[j] = tmp;
+        }
+    }
 }

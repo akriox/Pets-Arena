@@ -12,7 +12,6 @@ public class PowerUp : MonoBehaviour {
 	public float timestamp {get; set;}
 	
 	public string currentEffect;
-	public static string[] pool;
 	public static int count = 4;
 
 	public AttractBall _attractBall = new AttractBall();
@@ -36,12 +35,6 @@ public class PowerUp : MonoBehaviour {
 		_globalStun.init(this.gameObject);
 
 		_massivity.initScale = this.gameObject.transform.localScale;
-
-		pool = new string[count];
-		pool[0] = AttractBall.effectTag;
-		pool[1] = RepulsiveWave.effectTag;
-		pool[2] = GlobalStun.effectTag;
-		pool[3] = Massivity.effectTag;
 	}
 
 	void Update(){
@@ -70,19 +63,5 @@ public class PowerUp : MonoBehaviour {
 	public void setEffect(string tag){
 		powerUI.text = tag;
 		currentEffect = tag;
-	}
-
-	public static void shufflePool(){
-
-		string tmp;
-		int rand;
-		int i;
-
-		for(i = 0; i <= count-1; i++){
-			rand = Random.Range(0, count);
-			tmp = pool[rand];
-			pool[rand] = pool[i];
-			pool[i] = tmp;
-		}
 	}
 }
