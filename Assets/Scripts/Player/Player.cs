@@ -87,6 +87,10 @@ public class Player : MonoBehaviour
 		transform.rotation = Quaternion.LookRotation (rotateDirection, Vector3.up);
 	}
 
+	public void Dash(){
+		gameObject.GetComponent<Rigidbody> ().AddForce ( transform.TransformVector(new Vector3 (0, 0, dashSpeed)), ForceMode.VelocityChange);
+	}
+
 	public void DashAttack(DashDir direction){
 		transform.Translate(dashDirections[(int) direction]*dashAttackSpeed);
 	}

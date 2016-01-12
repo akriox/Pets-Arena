@@ -70,9 +70,9 @@ public class BallController : MonoBehaviour {
 			Player p = col.gameObject.GetComponent<Player>();
 
 			if(p.dashing){
-				Vector3 kickVector = new Vector3(p.transform.forward.x * kickPower, Mathf.Cos(kickAngle) * 100, p.transform.forward.z * kickPower);
+				Vector3 kickVector = new Vector3(p.transform.forward.x * kickPower, Mathf.Cos(kickAngle) * 50, p.transform.forward.z * kickPower);
 				print ("Kicked with : "+ kickVector);
-				rb.AddForce(kickVector, ForceMode.Impulse);
+				rb.AddForce(kickVector, ForceMode.VelocityChange);
 				StartCoroutine("switchKickOn");
 			}
 			else if(this.kicked && !p.dashing)

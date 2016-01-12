@@ -64,11 +64,14 @@ public class PlayerUserControl : MonoBehaviour
 			}
 			
 			if (player.currentDashTime < player.dashTime) {
-				move = new Vector3 (0, 0, player.dashSpeed);
-				move = player.transform.TransformDirection (move);
+				/* move = new Vector3 (0, 0, player.dashSpeed);
+				move = player.transform.TransformDirection (move); */
+				player.Dash();
 				player.currentDashTime += player.dashStoppingSpeed;
 			} 
 			else{
+				player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+				player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 				player.dashing = false;
 			}
 			
