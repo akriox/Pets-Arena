@@ -19,6 +19,7 @@ public class SpawnController : MonoBehaviour {
 	//attribut utilisé pour récupérer les scores des joueurs
 	//dont seront déduits les poids des points du barycentre
 	GameController _gameController;
+	EventController _eventController;
 
 	public float CurrentTimer = 0;
 	public float SpawnInterval = 1.0f;
@@ -46,6 +47,7 @@ public class SpawnController : MonoBehaviour {
 
 	void Awake(){
 		_gameController = gameObject.GetComponent<GameController> ();
+		_eventController = gameObject.GetComponent<EventController> ();
 		EventPositions.Add(new Vector2 (21.2f, 9.5f));
 		EventPositions.Add(new Vector2 (-8.85f, 9.5f));
 		EventPositions.Add(new Vector2 (3.35f, 9.5f));
@@ -163,7 +165,7 @@ public class SpawnController : MonoBehaviour {
 	}
 
 	void SpawnItem(){
-		if (RollDie () == "e") {
+		if (RollDie () == "e" && !_eventController.activated) {
 			Destroy(previousEvent);
 			Vector2 randomEventPosition = EventPositions[UnityEngine.Random.Range(0, EventPositions.Count-1)];
 			Vector3 spawnPos = new Vector3(randomEventPosition.x, SpawnHeight, randomEventPosition.y);
