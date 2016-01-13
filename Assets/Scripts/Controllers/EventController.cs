@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class EventController : MonoBehaviour {
 
@@ -15,21 +16,21 @@ public class EventController : MonoBehaviour {
 	}
 	
 	public Effect currentEffect;
-	
-	public static Effect trapBall;
-	public static Effect bouncyBall;
-	public static Effect stretchBall;
+
 
 	private GameObject _ball;
 	public Vector3 initScale {get; set;}
 	private float scaleFactor = 0.0f;
 	private float speed = 5.0f;
-
+	private List<Vector3> multiBallSpawnPositions;
+	private static System.Random rng = new System.Random();  
+	public UnityEngine.Object FakeBallPrefab;
 	private BallController _ballController;
 	private GameController _gameController;
 
+
 	public static string[] pool;
-	public static int count = 4;
+	public static int count = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +46,17 @@ public class EventController : MonoBehaviour {
 		pool[1] = "BouncyBall";
 		pool[2] = "StretchBall";
 		pool[3] = "SwitchedZones";
+		pool [4] = "MultiBall";
+
+		multiBallSpawnPositions = new List<Vector3> ();
+		multiBallSpawnPositions.Add(new Vector3(0f, 12.9f, 4.36f));
+		multiBallSpawnPositions.Add(new Vector3(4.4f, 12.9f, -2.2f));
+		multiBallSpawnPositions.Add(new Vector3(-0.1f, 12.9f, -0.1f));
+		multiBallSpawnPositions.Add(new Vector3(-2.7f, 18f, 1.7f));
+		multiBallSpawnPositions.Add(new Vector3(2.8f, 18f, 1.7f));
+		multiBallSpawnPositions.Add(new Vector3(0f, 18f, -3.2f));
+		multiBallSpawnPositions.Add(new Vector3(0f, 21f, 0f));
+
 	}
 	
 	// Update is called once per frame
@@ -66,6 +78,9 @@ public class EventController : MonoBehaviour {
 				break;
 			case "SwitchedZones":
 				SwitchedZones();
+				break;
+			case "MultiBall":
+				MultiBall();
 				break;
 			}
 		}
@@ -131,6 +146,34 @@ public class EventController : MonoBehaviour {
 		}
 	}
 
+	void MultiBall(){
+		ShuffleList (multiBallSpawnPositions);
+
+		for (int i = 0; i<multiBallSpawnPositions.Count; i++) {
+			UnityEngine.Object fakeBall;
+			if(i < multiBallSpawnPositions.Count -2){
+				fakeBall = Instantiate(FakeBallPrefab, multiBallSpawnPositions[i], Quaternion.identity);
+			}
+			else{
+				_ball.transform.position = multiBallSpawnPositions[i];
+				_ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+				_ballController.currentZone = BallController.Zone.N;
+			}
+		}
+		this.activated = false;
+		eventUI.enabled = false;
+	}
+
+	private void ShuffleList<E>(List<E> inputList)
+	{
+		for (int i = 0; i < inputList.Count; i++) {
+			var temp = inputList[i];
+			int randomIndex = Random.Range(i, inputList.Count);
+			inputList[i] = inputList[randomIndex];
+			inputList[randomIndex] = temp;
+		}
+	}
+	
 	public void setEffect(Effect e){
 		currentEffect = e;
 		eventUI.text = e.tag;

@@ -71,7 +71,6 @@ public class BallController : MonoBehaviour {
 
 			if(p.dashing){
 				Vector3 kickVector = new Vector3(p.transform.forward.x * kickPower, Mathf.Cos(kickAngle) * 50, p.transform.forward.z * kickPower);
-				print ("Kicked with : "+ kickVector);
 				rb.AddForce(kickVector, ForceMode.VelocityChange);
 				StartCoroutine("switchKickOn");
 			}
