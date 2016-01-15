@@ -23,6 +23,8 @@ public class EventController : MonoBehaviour {
 	private float scaleFactor = 0.0f;
 	private float speed = 5.0f;
 	private List<Vector3> multiBallSpawnPositions;
+	private List<UnityEngine.Object> fakeBalls = new List<UnityEngine.Object>();
+	private bool multiball = false;
 	private static System.Random rng = new System.Random();  
 	public UnityEngine.Object FakeBallPrefab;
 	private BallController _ballController;
@@ -147,21 +149,29 @@ public class EventController : MonoBehaviour {
 	}
 
 	void MultiBall(){
-		ShuffleList (multiBallSpawnPositions);
+		if (!multiball) {
+			ShuffleList (multiBallSpawnPositions);
 
-		for (int i = 0; i<multiBallSpawnPositions.Count; i++) {
-			UnityEngine.Object fakeBall;
-			if(i < multiBallSpawnPositions.Count -2){
-				fakeBall = Instantiate(FakeBallPrefab, multiBallSpawnPositions[i], Quaternion.identity);
+			for (int i = 0; i < multiBallSpawnPositions.Count; i++) {
+				if (i < multiBallSpawnPositions.Count - 2) {
+					fakeBalls.Add (Instantiate (FakeBallPrefab, multiBallSpawnPositions [i], Quaternion.identity));
+				} else {
+					_ball.transform.position = multiBallSpawnPositions [i];
+					_ball.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+					_ballController.currentZone = BallController.Zone.N;
+				}
 			}
-			else{
-				_ball.transform.position = multiBallSpawnPositions[i];
-				_ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
-				_ballController.currentZone = BallController.Zone.N;
+
+			multiball = true;
+		} else if (!(Time.time - timestamp <= currentEffect.duration)) {
+			foreach (UnityEngine.Object b in fakeBalls) {
+				fakeBalls.Remove (b);
+				Destroy (b);
 			}
+			this.activated = false;
+			eventUI.enabled = false;
+			multiball = false;
 		}
-		this.activated = false;
-		eventUI.enabled = false;
 	}
 
 	private void ShuffleList<E>(List<E> inputList)
