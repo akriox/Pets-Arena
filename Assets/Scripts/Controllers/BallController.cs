@@ -22,9 +22,12 @@ public class BallController : MonoBehaviour {
 	private Material _mat;
 	private Color defaultColor;
 
+    private TrailRenderer _trail;
+
 	void Awake(){
 		_mat = GetComponent<Renderer>().material;
 		defaultColor = _mat.color;
+        _trail = GetComponent<TrailRenderer>();
 	}
 
 	void Start () {
@@ -39,8 +42,13 @@ public class BallController : MonoBehaviour {
 			rb.velocity = rb.velocity.normalized * maxSpeed;
 		}
 
-		if(kicked)
-			_mat.SetColor("_Color", Color.cyan);
+        if (kicked){
+            _mat.SetColor("_Color", Color.cyan);
+            _trail.enabled = true;
+        }
+        else
+            _trail.enabled = false;
+
 		if (trapped)
 			_mat.SetFloat ("_Metallic", 1f);
 		else

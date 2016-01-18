@@ -149,10 +149,10 @@ public class EventController : MonoBehaviour {
 	}
 
 	void MultiBall(){
+        int i;
 		if (!multiball) {
 			ShuffleList (multiBallSpawnPositions);
-
-			for (int i = 0; i < multiBallSpawnPositions.Count; i++) {
+			for (i = 0; i < multiBallSpawnPositions.Count; i++) {
 				if (i < multiBallSpawnPositions.Count - 2) {
 					fakeBalls.Add (Instantiate (FakeBallPrefab, multiBallSpawnPositions [i], Quaternion.identity));
 				} else {
@@ -163,11 +163,12 @@ public class EventController : MonoBehaviour {
 			}
 
 			multiball = true;
-		} else if (!(Time.time - timestamp <= currentEffect.duration)) {
-			foreach (UnityEngine.Object b in fakeBalls) {
-				fakeBalls.Remove (b);
-				Destroy (b);
-			}
+		}
+        else if (!(Time.time - timestamp <= currentEffect.duration)) {
+            for(i = 0; i < fakeBalls.Count; i++){
+                Destroy(fakeBalls[i]);
+            }
+            fakeBalls.Clear();
 			this.activated = false;
 			eventUI.enabled = false;
 			multiball = false;

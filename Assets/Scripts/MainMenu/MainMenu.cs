@@ -2,8 +2,6 @@
 
 public class MainMenu : MonoBehaviour {
 
-    public GameObject splashScreen;
-    public GameObject mainPanel;
     public GameObject optionsPanel;
     public GameObject quitPopUp;
 
@@ -13,12 +11,6 @@ public class MainMenu : MonoBehaviour {
         {
             ClosePanels();
         }
-    }
-
-    public void showSplashScreen(bool b)
-    {
-        splashScreen.SetActive(b);
-        mainPanel.SetActive(!b);
     }
 
     public void Play()
