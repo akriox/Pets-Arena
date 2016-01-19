@@ -26,7 +26,7 @@ public class PickUp : MonoBehaviour {
 			PowerUp p = other.GetComponent<PowerUp>();
 			if(!p.available && !p.activated){
 				p.available = true;
-				p.setEffect(this.effectTag);
+                p.setEffect(this.effectTag);
 				Destroy (this.gameObject);	
 			}
 		}

@@ -48,7 +48,7 @@ public class PowerUp : MonoBehaviour {
 					activated = _attractBall.runEffect(_ball, transform.position, timestamp, line);
 					break;
 				case "RepulsiveWave":
-					activated = _repulsiveWave.runEffect(transform.position, transform.forward);
+					activated = _repulsiveWave.runEffect(this.gameObject, transform.position, transform.forward);
 					break;
 				case "GlobalStun":
 					activated = _globalStun.runEffect();
