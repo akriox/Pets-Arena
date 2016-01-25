@@ -19,6 +19,9 @@ public class PickUp : MonoBehaviour {
 
 	void Update () {
 		transform.Rotate (rotationVector);
+		Vector3 pos = transform.position;
+		pos.y =  Mathf.Clamp(transform.position.y, 2.0f, 10.0f);
+		transform.position = pos;
 	}
 
 	void OnTriggerEnter(Collider other) {

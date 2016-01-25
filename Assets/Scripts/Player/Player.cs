@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 	void Awake() {
         _rb = GetComponent<Rigidbody>();
 		_mat = GetComponent<Renderer>().material;
-		defaultColor = this.GetComponent<Renderer>().material.color;
+		defaultColor = this.GetComponentInChildren<Renderer>().material.GetColor ("_TintColor");
         sideDashCount = maxSideDashStack;
     }
 
@@ -68,14 +68,14 @@ public class Player : MonoBehaviour
 
         if (paralyzed && currentParalyzedTime < paralyzedTime && !immune)
         {
-            _mat.SetColor("_Color", Color.gray);
+			_mat.SetColor("_Color", Color.gray);
             RotateParalyzed();
             currentParalyzedTime += Time.deltaTime;
         }
         else {
             paralyzed = false;
             currentParalyzedTime = 0;
-            _mat.SetColor("_Color", defaultColor);
+			_mat.SetColor("_Color", defaultColor);
         }
 
         if (dashing == false && currentDashCooldown < dashCooldown)
