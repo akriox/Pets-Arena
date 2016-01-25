@@ -17,7 +17,6 @@ public class EventController : MonoBehaviour {
 	
 	public Effect currentEffect;
 
-
 	private GameObject _ball;
 	public Vector3 initScale {get; set;}
 	private float scaleFactor = 0.0f;
@@ -25,7 +24,7 @@ public class EventController : MonoBehaviour {
 	private List<Vector3> multiBallSpawnPositions;
 	private List<UnityEngine.Object> fakeBalls = new List<UnityEngine.Object>();
 	private bool multiball = false;
-	private static System.Random rng = new System.Random();  
+	
 	public UnityEngine.Object FakeBallPrefab;
 	private BallController _ballController;
 	private GameController _gameController;
@@ -34,7 +33,6 @@ public class EventController : MonoBehaviour {
 	public static string[] pool;
 	public static int count = 5;
 
-	// Use this for initialization
 	void Start () {
 		activated = false;
 		
@@ -59,11 +57,6 @@ public class EventController : MonoBehaviour {
 		multiBallSpawnPositions.Add(new Vector3(0f, 18f, -3.2f));
 		multiBallSpawnPositions.Add(new Vector3(0f, 21f, 0f));
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	void FixedUpdate () {

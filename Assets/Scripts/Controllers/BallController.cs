@@ -28,7 +28,8 @@ public class BallController : MonoBehaviour {
 		_mat = GetComponent<Renderer>().material;
 		defaultColor = _mat.color;
         _trail = GetComponent<TrailRenderer>();
-	}
+        _trail.enabled = true;
+    }
 
 	void Start () {
 		currentZone = Zone.N;
@@ -41,13 +42,6 @@ public class BallController : MonoBehaviour {
 		{
 			rb.velocity = rb.velocity.normalized * maxSpeed;
 		}
-
-        if (kicked){
-            _mat.SetColor("_Color", Color.cyan);
-            _trail.enabled = true;
-        }
-        else
-            _trail.enabled = false;
 
 		if (trapped)
 			_mat.SetFloat ("_Metallic", 1f);
@@ -80,7 +74,8 @@ public class BallController : MonoBehaviour {
 			if(p.dashing){
 				Vector3 kickVector = new Vector3(p.transform.forward.x * kickPower, Mathf.Cos(kickAngle) * 50, p.transform.forward.z * kickPower);
 				rb.AddForce(kickVector, ForceMode.VelocityChange);
-				StartCoroutine("switchKickOn");
+                _mat.SetColor("_Color", Color.cyan);
+                StartCoroutine("switchKickOn");
 			}
 			else if(this.kicked && !p.dashing)
 				p.paralyzed = true;

@@ -4,11 +4,11 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerUserControl : MonoBehaviour
 {
-	public Player player;
+	private Player player;
 	public int playerNumber;
 
 	private Vector3 previousMove = Vector3.zero;
-	public Vector3 move;
+	private Vector3 move;
 
 	private bool dash;
 	private bool dashLeft;
@@ -16,7 +16,6 @@ public class PlayerUserControl : MonoBehaviour
 
     private float sideDashTimer = 0.0f;
     private float sideDashDuration = 0.1f;
-    private float sideDashTimeStamp = 0.0f;
     private Vector3 sideDashDirection;
 
 	private bool gamepadAvailable;
@@ -36,6 +35,7 @@ public class PlayerUserControl : MonoBehaviour
 			float h = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickX);
 			float v = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickY);
             move = (v * Vector3.forward + h * Vector3.right).normalized;
+            player.anim.SetFloat("Speed", move.magnitude);
 
             dash = GamepadInput.Instance.gamepads[playerNumber - 1].GetButtonDown(GamepadButton.Action1);
             dashLeft = GamepadInput.Instance.gamepads[playerNumber - 1].GetAxis(GamepadAxis.LeftTrigger) > 0.5;

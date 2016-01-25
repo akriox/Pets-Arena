@@ -39,14 +39,20 @@ public class Player : MonoBehaviour
     public bool repulsed = false;
     private float repulsedDuration = 0.8f;
     private float repulsedTimer = 0.0f;
- 
+
 	private Material _mat;
 	private Color defaultColor;
 
+    public Animator anim { get; private set; }
+
 	void Awake() {
         _rb = GetComponent<Rigidbody>();
-		_mat = GetComponent<Renderer>().material;
-		defaultColor = this.GetComponentInChildren<Renderer>().material.GetColor ("_TintColor");
+
+        anim = GetComponentInChildren<Animator>();
+
+        _mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
+        defaultColor = _mat.color;
+
         sideDashCount = maxSideDashStack;
     }
 
@@ -124,6 +130,13 @@ public class Player : MonoBehaviour
             sideDashCount = maxSideDashStack;
     }
 
+    public IEnumerator ignoreObstacles(Collision col)
+    {
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), col.collider, true);
+        yield return new WaitForSeconds(0.5f);
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), col.collider, false);
+    }
+
 	void OnCollisionEnter(Collision col)
 	{
 		if (col.gameObject.tag == "Player") {
@@ -133,7 +146,12 @@ public class Player : MonoBehaviour
 				paralyzed = true;
 		}
 
-		if (col.gameObject.tag == "Ball" && dashing)
+        if(col.gameObject.tag == "Obstacle" && dashing)
+        {
+            StartCoroutine(ignoreObstacles(col));
+        } 
+
+        if (col.gameObject.tag == "Ball" && dashing)
 			currentDashTime = dashTime;
 	}
 }
