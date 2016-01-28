@@ -25,12 +25,12 @@ public class Player : MonoBehaviour
 	public float dashStoppingSpeed = 0.1f;
 	public float currentDashTime = 1.0f;
 
-    public bool sideDashing;
-    private float sideDashCooldown = 3.0f;
+    public bool sideDashingAllowed = true;
+    private float sideDashCooldown = 5.0f;
     private float sideDashRefresh = 0.0f;
 
     public int sideDashCount { get; private set; }
-    private int maxSideDashStack = 4;
+    private int maxSideDashStack = 3;
 
 	public bool attacking = false;
 	public bool paralyzed = false;

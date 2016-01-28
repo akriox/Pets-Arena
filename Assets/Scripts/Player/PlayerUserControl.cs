@@ -15,7 +15,7 @@ public class PlayerUserControl : MonoBehaviour
 	private bool dashRight;
 
     private float sideDashTimer = 0.0f;
-    private float sideDashDuration = 0.1f;
+    private float sideDashTimeOut = 0.1f;
     private Vector3 sideDashDirection;
 
 	private bool gamepadAvailable;
@@ -84,23 +84,22 @@ public class PlayerUserControl : MonoBehaviour
                 sideDashDirection = Vector3.zero;
 
             if (dashLeft || dashRight) {
-                if (player.sideDashing && player.sideDashCount > 0) {
+                if (player.sideDashingAllowed && player.sideDashCount > 0) {
                     sideDashTimer += Time.deltaTime;
-                    if (sideDashTimer < sideDashDuration) {
+                    if (sideDashTimer < sideDashTimeOut) {
                         player.DashAttack(sideDashDirection);
                         player.attacking = true;
                     }
                     else {
                         sideDashTimer = 0.0f;
-                        player.sideDashing = false;
-                        player.attacking = false;
+                        player.sideDashingAllowed = false;
                         player.removeSideDashStack(1);
                     }
                 }
             }
-            else 
-            {
-                player.sideDashing = true;
+            else {
+                player.sideDashingAllowed = true;
+                player.attacking = false;
             }
         }
 	}
