@@ -77,8 +77,10 @@ public class BallController : MonoBehaviour {
                 _mat.SetColor("_Color", Color.cyan);
                 StartCoroutine("switchKickOn");
 			}
+            /*
 			else if(this.kicked && !p.dashing)
 				p.paralyzed = true;
+            */
 		}
 
 		if(col.gameObject.name == "Field" && kicked)

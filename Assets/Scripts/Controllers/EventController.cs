@@ -27,8 +27,6 @@ public class EventController : MonoBehaviour {
 	
 	public UnityEngine.Object FakeBallPrefab;
 	private BallController _ballController;
-	private GameController _gameController;
-
 
 	public static string[] pool;
 	public static int count = 5;
@@ -39,7 +37,6 @@ public class EventController : MonoBehaviour {
 		_ball = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = _ball.GetComponent<BallController>();
 		initScale = _ball.transform.localScale;
-		_gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
 		pool = new string[count];
 		pool[0] = "TrapBall";
@@ -85,11 +82,11 @@ public class EventController : MonoBehaviour {
 		if (Time.time - this.timestamp <= currentEffect.duration) {
 			eventUI.enabled = true;
 			_ballController.trapped = true;
-			_gameController.scoringDirection = -1;
+			GameController.scoringDirection = -1;
 		} else {
 			eventUI.enabled = false;
 			_ballController.trapped = false;
-			_gameController.scoringDirection = 1;
+			GameController.scoringDirection = 1;
 			this.activated = false;
 		}
 	}
@@ -132,11 +129,11 @@ public class EventController : MonoBehaviour {
 	void SwitchedZones(){
 		if(Time.time - timestamp <= currentEffect.duration){
 			eventUI.enabled = true;
-			_gameController.switchedZones = true;
+			GameController.switchedZones = true;
 		}
 		else{
 			eventUI.enabled = false;
-			_gameController.switchedZones = false;
+			GameController.switchedZones = false;
 			this.activated = false;
 		}
 	}

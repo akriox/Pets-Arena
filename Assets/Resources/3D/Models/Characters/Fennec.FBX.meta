@@ -1,0 +1,243 @@
+fileFormatVersion: 2
+guid: 167b48c10be25a64eabb5acc8851b609
+timeCreated: 1454331193
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Finn
+    100002: //RootNode
+    100004: Lizard001
+    100006: LizardHead001
+    100008: LizardLFrontLeg003
+    100010: LizardLFrontLegCollarbone001
+    100012: LizardLFrontLegPalm003
+    100014: LizardLFrontLegPlatform001
+    100016: LizardLFrontLegUpper001
+    100018: LizardLLegAnkle003
+    100020: LizardLLegCalf001
+    100022: LizardLLegPlatform001
+    100024: LizardLLegThigh001
+    100026: LizardNeck001
+    100028: LizardPelvis001
+    100030: LizardRFrontLeg003
+    100032: LizardRFrontLegCollarbone001
+    100034: LizardRFrontLegPalm003
+    100036: LizardRFrontLegPlatform001
+    100038: LizardRFrontLegUpper001
+    100040: LizardRibcage001
+    100042: LizardRRearLegAnkle003
+    100044: LizardRRearLegCalf001
+    100046: LizardRRearLegPlatform001
+    100048: LizardRRearLegThigh001
+    100050: LizardSpine003
+    100052: LizardSpine004
+    100054: LizardTail1
+    100056: LizardTail1 1
+    100058: LizardTail1 2
+    100060: LizardTail2
+    100062: LizardTail2 1
+    100064: LizardTail2 2
+    100066: LizardTail3
+    400000: Finn
+    400002: //RootNode
+    400004: Lizard001
+    400006: LizardHead001
+    400008: LizardLFrontLeg003
+    400010: LizardLFrontLegCollarbone001
+    400012: LizardLFrontLegPalm003
+    400014: LizardLFrontLegPlatform001
+    400016: LizardLFrontLegUpper001
+    400018: LizardLLegAnkle003
+    400020: LizardLLegCalf001
+    400022: LizardLLegPlatform001
+    400024: LizardLLegThigh001
+    400026: LizardNeck001
+    400028: LizardPelvis001
+    400030: LizardRFrontLeg003
+    400032: LizardRFrontLegCollarbone001
+    400034: LizardRFrontLegPalm003
+    400036: LizardRFrontLegPlatform001
+    400038: LizardRFrontLegUpper001
+    400040: LizardRibcage001
+    400042: LizardRRearLegAnkle003
+    400044: LizardRRearLegCalf001
+    400046: LizardRRearLegPlatform001
+    400048: LizardRRearLegThigh001
+    400050: LizardSpine003
+    400052: LizardSpine004
+    400054: LizardTail1
+    400056: LizardTail1 1
+    400058: LizardTail1 2
+    400060: LizardTail2
+    400062: LizardTail2 1
+    400064: LizardTail2 2
+    400066: LizardTail3
+    4300000: Finn
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Finn
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Finn
+        weight: 1
+      - path: Lizard001
+        weight: 1
+      - path: LizardLFrontLegPlatform001
+        weight: 1
+      - path: LizardLLegPlatform001
+        weight: 1
+      - path: LizardPelvis001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001/LizardLLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001/LizardRRearLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003/LizardLFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001/LizardTail1
+          1
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001/LizardTail1
+          1/LizardTail2 1
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001/LizardTail1
+          2
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001/LizardTail1
+          2/LizardTail2 2
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003/LizardRFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardTail1
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: LizardRFrontLegPlatform001
+        weight: 1
+      - path: LizardRRearLegPlatform001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.05
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
     }
 
 	void RotateParalyzed(){
-		transform.RotateAround(transform.position, transform.up, 3.0f);
+		transform.RotateAround(transform.position, transform.up, 8.0f);
 	}
 
 	public void Rotate(Vector3 rotateDirection){
