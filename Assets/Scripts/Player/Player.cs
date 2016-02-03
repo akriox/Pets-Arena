@@ -109,7 +109,10 @@ public class Player : MonoBehaviour
     }
 
     public void Dash(Vector3 moveDirection){
-        _rb.velocity = new Vector3(moveDirection.x * dashSpeed, _rb.velocity.y, moveDirection.z * dashSpeed);
+        if (moveDirection == Vector3.zero)
+            _rb.velocity = new Vector3(transform.forward.x * dashSpeed, _rb.velocity.y, transform.forward.z * dashSpeed);
+        else
+            _rb.velocity = new Vector3(moveDirection.x * dashSpeed, _rb.velocity.y, moveDirection.z * dashSpeed);
     }
 
 	public void DashAttack(Vector3 dir){

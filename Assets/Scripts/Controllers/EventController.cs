@@ -22,7 +22,7 @@ public class EventController : MonoBehaviour {
 	private float scaleFactor = 0.0f;
 	private float speed = 5.0f;
 	private List<Vector3> multiBallSpawnPositions;
-	private List<UnityEngine.Object> fakeBalls = new List<UnityEngine.Object>();
+	private List<GameObject> fakeBalls = new List<GameObject>();
 	private bool multiball = false;
 	
 	public UnityEngine.Object FakeBallPrefab;
@@ -95,8 +95,8 @@ public class EventController : MonoBehaviour {
 		if (Time.time - this.timestamp <= currentEffect.duration) {
 			eventUI.enabled = true;
 			_ballController.bouncy = true;
-			_ballController.bouncePower *= 2f;
-			_ball.GetComponent<Collider>().material.bounciness = 1f;
+			_ballController.bouncePower *= 2.0f;
+			_ball.GetComponent<Collider>().material.bounciness = 0.9f;
 			_ball.GetComponent<Collider>().material.staticFriction = 0.3f;
 			_ball.GetComponent<Collider>().material.dynamicFriction = 0.3f;
 			_ball.GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Average;
@@ -144,14 +144,16 @@ public class EventController : MonoBehaviour {
 			ShuffleList (multiBallSpawnPositions);
 			for (i = 0; i < multiBallSpawnPositions.Count; i++) {
 				if (i < multiBallSpawnPositions.Count - 2) {
-					fakeBalls.Add (Instantiate (FakeBallPrefab, multiBallSpawnPositions [i], Quaternion.identity));
+					GameObject fakeBall = Instantiate(FakeBallPrefab, multiBallSpawnPositions [i], Quaternion.identity) as GameObject;
+                    fakeBall.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-20.0f, 20.0f), Random.Range(-20.0f, 20.0f), Random.Range(-20.0f, 20.0f));
+                    fakeBalls.Add(fakeBall);
 				} else {
 					_ball.transform.position = multiBallSpawnPositions [i];
 					_ball.GetComponent<Rigidbody> ().velocity = Vector3.zero;
 					_ballController.currentZone = BallController.Zone.N;
+                    _ballController.trail.enabled = false;
 				}
 			}
-
 			multiball = true;
 		}
         else if (!(Time.time - timestamp <= currentEffect.duration)) {
@@ -162,7 +164,8 @@ public class EventController : MonoBehaviour {
 			this.activated = false;
 			eventUI.enabled = false;
 			multiball = false;
-		}
+            _ballController.trail.enabled = true;
+        }
 	}
 
 	private void ShuffleList<E>(List<E> inputList)

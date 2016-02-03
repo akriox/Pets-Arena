@@ -12,23 +12,23 @@ public class BallController : MonoBehaviour {
 	public float kickAngle;
 	public float kickPower;
 
-	public bool kicked = false;
 	public bool trapped = false;
 	public bool bouncy = false;
 	public float stunDelay;
 	public enum Zone {R, G, B, Y, N};
 	public Zone currentZone;
 
-	private Material _mat;
-	private Color defaultColor;
+	private Material defaultMat;
+    public Material ballTrappedMat;
 
-    private TrailRenderer _trail;
+    public TrailRenderer trail { get; set; }
+    private Behaviour halo;
 
 	void Awake(){
-		_mat = GetComponent<Renderer>().material;
-		defaultColor = _mat.color;
-        _trail = GetComponent<TrailRenderer>();
-        _trail.enabled = true;
+		defaultMat = GetComponent<Renderer>().material;
+        trail = GetComponent<TrailRenderer>();
+        trail.enabled = true;
+        halo = (Behaviour)GetComponent("Halo");
     }
 
 	void Start () {
@@ -43,20 +43,24 @@ public class BallController : MonoBehaviour {
 			rb.velocity = rb.velocity.normalized * maxSpeed;
 		}
 
-		if (trapped)
-			_mat.SetFloat ("_Metallic", 1f);
-		else
-			_mat.SetFloat ("_Metallic", 0);
-		if (bouncy)
-			_mat.SetFloat ("_Glossiness", 0);
-		else
-			_mat.SetFloat ("_Glossiness", 0.5f);
-	}
+        if (trapped){
+            GetComponent<Renderer>().material = ballTrappedMat;
+            halo.enabled = true;
+        }
+        else {
+            GetComponent<Renderer>().material = defaultMat;
+            halo.enabled = false;
+        }
 
-	public IEnumerator switchKickOn() {
-		yield return new WaitForSeconds(stunDelay);
-		this.kicked = true;
-	}
+        /*
+		if (bouncy){
+
+        }
+		else{
+
+        }
+        */
+    }
 
 	void OnCollisionEnter(Collision col)
 	{
@@ -74,21 +78,22 @@ public class BallController : MonoBehaviour {
 			if(p.dashing){
 				Vector3 kickVector = new Vector3(p.transform.forward.x * kickPower, Mathf.Cos(kickAngle) * 50, p.transform.forward.z * kickPower);
 				rb.AddForce(kickVector, ForceMode.VelocityChange);
-                _mat.SetColor("_Color", Color.cyan);
-                StartCoroutine("switchKickOn");
 			}
-            /*
-			else if(this.kicked && !p.dashing)
-				p.paralyzed = true;
-            */
-		}
-
-		if(col.gameObject.name == "Field" && kicked)
-		{
-			_mat.SetColor("_Color", defaultColor);
-			kicked = false;
 		}
 	}
+
+    void OnCollisionStay(Collision col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            Player p = col.gameObject.GetComponent<Player>();
+            if (p.dashing)
+            {
+                Vector3 kickVector = new Vector3(p.transform.forward.x * kickPower, Mathf.Cos(kickAngle) * 50, p.transform.forward.z * kickPower);
+                rb.AddForce(kickVector, ForceMode.VelocityChange);
+            }
+        }
+    }
 
 	void OnTriggerEnter(Collider col){
 		switch(col.gameObject.name){
@@ -102,5 +107,4 @@ public class BallController : MonoBehaviour {
 	void OnTriggerExit(Collider col){
 		currentZone = Zone.N;
 	}
-	
 }

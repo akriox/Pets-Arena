@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: d4fc9e8877168464f9a20fb7b068ac16
+timeCreated: 1454449918
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Baguy
+    100004: Lizard
+    100006: LizardHead
+    100008: LizardLFrontLeg2
+    100010: LizardLFrontLegCollarbone
+    100012: LizardLFrontLegPalm2
+    100014: LizardLFrontLegPlatform
+    100016: LizardLFrontLegUpper
+    100018: LizardLLegAnkle2
+    100020: LizardLLegCalf
+    100022: LizardLLegPlatform
+    100024: LizardLLegThigh
+    100026: LizardNeck
+    100028: LizardPelvis
+    100030: LizardRFrontLeg2
+    100032: LizardRFrontLegCollarbone
+    100034: LizardRFrontLegPalm2
+    100036: LizardRFrontLegPlatform
+    100038: LizardRFrontLegUpper
+    100040: LizardRibcage
+    100042: LizardRRearLegAnkle2
+    100044: LizardRRearLegCalf
+    100046: LizardRRearLegPlatform
+    100048: LizardRRearLegThigh
+    100050: LizardSpine1
+    100052: LizardSpine2
+    100054: LizardTail1
+    100056: LizardTail2
+    100058: LizardTail3
+    100060: LizardTail4
+    100062: LizardTail5
+    100064: LizardTail6
+    100066: PhysCamera001.Target
+    400000: //RootNode
+    400002: Baguy
+    400004: Lizard
+    400006: LizardHead
+    400008: LizardLFrontLeg2
+    400010: LizardLFrontLegCollarbone
+    400012: LizardLFrontLegPalm2
+    400014: LizardLFrontLegPlatform
+    400016: LizardLFrontLegUpper
+    400018: LizardLLegAnkle2
+    400020: LizardLLegCalf
+    400022: LizardLLegPlatform
+    400024: LizardLLegThigh
+    400026: LizardNeck
+    400028: LizardPelvis
+    400030: LizardRFrontLeg2
+    400032: LizardRFrontLegCollarbone
+    400034: LizardRFrontLegPalm2
+    400036: LizardRFrontLegPlatform
+    400038: LizardRFrontLegUpper
+    400040: LizardRibcage
+    400042: LizardRRearLegAnkle2
+    400044: LizardRRearLegCalf
+    400046: LizardRRearLegPlatform
+    400048: LizardRRearLegThigh
+    400050: LizardSpine1
+    400052: LizardSpine2
+    400054: LizardTail1
+    400056: LizardTail2
+    400058: LizardTail3
+    400060: LizardTail4
+    400062: LizardTail5
+    400064: LizardTail6
+    400066: PhysCamera001.Target
+    2300000: Baguy
+    3300000: Baguy
+    4300000: Baguy
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.08
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

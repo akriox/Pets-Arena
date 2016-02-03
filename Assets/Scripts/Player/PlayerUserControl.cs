@@ -25,6 +25,7 @@ public class PlayerUserControl : MonoBehaviour
 	{
 		player = GetComponent<Player>();
 		_powerUp = GetComponent<PowerUp>();
+        move = Vector3.zero;
 	}
 	
 	private void Update()

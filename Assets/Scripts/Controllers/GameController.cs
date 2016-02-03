@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
@@ -10,20 +11,20 @@ public class GameController : MonoBehaviour {
     public float blueScore { get; set; }
     public float yellowScore { get; set; }
 
-    public Text victoryUI;
+    public Text messageUI;
     public Text redScoreUI;
 	public Text greenScoreUI;
 	public Text blueScoreUI;
 	public Text yellowScoreUI;
 
-	public TotemGauge redGauge;
-    public TotemGauge greenGauge;
-    public TotemGauge blueGauge;
-    public TotemGauge yellowGauge;
+	public Totem redTotem;
+    public Totem greenTotem;
+    public Totem blueTotem;
+    public Totem yellowTotem;
 	
 	private bool matchIsOver;
 
-	public static bool switchedZones;
+	public static bool switchedZones = false;
 	public static int scoringDirection = 1;
     public static float victoryScore = 15.0f;
     public static float scoringRate = 0.01f;
@@ -33,6 +34,8 @@ public class GameController : MonoBehaviour {
 		scoringDirection = 1;
 		GameObject ballGo = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = ballGo.GetComponent<BallController> ();
+
+        StartCoroutine(DisplayMessage("Bring back the sacred \n ball to your camp !", 5.0f));
 	}
 
 	void Update(){
@@ -65,31 +68,23 @@ public class GameController : MonoBehaviour {
 	private void updateScore (){
 		switch (_ballController.currentZone) {
 		    case BallController.Zone.R:
-			    redScore += scoringDirection * scoringRate;
-			    if(redScore <= 0) redScore = 0;
-			    redScoreUI.text = redScore.ToString ("0.00");
-                redGauge.fill();
+                if (!switchedZones) IncreaseRedScore();
+                else IncreaseGreenScore();
 			    break;
 				
-		    case BallController.Zone.G: 
-			    greenScore += scoringDirection * scoringRate;
-			    if(greenScore <= 0) greenScore = 0;
-			    greenScoreUI.text = greenScore.ToString ("0.00");
-                greenGauge.fill();
+		    case BallController.Zone.G:
+                if (!switchedZones) IncreaseGreenScore();
+                else IncreaseRedScore();
 			    break;
 				
-		    case BallController.Zone.B: 
-			    blueScore += scoringDirection * scoringRate;
-			    if(blueScore <= 0) blueScore = 0;
-			    blueScoreUI.text = blueScore.ToString ("0.00");
-                blueGauge.fill();
+		    case BallController.Zone.B:
+                if (!switchedZones) IncreaseBlueScore();
+                else IncreaseYellowScore();
 			    break;
 				
-		    case BallController.Zone.Y: 
-			    yellowScore += scoringDirection * scoringRate;
-			    if(yellowScore <= 0) yellowScore = 0;
-			    yellowScoreUI.text = yellowScore.ToString ("0.00");
-                yellowGauge.fill();
+		    case BallController.Zone.Y:
+                if (!switchedZones) IncreaseYellowScore();
+                else IncreaseBlueScore();
 			    break;
 				
 		    case BallController.Zone.N:
@@ -97,9 +92,50 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	private void displayWinner(string winner){
-		victoryUI.enabled = true;
-		victoryUI.text = winner + victoryUI.text;
+    private void IncreaseYellowScore()
+    {
+        yellowScore += scoringDirection * scoringRate;
+        if (yellowScore <= 0) yellowScore = 0;
+        yellowScoreUI.text = yellowScore.ToString("0.00");
+        yellowTotem.fill();
+    }
+
+    private void IncreaseRedScore()
+    {
+        redScore += scoringDirection * scoringRate;
+        if (redScore <= 0) redScore = 0;
+        redScoreUI.text = redScore.ToString("0.00");
+        redTotem.fill();
+    }
+
+    private void IncreaseGreenScore()
+    {
+        greenScore += scoringDirection * scoringRate;
+        if (greenScore <= 0) greenScore = 0;
+        greenScoreUI.text = greenScore.ToString("0.00");
+        greenTotem.fill();
+    }
+
+    private void IncreaseBlueScore()
+    {
+        blueScore += scoringDirection * scoringRate;
+        if (blueScore <= 0) blueScore = 0;
+        blueScoreUI.text = blueScore.ToString("0.00");
+        blueTotem.fill();
+    }
+
+    private void displayWinner(string winner){
+		messageUI.enabled = true;
+		messageUI.text = winner + " wins !";
 		matchIsOver = true;
 	}
+
+    private IEnumerator DisplayMessage(string msg, float duration)
+    {
+        messageUI.text = msg;
+        messageUI.enabled = true;
+        yield return new WaitForSeconds(duration);
+        messageUI.text = "";
+        messageUI.enabled = false;
+    }
 }
