@@ -43,6 +43,7 @@ public class PlayerUserControl : MonoBehaviour
             dashRight = GamepadInput.Instance.gamepads[playerNumber - 1].GetAxis(GamepadAxis.RightTrigger) > 0.5;
 
 			if(GamepadInput.Instance.gamepads[playerNumber-1].GetButtonDown(GamepadButton.Action2) && _powerUp.available){
+                player.PlaySound(player.audioClips[3], false);
 				_powerUp.timestamp = Time.time;
 				_powerUp.activated = true;
 				_powerUp.available = false;

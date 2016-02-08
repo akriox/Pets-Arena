@@ -14,7 +14,6 @@ public class BallController : MonoBehaviour {
 
 	public bool trapped = false;
 	public bool bouncy = false;
-	public float stunDelay;
 	public enum Zone {R, G, B, Y, N};
 	public Zone currentZone;
 

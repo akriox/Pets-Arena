@@ -45,10 +45,15 @@ public class Player : MonoBehaviour
 
     public Animator anim { get; private set; }
 
+    private AudioSource _audioSource;
+    public AudioClip[] audioClips;
+
 	void Awake() {
         _rb = GetComponent<Rigidbody>();
 
         anim = GetComponentInChildren<Animator>();
+
+        _audioSource = GetComponent<AudioSource>();
 
         _mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
         defaultColor = _mat.color;
@@ -74,6 +79,7 @@ public class Player : MonoBehaviour
 
         if (paralyzed && currentParalyzedTime < paralyzedTime && !immune)
         {
+            PlaySound(audioClips[2], false);
 			_mat.SetColor("_Color", Color.gray);
             RotateParalyzed();
             currentParalyzedTime += Time.deltaTime;
@@ -109,6 +115,7 @@ public class Player : MonoBehaviour
     }
 
     public void Dash(Vector3 moveDirection){
+        PlaySound(audioClips[0], false);
         if (moveDirection == Vector3.zero)
             _rb.velocity = new Vector3(transform.forward.x * dashSpeed, _rb.velocity.y, transform.forward.z * dashSpeed);
         else
@@ -116,6 +123,7 @@ public class Player : MonoBehaviour
     }
 
 	public void DashAttack(Vector3 dir){
+        PlaySound(audioClips[1], false);
         _rb.velocity = dir * dashSpeed;
 	}
 
@@ -131,6 +139,13 @@ public class Player : MonoBehaviour
         sideDashCount += i;
         if (sideDashCount > maxSideDashStack)
             sideDashCount = maxSideDashStack;
+    }
+
+    public void PlaySound(AudioClip clip, bool loop)
+    {
+        _audioSource.clip = clip;
+        _audioSource.loop = loop;
+        if (! _audioSource.isPlaying) _audioSource.Play();
     }
 
     public IEnumerator ignoreObstacles(Collision col)

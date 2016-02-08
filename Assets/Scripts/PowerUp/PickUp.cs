@@ -9,8 +9,11 @@ public class PickUp : MonoBehaviour {
 
 	public string effectTag;
 
+    private AudioSource _audioSource;
+
 	void Start () {
 		rotationVector = new Vector3 (0, rotationSpeed, 0);
+        _audioSource = GetComponent<AudioSource>();
 	}
 
 	void FixedUpdate(){
@@ -26,6 +29,7 @@ public class PickUp : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
+            _audioSource.Play();
 			PowerUp p = other.GetComponent<PowerUp>();
 			if(!p.available && !p.activated){
 				p.available = true;
