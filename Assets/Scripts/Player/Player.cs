@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
 	private Color defaultColor;
 
     public Animator anim { get; private set; }
+    public GameObject stunAnimGo;
 
     private AudioSource _audioSource;
     public AudioClip[] audioClips;
@@ -81,6 +82,7 @@ public class Player : MonoBehaviour
         {
             PlaySound(audioClips[2], false);
 			_mat.SetColor("_Color", Color.gray);
+            stunAnimGo.SetActive(true);
             RotateParalyzed();
             currentParalyzedTime += Time.deltaTime;
         }
@@ -88,6 +90,7 @@ public class Player : MonoBehaviour
             paralyzed = false;
             currentParalyzedTime = 0;
 			_mat.SetColor("_Color", defaultColor);
+            stunAnimGo.SetActive(false);
         }
 
         if (dashing == false && currentDashCooldown < dashCooldown)
@@ -103,7 +106,7 @@ public class Player : MonoBehaviour
     }
 
 	void RotateParalyzed(){
-		transform.RotateAround(transform.position, transform.up, 8.0f);
+		transform.RotateAround(transform.position, transform.up, 5.0f);
 	}
 
 	public void Rotate(Vector3 rotateDirection){

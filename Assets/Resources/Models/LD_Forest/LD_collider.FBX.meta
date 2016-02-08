@@ -28,7 +28,7 @@ ModelImporter:
     4300004: Forest_ZoneYellow001_Collider
     4300006: Forest_ZoneRed001_Collider
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

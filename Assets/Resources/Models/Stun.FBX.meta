@@ -1,15 +1,30 @@
 fileFormatVersion: 2
-guid: 47231cada381d274883b743f047c7d62
-timeCreated: 1453648468
+guid: 2b8361f8fe2b2874890936d73e2d03fa
+timeCreated: 1454953766
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: bush_type02
+    100000: Star005
+    100002: Star006
+    100004: Star007
+    100006: //RootNode
+    400000: Star005
+    400002: Star006
+    400004: Star007
+    400006: //RootNode
+    2300000: Star005
+    2300002: Star006
+    2300004: Star007
+    3300000: Star005
+    3300002: Star006
+    3300004: Star007
+    4300000: Star005
+    4300002: Star006
+    4300004: Star007
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
   materials:
     importMaterials: 0
     materialName: 0
@@ -30,11 +45,47 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Star005
+        weight: 1
+      - path: Star006
+        weight: 1
+      - path: Star007
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 9
+    globalScale: 0.06
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -68,7 +119,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 1
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

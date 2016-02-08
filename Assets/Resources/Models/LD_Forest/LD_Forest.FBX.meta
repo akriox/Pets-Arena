@@ -36,7 +36,7 @@ ModelImporter:
     4300008: Forest_ZoneYellow
     4300010: Forest_ZoneGreen
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

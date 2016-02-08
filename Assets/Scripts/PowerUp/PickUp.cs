@@ -29,12 +29,13 @@ public class PickUp : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
-            _audioSource.Play();
 			PowerUp p = other.GetComponent<PowerUp>();
 			if(!p.available && !p.activated){
-				p.available = true;
+                _audioSource.Play();
+                p.available = true;
                 p.setEffect(this.effectTag);
-				Destroy (this.gameObject);	
+                GetComponent<MeshRenderer>().enabled = false; // hide mesh before destroying
+				Destroy (this.gameObject, _audioSource.clip.length); // wait end of clip to destroy
 			}
 		}
 	}

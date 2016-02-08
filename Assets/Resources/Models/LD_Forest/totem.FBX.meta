@@ -53,7 +53,7 @@ ModelImporter:
     4300014: Totem_04
     4300016: Totem_06
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

@@ -5,21 +5,17 @@ public class Totem : MonoBehaviour {
 
     public GameObject gauge;
     public GameObject[] notches;
-    private GameObject _ball;
 
     private Vector3 gaugeEndPos;
     private Vector3 newPos;
     private Vector3 rotationVector;
     private float rotationSpeed;
 
-    private Color color;
     private float unit;
     private float gaugeLevel;
     private float gaugeThreshold;
 
 	void Start () {
-        _ball = GameObject.FindGameObjectWithTag("Ball");
-
         rotationSpeed = 2.5f;
         rotationVector = new Vector3(0.0f, 0.0f, rotationSpeed);
 
@@ -54,10 +50,5 @@ public class Totem : MonoBehaviour {
     private void RotateNotch(int index)
     {
         notches[index].transform.Rotate(rotationVector);
-    }
-
-    public void setColor(Color c)
-    {
-        this.color = c;
     }
 }
