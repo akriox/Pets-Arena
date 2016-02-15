@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelectController : MonoBehaviour {
 
@@ -91,6 +92,10 @@ public class CharacterSelectController : MonoBehaviour {
 
 		if (AllPlayersReady ())
 			print ("READY");
+
+		if (Input.GetKeyUp(KeyCode.Space)) {
+			SceneManager.LoadScene ("LD_Forest");
+		}
 	}
 
 	void HandlePlayerInput (int playerNumber)
@@ -98,15 +103,14 @@ public class CharacterSelectController : MonoBehaviour {
 		if (CanMove [playerNumber]) {
 			if (Gamepads [playerNumber].GetAxis (GamepadAxis.LeftStickX) < -0.5)
 				SwitchCharacter (-1, playerNumber);
-			else
-				if (Gamepads [playerNumber].GetAxis (GamepadAxis.LeftStickX) > 0.5)
-					SwitchCharacter (1, playerNumber);
+			else if (Gamepads [playerNumber].GetAxis (GamepadAxis.LeftStickX) > 0.5)
+				SwitchCharacter (1, playerNumber);
 			if (Gamepads [playerNumber].GetButtonUp (GamepadButton.Action1))
-				Select (0);
+				Select (playerNumber);
 		}
 
 		if (Gamepads [playerNumber].GetButtonUp (GamepadButton.Action2))
-			Cancel (0);
+			Cancel (playerNumber);
 
 		if(Gamepads [playerNumber].GetButtonUp(GamepadButton.Start) && AllPlayersReady())
 			//Load the game scene
@@ -149,7 +153,7 @@ public class CharacterSelectController : MonoBehaviour {
 		PlayerSelectedCharacters [playerNumber].transform.position = Vector3.Lerp (SelectedPosition, ReferencePositions[playerNumber], Time.deltaTime * SpeedFactor);
 		PlayerSwitchingCharacters [playerNumber].transform.position = Vector3.Lerp (SwitchingPosition, ReferencePositions[playerNumber] + direction*LerpVector, Time.deltaTime * SpeedFactor);
 
-		if (SelectedPosition.x > -2 && SelectedPosition.x < 2) {
+		if (SelectedPosition.x > -4 && SelectedPosition.x < 0) {
 			AnimationStates [playerNumber].Animating = false;
 			CanMove [playerNumber] = true;
 			Destroy (PlayerSwitchingCharacters [playerNumber]);
