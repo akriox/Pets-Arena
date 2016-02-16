@@ -10,10 +10,11 @@ public class SpawnController : MonoBehaviour {
 
 	//attributs utilisés pour récupérer la position courante 
 	//de chaque joueur lors du calcul du barycentre de spawn
-	public GameObject _redPlayer;
 	public GameObject _greenPlayer;
 	public GameObject _bluePlayer;
 	public GameObject _yellowPlayer;
+	public GameObject _redPlayer;
+
 	//attribut utilisé pour récupérer les scores des joueurs
 	//dont seront déduits les poids des points du barycentre
 	GameController _gameController;
@@ -50,6 +51,7 @@ public class SpawnController : MonoBehaviour {
     void Awake(){
 		_gameController = gameObject.GetComponent<GameController> ();
 		_eventController = gameObject.GetComponent<EventController> ();
+
 		EventPositions.Add(new Vector2 (21.2f, 9.5f));
 		EventPositions.Add(new Vector2 (-8.85f, 9.5f));
 		EventPositions.Add(new Vector2 (3.35f, 9.5f));
@@ -70,6 +72,11 @@ public class SpawnController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		_greenPlayer = GameObject.FindGameObjectWithTag ("P1");
+		_bluePlayer = GameObject.FindGameObjectWithTag ("P2");
+		_yellowPlayer = GameObject.FindGameObjectWithTag ("P3");
+		_redPlayer = GameObject.FindGameObjectWithTag ("P4");
+
 		DiceFaces = new string[DiceFacesNumber];
 		FillDie ();
 

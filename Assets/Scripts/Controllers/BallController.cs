@@ -71,7 +71,7 @@ public class BallController : MonoBehaviour {
 			rb.AddForce(myCollisionNormal, ForceMode.Impulse);
 		}
 		
-		if (col.gameObject.tag == "Player") {
+		if (col.gameObject.layer == 11) {
 			Player p = col.gameObject.GetComponent<Player>();
 
 			if(p.dashing){
@@ -83,7 +83,7 @@ public class BallController : MonoBehaviour {
 
     void OnCollisionStay(Collision col)
     {
-        if (col.gameObject.tag == "Player")
+		if (col.gameObject.layer == 11)
         {
             Player p = col.gameObject.GetComponent<Player>();
             if (p.dashing)

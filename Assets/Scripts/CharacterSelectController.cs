@@ -24,12 +24,14 @@ public class CharacterSelectController : MonoBehaviour {
 	public Dictionary<string, bool> CharacterAvailability = new Dictionary<string, bool> ();
 	public List<GameObject> PlayerSelectedCharacters = new List<GameObject>();
 	public List<GameObject> PlayerSwitchingCharacters = new List<GameObject>();
-	public List<GameObject> FinalSelections = new List<GameObject> ();
+	public string[] FinalSelections = {"null", "null", "null", "null"};
 	private List<GamepadDevice> Gamepads = new List<GamepadDevice>();
 
 
 	void Awake(){
-		
+
+		DontDestroyOnLoad (transform.gameObject);
+
 		for (int i = 0; i < CharacterNames.Length; i++) {
 			CharacterAvailability.Add (CharacterNames [i], true);
 		}
@@ -90,8 +92,8 @@ public class CharacterSelectController : MonoBehaviour {
 				Animate (i, AnimationStates[i].Direction);
 		}
 
-		if (AllPlayersReady ())
-			print ("READY");
+//		if (AllPlayersReady ())
+//			print ("READY");
 
 		if (Input.GetKeyUp(KeyCode.Space)) {
 			SceneManager.LoadScene ("LD_Forest");
@@ -109,7 +111,7 @@ public class CharacterSelectController : MonoBehaviour {
 				Select (playerNumber);
 		}
 
-		if (Gamepads [playerNumber].GetButtonUp (GamepadButton.Action2))
+		if (Gamepads [playerNumber].GetButtonUp (GamepadButton.Action2) && FinalSelections[playerNumber] != "null")
 			Cancel (playerNumber);
 
 		if(Gamepads [playerNumber].GetButtonUp(GamepadButton.Start) && AllPlayersReady())
@@ -119,7 +121,7 @@ public class CharacterSelectController : MonoBehaviour {
 
 	void Select(int playerNumber){
 		PlayerSelectedCharacters [playerNumber].transform.Rotate(new Vector3(0, 50, 0));
-		FinalSelections[playerNumber] = PlayerSelectedCharacters [playerNumber];
+		FinalSelections[playerNumber] = PlayerSelectedCharacters [playerNumber].name;
 		CharacterAvailability [PlayerSelectedCharacters [playerNumber].name] = false;
 		KeepFromSelecting (playerNumber);
 		CanMove [playerNumber] = false;
@@ -134,15 +136,16 @@ public class CharacterSelectController : MonoBehaviour {
 
 	void Cancel(int playerNumber){
 		PlayerSelectedCharacters [playerNumber].transform.Rotate(new Vector3(0, -50, 0));
-		FinalSelections[playerNumber] = null;
+		FinalSelections[playerNumber] = "null";
 		CharacterAvailability [PlayerSelectedCharacters [playerNumber].name] = true;
 		CanMove [playerNumber] = true;
 	}
 
 	bool AllPlayersReady(){
 		bool ready = true;
-		foreach (GameObject character in FinalSelections)
-			ready = ready && (character != null);
+		foreach (string characterName in FinalSelections) {
+			ready = ready && (characterName != "null");
+		}
 		return ready;
 	}
 

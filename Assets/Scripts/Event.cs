@@ -28,7 +28,7 @@ public class Event : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.layer == 11) {
 			if(!_eventController.activated){
 				_eventController.activated = true;
 				_eventController.timestamp = Time.time;

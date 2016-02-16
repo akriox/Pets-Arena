@@ -28,7 +28,7 @@ public class PickUp : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.layer == 11) {
 			PowerUp p = other.GetComponent<PowerUp>();
 			if(!p.available && !p.activated){
                 _audioSource.Play();

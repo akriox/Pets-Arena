@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,15 @@ public class GameController : MonoBehaviour {
     public Totem blueTotem;
     public Totem yellowTotem;
 
+	public string[] dashUINames = {"Green Dash", "Blue Dash", "Yellow Dash", "Red Dash"};
+	public Color[] outlineColors = {Color.black, new Color(6f/255f, 193f/255f, 255f/255f), new Color(234f/255f, 209f/255f, 0/255f), new Color(255f/255f, 6f/255f, 6f/255f)};
+	public string[] playerTags = { "P1", "P2", "P3", "P4" };
+
+	private CharacterSelectController _characterSelectController;
+	private List<Vector3> playerPositions = new List<Vector3> ();
+	private List<Vector3> playerRotations = new List<Vector3> ();
+	private float scale = 1.2f;
+
 	public static bool matchHasStarted = false;
 	private bool matchIsOver;
 
@@ -35,11 +45,25 @@ public class GameController : MonoBehaviour {
     void Awake() {
 		matchIsOver = false;
 		scoringDirection = 1;
+		_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
+
+		playerPositions.Add(new Vector3(-19.73f, 0.8f, 14.575f));
+		playerPositions.Add(new Vector3(19.231f, 0.800f, 14.620f));
+		playerPositions.Add (new Vector3 (-19.83f, 0.87f, -12.63f));
+		playerPositions.Add (new Vector3 (18.97f, 0.87f, -12.63f));
+
+		playerRotations.Add(new Vector3(0f, 129.8314f, 0f));
+		playerRotations.Add (new Vector3 (0f, 234.2446f, 0f));
+		playerRotations.Add (new Vector3 (0f, 48.73073f, 0f));
+		playerRotations.Add (new Vector3 (0f, 312.3582f, 0f));
+
+
 		GameObject ballGo = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = ballGo.GetComponent<BallController> ();
 	}
 
 	void Start(){
+		InstantiatePlayers ();
 		StartCoroutine (Countdown ());
 	}
 
@@ -153,4 +177,18 @@ public class GameController : MonoBehaviour {
         messageUI.text = "";
         messageUI.enabled = false;
     }
+
+	public void InstantiatePlayers(){
+		GameObject player;
+		for (int i = 0; i < 4; i++) {
+			print (playerRotations [i]);
+			player = (GameObject) Instantiate (Resources.Load ("Prefabs/Characters/"+_characterSelectController.FinalSelections[i]), playerPositions[i], Quaternion.identity);
+			player.transform.Rotate (playerRotations [i]);
+			print (outlineColors [i]);
+			player.GetComponent<Renderer> ().material.SetColor ("_OutlineColor", outlineColors [i]);
+			player.name = _characterSelectController.FinalSelections [i];
+			player.tag = "P"+(i+1);
+			player.GetComponent<Player> ().dashUI = GameObject.Find (dashUINames [i]).GetComponent<Text>();
+		}
+	}
 }

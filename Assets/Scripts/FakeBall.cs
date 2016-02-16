@@ -15,7 +15,7 @@ public class FakeBall : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col)
 	{
-		if (col.gameObject.tag == "Player") {
+		if (col.gameObject.layer == 11) {
 			Player p = col.gameObject.GetComponent<Player>();
 			if(p.dashing){
 				Destroy(this.gameObject);
