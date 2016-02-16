@@ -3,8 +3,14 @@ using System.Collections;
 
 public class Totem : MonoBehaviour {
 
+	public GameObject heads;
     public GameObject gauge;
     public GameObject[] notches;
+
+	public static string headAxolotl = "Totem_Head_Axolotl";
+	public static string headFennec = "Totem_Head_Fennec";
+	public static string headLeopard = "Totem_Head_Leopard";
+	public static string headLoutre = "Totem_Head_Loutre";
 
     private Vector3 gaugeEndPos;
     private Vector3 newPos;
@@ -51,4 +57,14 @@ public class Totem : MonoBehaviour {
     {
         notches[index].transform.Rotate(rotationVector);
     }
+
+	public void setHead(string headName)
+	{
+		GameObject[] head = heads.GetComponentsInChildren<GameObject>();
+		for(int i = 0; i < head.Length; i++)
+		{
+			if(head[i].name == headName) head[i].SetActive(true);
+			else head[i].SetActive(false);
+		}
+	}
 }

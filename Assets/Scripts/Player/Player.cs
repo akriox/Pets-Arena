@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
     public AudioClip[] audioClips;
 
+	private int flagAnimStun = 1;
+
 	void Awake() {
         _rb = GetComponent<Rigidbody>();
 
@@ -80,10 +82,17 @@ public class Player : MonoBehaviour
 
         if (paralyzed && currentParalyzedTime < paralyzedTime && !immune)
         {
+			_rb.isKinematic = true;
+
             PlaySound(audioClips[2], false);
 			_mat.SetColor("_Color", Color.gray);
             stunAnimGo.SetActive(true);
-            RotateParalyzed();
+
+			if(flagAnimStun == 1) {
+				anim.SetTrigger("Stun");
+				flagAnimStun = 0;
+			}
+            //RotateParalyzed();
             currentParalyzedTime += Time.deltaTime;
         }
         else {
@@ -91,6 +100,9 @@ public class Player : MonoBehaviour
             currentParalyzedTime = 0;
 			_mat.SetColor("_Color", defaultColor);
             stunAnimGo.SetActive(false);
+			flagAnimStun = 1;
+
+			_rb.isKinematic = false;
         }
 
         if (dashing == false && currentDashCooldown < dashCooldown)
@@ -166,7 +178,7 @@ public class Player : MonoBehaviour
 			if(p.attacking)
 				paralyzed = true;
 		}
-
+			
         if(col.gameObject.tag == "Obstacle" && dashing)
         {
             StartCoroutine(ignoreObstacles(col));

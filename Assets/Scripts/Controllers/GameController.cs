@@ -45,17 +45,17 @@ public class GameController : MonoBehaviour {
     void Awake() {
 		matchIsOver = false;
 		scoringDirection = 1;
-		_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
+		//_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
 
-		playerPositions.Add(new Vector3(-19.73f, 0.8f, 14.575f));
-		playerPositions.Add(new Vector3(19.231f, 0.800f, 14.620f));
-		playerPositions.Add (new Vector3 (-19.83f, 0.87f, -12.63f));
-		playerPositions.Add (new Vector3 (18.97f, 0.87f, -12.63f));
+		playerPositions.Add (new Vector3 (-20.0f, 1.0f, 12.0f));
+		playerPositions.Add (new Vector3 (20.0f, 1.0f, 12.0f));
+		playerPositions.Add (new Vector3 (-20.0f, 1.0f, -12.0f));
+		playerPositions.Add (new Vector3 (20.0f, 1.0f, -12.0f));
 
-		playerRotations.Add(new Vector3(0f, 129.8314f, 0f));
-		playerRotations.Add (new Vector3 (0f, 234.2446f, 0f));
-		playerRotations.Add (new Vector3 (0f, 48.73073f, 0f));
-		playerRotations.Add (new Vector3 (0f, 312.3582f, 0f));
+		playerRotations.Add (new Vector3 (0f, 125.0f, 0f));
+		playerRotations.Add (new Vector3 (0f, 235.0f, 0f));
+		playerRotations.Add (new Vector3 (0f, 45.0f, 0f));
+		playerRotations.Add (new Vector3 (0f, 315.0f, 0f));
 
 
 		GameObject ballGo = GameObject.FindGameObjectWithTag("Ball");

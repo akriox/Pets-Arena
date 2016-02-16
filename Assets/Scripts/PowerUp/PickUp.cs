@@ -6,6 +6,7 @@ public class PickUp : MonoBehaviour {
 	public float rotationSpeed;
 	public float duration;
     private Vector3 rotationVector;
+	private bool pickedUp = false;
 
 	public string effectTag;
 
@@ -28,7 +29,8 @@ public class PickUp : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.layer == 11) {
+		if (other.gameObject.layer == 11 && !pickedUp) {
+			pickedUp = true;
 			PowerUp p = other.GetComponent<PowerUp>();
 			if(!p.available && !p.activated){
                 _audioSource.Play();

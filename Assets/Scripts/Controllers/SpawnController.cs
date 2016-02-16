@@ -10,10 +10,10 @@ public class SpawnController : MonoBehaviour {
 
 	//attributs utilisés pour récupérer la position courante 
 	//de chaque joueur lors du calcul du barycentre de spawn
-	public GameObject _greenPlayer;
-	public GameObject _bluePlayer;
-	public GameObject _yellowPlayer;
-	public GameObject _redPlayer;
+	private GameObject _greenPlayer;
+	private GameObject _bluePlayer;
+	private GameObject _yellowPlayer;
+	private GameObject _redPlayer;
 
 	//attribut utilisé pour récupérer les scores des joueurs
 	//dont seront déduits les poids des points du barycentre
