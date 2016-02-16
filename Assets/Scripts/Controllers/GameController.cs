@@ -21,7 +21,8 @@ public class GameController : MonoBehaviour {
     public Totem greenTotem;
     public Totem blueTotem;
     public Totem yellowTotem;
-	
+
+	public static bool matchHasStarted = false;
 	private bool matchIsOver;
 
 	public static bool switchedZones = false;
@@ -29,13 +30,17 @@ public class GameController : MonoBehaviour {
     public static float victoryScore = 15.0f;
     public static float scoringRate = 0.01f;
 
+	public static int countdown = 3;
+
     void Awake() {
 		matchIsOver = false;
 		scoringDirection = 1;
 		GameObject ballGo = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = ballGo.GetComponent<BallController> ();
+	}
 
-        StartCoroutine(DisplayMessage("Bring back the sacred \n ball to your camp !", 5.0f));
+	void Start(){
+		StartCoroutine (Countdown ());
 	}
 
 	void Update(){
@@ -90,6 +95,16 @@ public class GameController : MonoBehaviour {
 		    case BallController.Zone.N:
 			    break;
 		}
+	}
+
+	private IEnumerator Countdown(){
+		for (int i = countdown; i >= 1; i--) {
+			messageUI.text = i.ToString();
+			messageUI.enabled = true;
+			yield return new WaitForSeconds(1.0f);
+		}
+		StartCoroutine(DisplayMessage("Go !", 2.0f));
+		matchHasStarted = true;
 	}
 
     private void IncreaseYellowScore()

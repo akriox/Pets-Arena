@@ -19,8 +19,8 @@ public class CameraController : MonoBehaviour {
 	}
 
 	public void PlaceCamera(){
-		transform.position = Vector3.Lerp (transform.position, FinalPosition, Time.deltaTime/2);
-		transform.rotation = Quaternion.Lerp (transform.rotation, FinalRotation, Time.deltaTime/2);
+		transform.position = Vector3.Lerp (transform.position, FinalPosition, Time.deltaTime);
+		transform.rotation = Quaternion.Lerp (transform.rotation, FinalRotation, Time.deltaTime);
 	}
 
 	public void Update(){

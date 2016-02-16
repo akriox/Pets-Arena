@@ -32,7 +32,7 @@ public class PlayerUserControl : MonoBehaviour
 	{
 		gamepadAvailable = GamepadInput.Instance.gamepads.Count >= playerNumber ? true : false;
 
-		if(gamepadAvailable){
+		if(gamepadAvailable && GameController.matchHasStarted){
 			float h = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickX);
 			float v = GamepadInput.Instance.gamepads [playerNumber - 1].GetAxis (GamepadAxis.LeftStickY);
             move = (v * Vector3.forward + h * Vector3.right).normalized;
