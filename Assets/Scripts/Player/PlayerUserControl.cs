@@ -42,6 +42,10 @@ public class PlayerUserControl : MonoBehaviour
             dashLeft = GamepadInput.Instance.gamepads[playerNumber - 1].GetAxis(GamepadAxis.LeftTrigger) > 0.5;
             dashRight = GamepadInput.Instance.gamepads[playerNumber - 1].GetAxis(GamepadAxis.RightTrigger) > 0.5;
 
+			if(dash && player.dashAllowed) player.anim.SetTrigger("DashForward");
+			if(dashRight && !dashLeft && player.attacking) player.anim.SetTrigger("DashRight");
+			if(dashLeft && !dashRight && player.attacking) player.anim.SetTrigger("DashLeft");
+
 			if(GamepadInput.Instance.gamepads[playerNumber-1].GetButtonDown(GamepadButton.Action2) && _powerUp.available){
                 player.PlaySound(player.audioClips[3], false);
 				_powerUp.timestamp = Time.time;
@@ -51,8 +55,7 @@ public class PlayerUserControl : MonoBehaviour
 			}
 		}
 	}
-
-
+		
 	private void FixedUpdate(){
 
 		if (!player.paralyzed && !player.repulsed) {

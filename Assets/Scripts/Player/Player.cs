@@ -49,8 +49,6 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
     public AudioClip[] audioClips;
 
-	private int flagAnimStun = 1;
-
 	void Awake() {
         _rb = GetComponent<Rigidbody>();
 
@@ -82,27 +80,21 @@ public class Player : MonoBehaviour
 
         if (paralyzed && currentParalyzedTime < paralyzedTime && !immune)
         {
-			_rb.isKinematic = true;
-
-            PlaySound(audioClips[2], false);
 			_mat.SetColor("_Color", Color.gray);
-            stunAnimGo.SetActive(true);
+			stunAnimGo.SetActive(true);
+			transform.RotateAround(transform.position, transform.up, 5.0f);
+			currentParalyzedTime += Time.deltaTime;
 
-			if(flagAnimStun == 1) {
-				anim.SetTrigger("Stun");
-				flagAnimStun = 0;
-			}
-            //RotateParalyzed();
-            currentParalyzedTime += Time.deltaTime;
+			//_rb.isKinematic = true;
+			//PlaySound(audioClips[2], false);
         }
         else {
             paralyzed = false;
             currentParalyzedTime = 0;
 			_mat.SetColor("_Color", defaultColor);
             stunAnimGo.SetActive(false);
-			flagAnimStun = 1;
 
-			_rb.isKinematic = false;
+			//_rb.isKinematic = false;
         }
 
         if (dashing == false && currentDashCooldown < dashCooldown)
@@ -117,10 +109,6 @@ public class Player : MonoBehaviour
         }
     }
 
-	void RotateParalyzed(){
-		transform.RotateAround(transform.position, transform.up, 5.0f);
-	}
-
 	public void Rotate(Vector3 rotateDirection){
 		transform.rotation = Quaternion.LookRotation (rotateDirection, Vector3.up);
 	}
@@ -130,7 +118,7 @@ public class Player : MonoBehaviour
     }
 
     public void Dash(Vector3 moveDirection){
-        PlaySound(audioClips[0], false);
+        //PlaySound(audioClips[0], false);
         if (moveDirection == Vector3.zero)
             _rb.velocity = new Vector3(transform.forward.x * dashSpeed, _rb.velocity.y, transform.forward.z * dashSpeed);
         else
@@ -138,7 +126,7 @@ public class Player : MonoBehaviour
     }
 
 	public void DashAttack(Vector3 dir){
-        PlaySound(audioClips[1], false);
+        //PlaySound(audioClips[1], false);
         _rb.velocity = dir * dashSpeed;
 	}
 
@@ -175,8 +163,10 @@ public class Player : MonoBehaviour
 		if (col.gameObject.layer == 11) {
 			Player p = col.gameObject.GetComponent<Player>();
 			
-			if(p.attacking)
+			if(p.attacking && !paralyzed){
+				anim.SetTrigger("Stun");
 				paralyzed = true;
+			}
 		}
 			
         if(col.gameObject.tag == "Obstacle" && dashing)

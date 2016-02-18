@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Start(){
-		InstantiatePlayers ();
+		//InstantiatePlayers ();
 		StartCoroutine (Countdown ());
 	}
 

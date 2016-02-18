@@ -41,12 +41,7 @@ public class CharacterSelectController : MonoBehaviour {
 
 		LerpVector = new Vector3 (SpawnDistance, 0, 0);
 	}
-
-	// Use this for initialization
-	void Start () {
 		
-	}
-
 	void SwitchCharacter(int direction, int playerNumber){
 		bool switched = false;
 		int indexOfSelected = Characters.FindIndex (a => a.name == PlayerSelectedCharacters [playerNumber].name);
