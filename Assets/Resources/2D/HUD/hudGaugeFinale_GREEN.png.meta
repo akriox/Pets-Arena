@@ -1,0 +1,624 @@
+fileFormatVersion: 2
+guid: abf3abd6952816448a07bc4f371937d9
+timeCreated: 1455808582
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: hudGaugeFinale_GREEN_0
+    21300002: hudGaugeFinale_GREEN_1
+    21300004: hudGaugeFinale_GREEN_2
+    21300006: hudGaugeFinale_GREEN_3
+    21300008: hudGaugeFinale_GREEN_4
+    21300010: hudGaugeFinale_GREEN_5
+    21300012: hudGaugeFinale_GREEN_6
+    21300014: hudGaugeFinale_GREEN_7
+    21300016: hudGaugeFinale_GREEN_8
+    21300018: hudGaugeFinale_GREEN_9
+    21300020: hudGaugeFinale_GREEN_10
+    21300022: hudGaugeFinale_GREEN_11
+    21300024: hudGaugeFinale_GREEN_12
+    21300026: hudGaugeFinale_GREEN_13
+    21300028: hudGaugeFinale_GREEN_14
+    21300030: hudGaugeFinale_GREEN_15
+    21300032: hudGaugeFinale_GREEN_16
+    21300034: hudGaugeFinale_GREEN_17
+    21300036: hudGaugeFinale_GREEN_18
+    21300038: hudGaugeFinale_GREEN_19
+    21300040: hudGaugeFinale_GREEN_20
+    21300042: hudGaugeFinale_GREEN_21
+    21300044: hudGaugeFinale_GREEN_22
+    21300046: hudGaugeFinale_GREEN_23
+    21300048: hudGaugeFinale_GREEN_24
+    21300050: hudGaugeFinale_GREEN_25
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: hudGaugeFinale_GREEN_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1365.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45, y: 136.59998}
+        - {x: -96, y: 129.59998}
+        - {x: -159, y: 21.599976}
+        - {x: -159, y: -105.400024}
+        - {x: -152, y: -130.40002}
+        - {x: -84, y: -130.40002}
+        - {x: -77, y: -15.400024}
+        - {x: 53, y: 69.599976}
+        - {x: 53, y: 136.59998}
+    - name: hudGaugeFinale_GREEN_1
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1365.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -159, y: 4.5999756}
+        - {x: -159, y: -98.400024}
+        - {x: -154, y: -130.40002}
+        - {x: -77, y: -130.40002}
+        - {x: 54, y: -4.4000244}
+        - {x: 54, y: 127.599976}
+        - {x: 49, y: 131.59998}
+        - {x: 26, y: 136.59998}
+        - {x: -13, y: 136.59998}
+        - {x: -82, y: 115.599976}
+    - name: hudGaugeFinale_GREEN_2
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 1365.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -129, y: 47.599976}
+        - {x: -158, y: 6.5999756}
+        - {x: -158, y: -107.400024}
+        - {x: -153, y: -130.40002}
+        - {x: -99, y: -130.40002}
+        - {x: -86, y: -125.400024}
+        - {x: 54, y: 70.599976}
+        - {x: 54, y: 136.59998}
+        - {x: -10, y: 136.59998}
+        - {x: -44, y: 132.59998}
+    - name: hudGaugeFinale_GREEN_3
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 1365.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26, y: 136.59998}
+        - {x: -5, y: 136.59998}
+        - {x: -76, y: 105.599976}
+        - {x: -156, y: 20.599976}
+        - {x: -158, y: -5.4000244}
+        - {x: -158, y: -107.400024}
+        - {x: -143, y: -130.40002}
+        - {x: -123, y: -130.40002}
+        - {x: -85, y: -126.400024}
+        - {x: 54, y: 70.599976}
+        - {x: 54, y: 97.599976}
+        - {x: 50, y: 132.59998}
+    - name: hudGaugeFinale_GREEN_4
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 1365.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -152, y: 22.599976}
+        - {x: -157, y: -13.400024}
+        - {x: -157, y: -112.400024}
+        - {x: -146, y: -130.40002}
+        - {x: -138, y: -130.40002}
+        - {x: -82, y: -127.400024}
+        - {x: 55, y: 60.599976}
+        - {x: 55, y: 136.59998}
+        - {x: -7, y: 136.59998}
+        - {x: -84, y: 119.599976}
+    - name: hudGaugeFinale_GREEN_5
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 1365.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 46, y: 136.59998}
+        - {x: -48, y: 136.59998}
+        - {x: -157, y: 42.599976}
+        - {x: -157, y: -130.40002}
+        - {x: -86, y: -130.40002}
+        - {x: -44, y: 39.599976}
+        - {x: 55, y: 74.599976}
+        - {x: 55, y: 128.59998}
+    - name: hudGaugeFinale_GREEN_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 31, y: 136.59998}
+        - {x: -3, y: 136.59998}
+        - {x: -78, y: 110.599976}
+        - {x: -159, y: 8.599976}
+        - {x: -159, y: -113.400024}
+        - {x: -155, y: -130.40002}
+        - {x: -84, y: -130.40002}
+        - {x: 53, y: 73.599976}
+        - {x: 53, y: 86.599976}
+        - {x: 47, y: 130.59998}
+    - name: hudGaugeFinale_GREEN_7
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1024.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 45, y: 136.59998}
+        - {x: -25, y: 136.59998}
+        - {x: -145, y: 55.599976}
+        - {x: -158, y: 19.599976}
+        - {x: -158, y: -101.400024}
+        - {x: -148, y: -130.40002}
+        - {x: -86, y: -130.40002}
+        - {x: 54, y: 68.599976}
+        - {x: 54, y: 105.599976}
+        - {x: 46, y: 135.59998}
+    - name: hudGaugeFinale_GREEN_8
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 1024.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 48, y: 131.59998}
+        - {x: 37, y: 136.59998}
+        - {x: -21, y: 136.59998}
+        - {x: -158, y: 49.599976}
+        - {x: -158, y: -130.40002}
+        - {x: -87, y: -130.40002}
+        - {x: -78, y: -6.4000244}
+        - {x: 54, y: 74.599976}
+        - {x: 54, y: 86.599976}
+    - name: hudGaugeFinale_GREEN_9
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 1024.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 136.59998}
+        - {x: -89, y: 123.599976}
+        - {x: -158, y: 13.599976}
+        - {x: -158, y: -113.400024}
+        - {x: -155, y: -130.40002}
+        - {x: -84, y: -130.40002}
+        - {x: -46, y: 39.599976}
+        - {x: 54, y: 72.599976}
+        - {x: 54, y: 136.59998}
+    - name: hudGaugeFinale_GREEN_10
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 1024.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -72, y: 100.599976}
+        - {x: -127, y: 47.599976}
+        - {x: -158, y: 12.599976}
+        - {x: -158, y: -130.40002}
+        - {x: -85, y: -130.40002}
+        - {x: 55, y: -6.4000244}
+        - {x: 55, y: 125.599976}
+        - {x: 49, y: 130.59998}
+        - {x: 21, y: 136.59998}
+        - {x: -1, y: 136.59998}
+        - {x: -44, y: 116.599976}
+    - name: hudGaugeFinale_GREEN_11
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 1024.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40, y: 136.59998}
+        - {x: -21, y: 136.59998}
+        - {x: -145, y: 58.599976}
+        - {x: -157, y: 4.5999756}
+        - {x: -157, y: -105.400024}
+        - {x: -149, y: -130.40002}
+        - {x: -85, y: -130.40002}
+        - {x: 55, y: 68.599976}
+        - {x: 55, y: 92.599976}
+        - {x: 47, y: 133.59998}
+    - name: hudGaugeFinale_GREEN_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 683.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 135.59998}
+        - {x: -89, y: 119.599976}
+        - {x: -159, y: 8.599976}
+        - {x: -159, y: -101.400024}
+        - {x: -153, y: -131.40002}
+        - {x: -103, y: -131.40002}
+        - {x: -87, y: -126.400024}
+        - {x: -48, y: 24.599976}
+        - {x: 53, y: 72.599976}
+        - {x: 53, y: 135.59998}
+    - name: hudGaugeFinale_GREEN_13
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 683.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38, y: 135.59998}
+        - {x: -91, y: 128.59998}
+        - {x: -159, y: 13.599976}
+        - {x: -159, y: -111.400024}
+        - {x: -155, y: -131.40002}
+        - {x: -96, y: -131.40002}
+        - {x: -85, y: -126.400024}
+        - {x: -93, y: -48.400024}
+        - {x: 53, y: 72.599976}
+        - {x: 53, y: 135.59998}
+    - name: hudGaugeFinale_GREEN_14
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 683.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 41, y: 135.59998}
+        - {x: -21, y: 135.59998}
+        - {x: -140, y: 55.599976}
+        - {x: -158, y: 3.5999756}
+        - {x: -158, y: -94.400024}
+        - {x: -145, y: -131.40002}
+        - {x: -81, y: -131.40002}
+        - {x: 54, y: 70.599976}
+        - {x: 54, y: 100.599976}
+        - {x: 50, y: 131.59998}
+    - name: hudGaugeFinale_GREEN_15
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 683.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 135.59998}
+        - {x: -78, y: 106.599976}
+        - {x: -158, y: 6.5999756}
+        - {x: -158, y: -106.400024}
+        - {x: -153, y: -131.40002}
+        - {x: -103, y: -131.40002}
+        - {x: -87, y: -125.400024}
+        - {x: 11, y: -85.400024}
+        - {x: 54, y: 48.599976}
+        - {x: 54, y: 135.59998}
+    - name: hudGaugeFinale_GREEN_16
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 683.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -44, y: 135.59998}
+        - {x: -67, y: 132.59998}
+        - {x: -129, y: 46.599976}
+        - {x: -158, y: 4.5999756}
+        - {x: -158, y: -116.400024}
+        - {x: -156, y: -131.40002}
+        - {x: -108, y: -131.40002}
+        - {x: -93, y: -127.400024}
+        - {x: -86, y: -125.400024}
+        - {x: 55, y: 70.599976}
+        - {x: 55, y: 135.59998}
+    - name: hudGaugeFinale_GREEN_17
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 683.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -157, y: -6.4000244}
+        - {x: -157, y: -79.400024}
+        - {x: -155, y: -97.400024}
+        - {x: -141, y: -131.40002}
+        - {x: -80, y: -131.40002}
+        - {x: 55, y: 70.599976}
+        - {x: 55, y: 135.59998}
+        - {x: -65, y: 135.59998}
+        - {x: -92, y: 132.59998}
+    - name: hudGaugeFinale_GREEN_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 342.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38, y: 135.6}
+        - {x: -159, y: 36.600006}
+        - {x: -159, y: -100.399994}
+        - {x: -145, y: -131.4}
+        - {x: -114, y: -131.4}
+        - {x: -91, y: -128.4}
+        - {x: -10, y: -115.399994}
+        - {x: 53, y: 41.600006}
+        - {x: 53, y: 135.6}
+    - name: hudGaugeFinale_GREEN_19
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 342.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 135.6}
+        - {x: -127, y: 72.600006}
+        - {x: -159, y: -6.399994}
+        - {x: -159, y: -131.4}
+        - {x: -66, y: -131.4}
+        - {x: 54, y: -24.399994}
+        - {x: 54, y: 135.6}
+    - name: hudGaugeFinale_GREEN_20
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 342.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 135.6}
+        - {x: -88, y: 120.600006}
+        - {x: -158, y: 38.600006}
+        - {x: -158, y: -131.4}
+        - {x: -85, y: -131.4}
+        - {x: -83, y: -14.399994}
+        - {x: 54, y: 67.600006}
+        - {x: 54, y: 135.6}
+    - name: hudGaugeFinale_GREEN_21
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 342.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 49, y: 130.6}
+        - {x: 39, y: 135.6}
+        - {x: -18, y: 135.6}
+        - {x: -149, y: 60.600006}
+        - {x: -158, y: 15.600006}
+        - {x: -158, y: -121.399994}
+        - {x: -145, y: -131.4}
+        - {x: -125, y: -131.4}
+        - {x: -87, y: -126.399994}
+        - {x: -90, y: -95.399994}
+        - {x: 54, y: 73.600006}
+        - {x: 54, y: 84.600006}
+    - name: hudGaugeFinale_GREEN_22
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 342.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 135.6}
+        - {x: -75, y: 104.600006}
+        - {x: -158, y: 6.600006}
+        - {x: -158, y: -107.399994}
+        - {x: -152, y: -131.4}
+        - {x: -86, y: -131.4}
+        - {x: 55, y: 65.600006}
+        - {x: 55, y: 94.600006}
+        - {x: 51, y: 135.6}
+    - name: hudGaugeFinale_GREEN_23
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 342.6
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 135.6}
+        - {x: -88, y: 121.600006}
+        - {x: -157, y: 12.600006}
+        - {x: -157, y: -116.399994}
+        - {x: -153, y: -131.4}
+        - {x: -118, y: -131.4}
+        - {x: -86, y: -125.399994}
+        - {x: -44, y: 38.600006}
+        - {x: 55, y: 73.600006}
+        - {x: 55, y: 135.6}
+    - name: hudGaugeFinale_GREEN_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1.6000061
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 32, y: 134.6}
+        - {x: -11, y: 134.6}
+        - {x: -73, y: 99.600006}
+        - {x: -129, y: 45.600006}
+        - {x: -159, y: 5.600006}
+        - {x: -159, y: -103.399994}
+        - {x: -154, y: -131.4}
+        - {x: -78, y: -131.4}
+        - {x: 53, y: 70.600006}
+        - {x: 53, y: 101.600006}
+        - {x: 51, y: 130.6}
+    - name: hudGaugeFinale_GREEN_25
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1.6000061
+        width: 341.33334
+        height: 341.4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 45, y: 133.6}
+        - {x: 45, y: 134.6}
+        - {x: -46, y: 134.6}
+        - {x: -159, y: 33.600006}
+        - {x: -159, y: -127.399994}
+        - {x: -157, y: -131.4}
+        - {x: -94, y: -131.4}
+        - {x: -88, y: -129.4}
+        - {x: -45, y: 39.600006}
+        - {x: 54, y: 72.600006}
+        - {x: 54, y: 90.600006}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

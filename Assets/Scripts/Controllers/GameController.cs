@@ -6,17 +6,12 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
 	private BallController _ballController;
+	private HeadUpDisplay HUD;
 
 	public float redScore { get; set; }
     public float greenScore { get; set; }
     public float blueScore { get; set; }
     public float yellowScore { get; set; }
-
-    public Text messageUI;
-    public Text redScoreUI;
-	public Text greenScoreUI;
-	public Text blueScoreUI;
-	public Text yellowScoreUI;
 
 	public Totem redTotem;
     public Totem greenTotem;
@@ -30,7 +25,6 @@ public class GameController : MonoBehaviour {
 	private CharacterSelectController _characterSelectController;
 	private List<Vector3> playerPositions = new List<Vector3> ();
 	private List<Vector3> playerRotations = new List<Vector3> ();
-	private float scale = 1.2f;
 
 	public static bool matchHasStarted = false;
 	private bool matchIsOver;
@@ -43,6 +37,9 @@ public class GameController : MonoBehaviour {
 	public static int countdown = 3;
 
     void Awake() {
+		HUD = new HeadUpDisplay();
+		HUD.Init();
+
 		matchIsOver = false;
 		scoringDirection = 1;
 		//_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
@@ -56,7 +53,6 @@ public class GameController : MonoBehaviour {
 		playerRotations.Add (new Vector3 (0f, 235.0f, 0f));
 		playerRotations.Add (new Vector3 (0f, 45.0f, 0f));
 		playerRotations.Add (new Vector3 (0f, 315.0f, 0f));
-
 
 		GameObject ballGo = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = ballGo.GetComponent<BallController> ();
@@ -80,17 +76,21 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void victoryCheck(){
-		if(yellowScore > victoryScore){
-			displayWinner("Yellow");
+		if(yellowScore >= victoryScore){
+			HUD.DisplayMessage("Yellow wins !");
+			matchIsOver = true;
 		}
-		else if(redScore > victoryScore){
-			displayWinner("Red");
+		else if(redScore >= victoryScore){
+			HUD.DisplayMessage("Red wins !");
+			matchIsOver = true;
 		}
-		else if(greenScore > victoryScore){
-			displayWinner("Green");
+		else if(greenScore >= victoryScore){
+			HUD.DisplayMessage("Green wins !");
+			matchIsOver = true;
 		}
-		else if(blueScore > victoryScore){
-			displayWinner("Blue");
+		else if(blueScore >= victoryScore){
+			HUD.DisplayMessage("Blue wins !");
+			matchIsOver = true;
 		}
 	}
 
@@ -123,11 +123,10 @@ public class GameController : MonoBehaviour {
 
 	private IEnumerator Countdown(){
 		for (int i = countdown; i >= 1; i--) {
-			messageUI.text = i.ToString();
-			messageUI.enabled = true;
+			HUD.DisplayMessage(i.ToString());
 			yield return new WaitForSeconds(1.0f);
 		}
-		StartCoroutine(DisplayMessage("Go !", 2.0f));
+		StartCoroutine(HUD.DisplayMessage("Go !", 2.0f));
 		matchHasStarted = true;
 	}
 
@@ -135,7 +134,7 @@ public class GameController : MonoBehaviour {
     {
         yellowScore += scoringDirection * scoringRate;
         if (yellowScore <= 0) yellowScore = 0;
-        yellowScoreUI.text = yellowScore.ToString("0.00");
+		HUD.UpdateYellowGauge(yellowScore);
         yellowTotem.fill();
     }
 
@@ -143,7 +142,7 @@ public class GameController : MonoBehaviour {
     {
         redScore += scoringDirection * scoringRate;
         if (redScore <= 0) redScore = 0;
-        redScoreUI.text = redScore.ToString("0.00");
+		HUD.UpdateRedGauge(redScore);
         redTotem.fill();
     }
 
@@ -151,7 +150,7 @@ public class GameController : MonoBehaviour {
     {
         greenScore += scoringDirection * scoringRate;
         if (greenScore <= 0) greenScore = 0;
-        greenScoreUI.text = greenScore.ToString("0.00");
+		HUD.UpdateGreenGauge(greenScore);
         greenTotem.fill();
     }
 
@@ -159,32 +158,15 @@ public class GameController : MonoBehaviour {
     {
         blueScore += scoringDirection * scoringRate;
         if (blueScore <= 0) blueScore = 0;
-        blueScoreUI.text = blueScore.ToString("0.00");
+		HUD.UpdateBlueGauge(blueScore);
         blueTotem.fill();
     }
-
-    private void displayWinner(string winner){
-		messageUI.enabled = true;
-		messageUI.text = winner + " wins !";
-		matchIsOver = true;
-	}
-
-    private IEnumerator DisplayMessage(string msg, float duration)
-    {
-        messageUI.text = msg;
-        messageUI.enabled = true;
-        yield return new WaitForSeconds(duration);
-        messageUI.text = "";
-        messageUI.enabled = false;
-    }
-
+		
 	public void InstantiatePlayers(){
 		GameObject player;
 		for (int i = 0; i < 4; i++) {
-			print (playerRotations [i]);
 			player = (GameObject) Instantiate (Resources.Load ("Prefabs/Characters/"+_characterSelectController.FinalSelections[i]), playerPositions[i], Quaternion.identity);
 			player.transform.Rotate (playerRotations [i]);
-			print (outlineColors [i]);
 			player.GetComponent<Renderer> ().material.SetColor ("_OutlineColor", outlineColors [i]);
 			player.name = _characterSelectController.FinalSelections [i];
 			player.tag = "P"+(i+1);
