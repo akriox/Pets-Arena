@@ -4,7 +4,8 @@ using System.Collections;
 
 public class PowerUp : MonoBehaviour {
 	
-	public Text powerUI;
+	public Image powerUI;
+
 	private Behaviour _playerHalo;
 
 	public bool available {get; set;}
@@ -21,6 +22,11 @@ public class PowerUp : MonoBehaviour {
 	public RepulsiveWave _repulsiveWave = new RepulsiveWave();
 	public GlobalStun _globalStun = new GlobalStun();
 	public Massivity _massivity = new Massivity();
+
+	private Sprite attractBallSprite;
+	private Sprite repulsiveWaveSprite;
+	private Sprite globalStunSprite;
+	private Sprite massivitySprite;
 	
 	void Start () {
 		available = false;
@@ -31,10 +37,15 @@ public class PowerUp : MonoBehaviour {
 
 		line = GetComponent<LineRenderer>();
 		_attractBall.initLineRenderer(line);
+		attractBallSprite = Resources.Load<Sprite>("2D/HUD/PowerUp/AttractBall");
 
 		_globalStun.init(this.gameObject);
+		globalStunSprite = Resources.Load<Sprite>("2D/HUD/PowerUp/GlobalStun");
 
 		_massivity.initScale = this.gameObject.transform.localScale;
+		massivitySprite = Resources.Load<Sprite>("2D/HUD/PowerUp/Massivity");
+
+		repulsiveWaveSprite = Resources.Load<Sprite>("2D/HUD/PowerUp/RepulsiveWave");
 	}
 
 	void Update(){
@@ -61,7 +72,21 @@ public class PowerUp : MonoBehaviour {
 	}
 
 	public void setEffect(string tag){
-		powerUI.text = tag;
+		switch(tag){
+			case "AttractBall":
+				powerUI.sprite = attractBallSprite;
+				break;
+			case "RepulsiveWave":
+				powerUI.sprite = repulsiveWaveSprite;
+				break;
+			case "GlobalStun":
+				powerUI.sprite = globalStunSprite;
+				break;
+			case "Massivity":
+				powerUI.sprite = massivitySprite;
+				break;
+		}
+		powerUI.color = Color.white;
 		currentEffect = tag;
 	}
 }

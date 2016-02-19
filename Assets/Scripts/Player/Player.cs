@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 	public float currentDashCooldown;
 	private float dashCooldownSpeed = 0.0166f;
     public bool dashAllowed = true;
-	public Text dashUI;
+	//public Text dashUI;
 
     public bool dashing = false;
     public float dashTime = 1.0f;
@@ -100,12 +100,12 @@ public class Player : MonoBehaviour
         if (dashing == false && currentDashCooldown < dashCooldown)
         {
             currentDashCooldown += dashCooldownSpeed;
-            dashUI.text = currentDashCooldown.ToString("0.00") + " / " + dashCooldown;
+            //dashUI.text = currentDashCooldown.ToString("0.00") + " / " + dashCooldown;
         }
         else if (currentDashCooldown >= dashCooldown)
         {
             dashAllowed = true;
-            dashUI.text = "DASH";
+            //dashUI.text = "DASH";
         }
     }
 

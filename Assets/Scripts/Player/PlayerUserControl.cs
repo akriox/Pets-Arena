@@ -51,7 +51,7 @@ public class PlayerUserControl : MonoBehaviour
 				_powerUp.timestamp = Time.time;
 				_powerUp.activated = true;
 				_powerUp.available = false;
-				_powerUp.powerUI.text = "";
+				_powerUp.powerUI.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 			}
 		}
 	}

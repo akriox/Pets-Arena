@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour {
     public Totem blueTotem;
     public Totem yellowTotem;
 
-	public string[] dashUINames = {"Green Dash", "Blue Dash", "Yellow Dash", "Red Dash"};
+	public string[] powerUpHudNames= {"GreenPower", "BluePower", "YellowPower", "RedPower"};
 	public Color[] outlineColors = {Color.black, new Color(6f/255f, 193f/255f, 255f/255f), new Color(234f/255f, 209f/255f, 0/255f), new Color(255f/255f, 6f/255f, 6f/255f)};
 	public string[] playerTags = { "P1", "P2", "P3", "P4" };
 
@@ -170,7 +170,8 @@ public class GameController : MonoBehaviour {
 			player.GetComponent<Renderer> ().material.SetColor ("_OutlineColor", outlineColors [i]);
 			player.name = _characterSelectController.FinalSelections [i];
 			player.tag = "P"+(i+1);
-			player.GetComponent<Player> ().dashUI = GameObject.Find (dashUINames [i]).GetComponent<Text>();
+			//player.GetComponent<Player> ().dashUI = GameObject.Find (dashUINames [i]).GetComponent<Text>();
+			player.GetComponent<PowerUp>().powerUI = GameObject.Find(powerUpHudNames[i]).GetComponent<Image>();
 		}
 	}
 }

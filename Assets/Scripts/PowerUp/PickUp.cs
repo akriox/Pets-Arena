@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PickUp : MonoBehaviour {
@@ -35,7 +36,7 @@ public class PickUp : MonoBehaviour {
 			if(!p.available && !p.activated){
                 _audioSource.Play();
                 p.available = true;
-                p.setEffect(this.effectTag);
+				p.setEffect(effectTag);
                 GetComponent<MeshRenderer>().enabled = false; // hide mesh before destroying
 				Destroy (this.gameObject, _audioSource.clip.length); // wait end of clip to destroy
 			}

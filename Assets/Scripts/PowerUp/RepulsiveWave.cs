@@ -6,8 +6,8 @@ public class RepulsiveWave {
 
 	public static string effectTag = "RepulsiveWave";
 	private LayerMask waveMask = 1 << 11;
-	private float waveRadius = 10.0f;
-	private float waveForce = 120.0f;
+	private float waveRadius = 15.0f;
+	private float waveForce = 150.0f;
     private Player playerScript;
 
 	public bool runEffect(GameObject caster, Vector3 origin, Vector3 direction){
