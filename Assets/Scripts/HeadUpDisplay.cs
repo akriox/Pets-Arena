@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class HeadUpDisplay {
 
+	private string spritesPath = "2D/HUD/Gauges/hudGaugeFinale_";
+
 	private Text message;
 
 	private Image greenScoreGauge;
@@ -28,10 +30,10 @@ public class HeadUpDisplay {
 		yellowScoreGauge = GameObject.FindGameObjectWithTag("YellowScoreGauge").GetComponent<Image>();
 		redScoreGauge = GameObject.FindGameObjectWithTag("RedScoreGauge").GetComponent<Image>();
 	
-		greenGaugeSprites = Resources.LoadAll<Sprite>("2D/HUD/hudGaugeFinale_GREEN");
-		blueGaugeSprites = Resources.LoadAll<Sprite>("2D/HUD/hudGaugeFinale_BLUE");
-		yellowGaugeSprites = Resources.LoadAll<Sprite>("2D/HUD/hudGaugeFinale_YELLOW");
-		redGaugeSprites = Resources.LoadAll<Sprite>("2D/HUD/hudGaugeFinale_RED");
+		greenGaugeSprites = Resources.LoadAll<Sprite>(spritesPath + "GREEN");
+		blueGaugeSprites = Resources.LoadAll<Sprite>(spritesPath + "BLUE");
+		yellowGaugeSprites = Resources.LoadAll<Sprite>(spritesPath + "YELLOW");
+		redGaugeSprites = Resources.LoadAll<Sprite>(spritesPath + "RED");
 	}
 
 	public void UpdateGreenGauge(float score){
