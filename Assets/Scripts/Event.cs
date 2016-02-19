@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Event : MonoBehaviour {
 
-	public float rotationSpeed;
+	private float rotation = -90.0f;
 	private Vector3 rotationVector;
 
 	private EventController _eventController;
@@ -13,7 +13,8 @@ public class Event : MonoBehaviour {
 	
 	void Start () {
 		_eventController = GameObject.FindGameObjectWithTag("GameController").GetComponent<EventController>();
-		rotationVector = new Vector3 (rotationSpeed, 0, 0);
+		rotationVector = new Vector3 (rotation, 0, 0);
+		transform.Rotate (rotationVector);
 	}
 
 	void FixedUpdate(){
@@ -21,7 +22,6 @@ public class Event : MonoBehaviour {
 	}
 
 	void Update () {
-		transform.Rotate (rotationVector);
 		Vector3 pos = transform.position;
 		pos.y =  Mathf.Clamp(transform.position.y, 2.0f, 10.0f);
 		transform.position = pos;
