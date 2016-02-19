@@ -18,9 +18,10 @@ public class GameController : MonoBehaviour {
     public Totem blueTotem;
     public Totem yellowTotem;
 
-	public string[] powerUpHudNames= {"GreenPower", "BluePower", "YellowPower", "RedPower"};
-	public Color[] outlineColors = {Color.black, new Color(6f/255f, 193f/255f, 255f/255f), new Color(234f/255f, 209f/255f, 0/255f), new Color(255f/255f, 6f/255f, 6f/255f)};
-	public string[] playerTags = { "P1", "P2", "P3", "P4" };
+	private string[] powerUpHudNames = {"GreenPower", "BluePower", "YellowPower", "RedPower"};
+	private string[] sideDashHudNames = {"GreenSideDash", "BlueSideDash", "YellowSideDash", "RedSideDash"};
+	private Color[] outlineColors = {new Color(58f/255f, 1f, 32f/255f), new Color(6f/255f, 193f/255f, 1f), new Color(234f/255f, 209f/255f, 0f), new Color(1f, 6f/255f, 6f/255f)};
+	private string[] playerTags = { "P1", "P2", "P3", "P4" };
 
 	private CharacterSelectController _characterSelectController;
 	private List<Vector3> playerPositions = new List<Vector3> ();
@@ -167,11 +168,11 @@ public class GameController : MonoBehaviour {
 		for (int i = 0; i < 4; i++) {
 			player = (GameObject) Instantiate (Resources.Load ("Prefabs/Characters/"+_characterSelectController.FinalSelections[i]), playerPositions[i], Quaternion.identity);
 			player.transform.Rotate (playerRotations [i]);
-			player.GetComponent<Renderer> ().material.SetColor ("_OutlineColor", outlineColors [i]);
 			player.name = _characterSelectController.FinalSelections [i];
 			player.tag = "P"+(i+1);
-			//player.GetComponent<Player> ().dashUI = GameObject.Find (dashUINames [i]).GetComponent<Text>();
+			player.GetComponent<Renderer>().material.SetColor ("_OutlineColor", outlineColors [i]);
 			player.GetComponent<PowerUp>().powerUI = GameObject.Find(powerUpHudNames[i]).GetComponent<Image>();
+			player.GetComponent<Player>().sideDashHud = GameObject.Find(sideDashHudNames[i]).GetComponents<Image>();
 		}
 	}
 }

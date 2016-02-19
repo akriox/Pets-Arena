@@ -49,7 +49,7 @@ public class PowerUp : MonoBehaviour {
 	}
 
 	void Update(){
-		_playerHalo.enabled = available ? true : false;
+		_playerHalo.enabled = available;
 	}
 
 	void FixedUpdate () {

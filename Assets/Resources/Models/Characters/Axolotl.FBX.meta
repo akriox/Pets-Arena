@@ -1,86 +1,80 @@
 fileFormatVersion: 2
-guid: 421e7e1c5d6ab8e419e31d4b99afad4f
-timeCreated: 1455803821
+guid: 43e5b423547482c4e88666aa044d0c73
+timeCreated: 1455914834
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Baguy001
-    100004: Lizard001
-    100006: LizardHead001
-    100008: LizardLFrontLeg003
-    100010: LizardLFrontLegCollarbone001
-    100012: LizardLFrontLegPalm003
-    100014: LizardLFrontLegPlatform001
-    100016: LizardLFrontLegUpper001
-    100018: LizardLLegAnkle003
-    100020: LizardLLegCalf001
-    100022: LizardLLegPlatform001
-    100024: LizardLLegThigh001
-    100026: LizardNeck001
-    100028: LizardPelvis001
-    100030: LizardRFrontLeg003
-    100032: LizardRFrontLegCollarbone001
-    100034: LizardRFrontLegPalm003
-    100036: LizardRFrontLegPlatform001
-    100038: LizardRFrontLegUpper001
-    100040: LizardRibcage001
-    100042: LizardRRearLegAnkle003
-    100044: LizardRRearLegCalf001
-    100046: LizardRRearLegPlatform001
-    100048: LizardRRearLegThigh001
-    100050: LizardSpine003
-    100052: LizardSpine004
-    100054: LizardTail1
-    100056: LizardTail2
-    100058: LizardTail3
-    100060: LizardTail4
-    100062: LizardTail5
-    100064: LizardTail6
-    400000: //RootNode
-    400002: Baguy001
-    400004: Lizard001
-    400006: LizardHead001
-    400008: LizardLFrontLeg003
-    400010: LizardLFrontLegCollarbone001
-    400012: LizardLFrontLegPalm003
-    400014: LizardLFrontLegPlatform001
-    400016: LizardLFrontLegUpper001
-    400018: LizardLLegAnkle003
-    400020: LizardLLegCalf001
-    400022: LizardLLegPlatform001
-    400024: LizardLLegThigh001
-    400026: LizardNeck001
-    400028: LizardPelvis001
-    400030: LizardRFrontLeg003
-    400032: LizardRFrontLegCollarbone001
-    400034: LizardRFrontLegPalm003
-    400036: LizardRFrontLegPlatform001
-    400038: LizardRFrontLegUpper001
-    400040: LizardRibcage001
-    400042: LizardRRearLegAnkle003
-    400044: LizardRRearLegCalf001
-    400046: LizardRRearLegPlatform001
-    400048: LizardRRearLegThigh001
-    400050: LizardSpine003
-    400052: LizardSpine004
-    400054: LizardTail1
-    400056: LizardTail2
-    400058: LizardTail3
-    400060: LizardTail4
-    400062: LizardTail5
-    400064: LizardTail6
-    4300000: Baguy001
+    100000: Lizard001
+    100002: LizardHead001
+    100004: LizardLFrontLeg003
+    100006: LizardLFrontLegCollarbone001
+    100008: LizardLFrontLegPalm003
+    100010: LizardLFrontLegPlatform001
+    100012: LizardLFrontLegUpper001
+    100014: LizardLLegAnkle003
+    100016: LizardLLegCalf001
+    100018: LizardLLegPlatform001
+    100020: LizardLLegThigh001
+    100022: LizardNeck001
+    100024: LizardPelvis001
+    100026: LizardRFrontLeg003
+    100028: LizardRFrontLegCollarbone001
+    100030: LizardRFrontLegPalm003
+    100032: LizardRFrontLegPlatform001
+    100034: LizardRFrontLegUpper001
+    100036: LizardRibcage001
+    100038: LizardRRearLegAnkle003
+    100040: LizardRRearLegCalf001
+    100042: LizardRRearLegPlatform001
+    100044: LizardRRearLegThigh001
+    100046: LizardSpine003
+    100048: LizardSpine004
+    100050: LizardTail1
+    100052: LizardTail2
+    100054: LizardTail3
+    100056: Tamara001
+    100058: //RootNode
+    400000: Lizard001
+    400002: LizardHead001
+    400004: LizardLFrontLeg003
+    400006: LizardLFrontLegCollarbone001
+    400008: LizardLFrontLegPalm003
+    400010: LizardLFrontLegPlatform001
+    400012: LizardLFrontLegUpper001
+    400014: LizardLLegAnkle003
+    400016: LizardLLegCalf001
+    400018: LizardLLegPlatform001
+    400020: LizardLLegThigh001
+    400022: LizardNeck001
+    400024: LizardPelvis001
+    400026: LizardRFrontLeg003
+    400028: LizardRFrontLegCollarbone001
+    400030: LizardRFrontLegPalm003
+    400032: LizardRFrontLegPlatform001
+    400034: LizardRFrontLegUpper001
+    400036: LizardRibcage001
+    400038: LizardRRearLegAnkle003
+    400040: LizardRRearLegCalf001
+    400042: LizardRRearLegPlatform001
+    400044: LizardRRearLegThigh001
+    400046: LizardSpine003
+    400048: LizardSpine004
+    400050: LizardTail1
+    400052: LizardTail2
+    400054: LizardTail3
+    400056: Tamara001
+    400058: //RootNode
+    4300000: Tamara001
     7400000: Run
     7400002: DashForward
-    7400004: Stun
-    7400006: Idle
+    7400004: Idle
+    7400006: Stun
     7400008: DashRight
     7400010: DashLeft
     7400012: BackFlip
     9500000: //RootNode
-    13700000: Baguy001
+    13700000: Tamara001
   materials:
     importMaterials: 0
     materialName: 0
@@ -129,8 +123,6 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Baguy001
-        weight: 1
       - path: Lizard001
         weight: 1
       - path: LizardLFrontLegPlatform001
@@ -183,15 +175,11 @@ ModelImporter:
         weight: 1
       - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
         weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5/LizardTail6
-        weight: 1
       - path: LizardRFrontLegPlatform001
         weight: 1
       - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: Tamara001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -223,8 +211,6 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Baguy001
-        weight: 1
       - path: Lizard001
         weight: 1
       - path: LizardLFrontLegPlatform001
@@ -277,15 +263,11 @@ ModelImporter:
         weight: 1
       - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
         weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5/LizardTail6
-        weight: 1
       - path: LizardRFrontLegPlatform001
         weight: 1
       - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: Tamara001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -317,8 +299,6 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Baguy001
-        weight: 1
       - path: Lizard001
         weight: 1
       - path: LizardLFrontLegPlatform001
@@ -371,15 +351,11 @@ ModelImporter:
         weight: 1
       - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
         weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5/LizardTail6
-        weight: 1
       - path: LizardRFrontLegPlatform001
         weight: 1
       - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: Tamara001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -411,8 +387,6 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Baguy001
-        weight: 1
       - path: Lizard001
         weight: 1
       - path: LizardLFrontLegPlatform001
@@ -465,15 +439,11 @@ ModelImporter:
         weight: 1
       - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
         weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5/LizardTail6
-        weight: 1
       - path: LizardRFrontLegPlatform001
         weight: 1
       - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: Tamara001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -505,8 +475,6 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Baguy001
-        weight: 1
       - path: Lizard001
         weight: 1
       - path: LizardLFrontLegPlatform001
@@ -559,15 +527,11 @@ ModelImporter:
         weight: 1
       - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
         weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5/LizardTail6
-        weight: 1
       - path: LizardRFrontLegPlatform001
         weight: 1
       - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: Tamara001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -599,8 +563,6 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Baguy001
-        weight: 1
       - path: Lizard001
         weight: 1
       - path: LizardLFrontLegPlatform001
@@ -653,15 +615,11 @@ ModelImporter:
         weight: 1
       - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
         weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5/LizardTail6
-        weight: 1
       - path: LizardRFrontLegPlatform001
         weight: 1
       - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: Tamara001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -693,8 +651,6 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Baguy001
-        weight: 1
       - path: Lizard001
         weight: 1
       - path: LizardLFrontLegPlatform001
@@ -747,15 +703,11 @@ ModelImporter:
         weight: 1
       - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
         weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5
-        weight: 1
-      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3/LizardTail4/LizardTail5/LizardTail6
-        weight: 1
       - path: LizardRFrontLegPlatform001
         weight: 1
       - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: Tamara001
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}

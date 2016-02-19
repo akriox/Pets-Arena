@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
 	public float currentDashCooldown;
 	private float dashCooldownSpeed = 0.0166f;
     public bool dashAllowed = true;
-	//public Text dashUI;
 
     public bool dashing = false;
     public float dashTime = 1.0f;
@@ -26,11 +25,12 @@ public class Player : MonoBehaviour
 	public float currentDashTime = 1.0f;
 
     public bool sideDashingAllowed = true;
-    private float sideDashCooldown = 5.0f;
+    private float sideDashCooldown = 4.0f;
     private float sideDashRefresh = 0.0f;
 
     public int sideDashCount { get; private set; }
-    private int maxSideDashStack = 3;
+    private int maxSideDashStack = 2;
+	public Image[] sideDashHud;
 
 	public bool attacking = false;
 	public bool paralyzed = false;
@@ -69,6 +69,8 @@ public class Player : MonoBehaviour
             addSideDashStack(1);
             sideDashRefresh = 0.0f;
         }
+		sideDashHud[0].color = sideDashCount > 0 ? Color.white : Color.clear;
+		sideDashHud[1].color = sideDashCount > 1 ? Color.white : Color.clear;
 
         if (repulsed){
             repulsedTimer += Time.deltaTime;
@@ -84,28 +86,21 @@ public class Player : MonoBehaviour
 			stunAnimGo.SetActive(true);
 			transform.RotateAround(transform.position, transform.up, 5.0f);
 			currentParalyzedTime += Time.deltaTime;
-
-			//_rb.isKinematic = true;
-			//PlaySound(audioClips[2], false);
         }
         else {
             paralyzed = false;
             currentParalyzedTime = 0;
 			_mat.SetColor("_Color", defaultColor);
-            stunAnimGo.SetActive(false);
-
-			//_rb.isKinematic = false;
+			stunAnimGo.SetActive(false);
         }
 
         if (dashing == false && currentDashCooldown < dashCooldown)
         {
             currentDashCooldown += dashCooldownSpeed;
-            //dashUI.text = currentDashCooldown.ToString("0.00") + " / " + dashCooldown;
         }
         else if (currentDashCooldown >= dashCooldown)
         {
             dashAllowed = true;
-            //dashUI.text = "DASH";
         }
     }
 
@@ -164,8 +159,8 @@ public class Player : MonoBehaviour
 			Player p = col.gameObject.GetComponent<Player>();
 			
 			if(p.attacking && !paralyzed){
-				anim.SetTrigger("Stun");
 				paralyzed = true;
+				anim.SetTrigger("Stun");
 			}
 		}
 			

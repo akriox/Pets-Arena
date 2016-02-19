@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: bda7d1b6ce61b984990a0c925abc237b
-timeCreated: 1454331194
+guid: 5319eb1ca6f5ba041a886f38af9968be
+timeCreated: 1455914835
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -66,7 +66,13 @@ ModelImporter:
     400056: //RootNode
     400058: loutre
     4300000: loutre
-    7400000: Take 001
+    7400000: Run
+    7400002: DashForward
+    7400004: Stun
+    7400006: Idle
+    7400008: DashRight
+    7400010: DashLeft
+    7400012: BackFlip
     9500000: //RootNode
     13700000: loutre
   materials:
@@ -91,10 +97,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Run
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 100
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -178,10 +184,538 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: DashForward
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 52
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Lizard001
+        weight: 1
+      - path: LizardLFrontLegPlatform001
+        weight: 1
+      - path: LizardLLegPlatform001
+        weight: 1
+      - path: LizardPelvis001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001/LizardLLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001/LizardRRearLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003/LizardLFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003/LizardRFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardTail1
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: LizardRFrontLegPlatform001
+        weight: 1
+      - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: loutre
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Stun
+      takeName: Take 001
+      firstFrame: 52
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Lizard001
+        weight: 1
+      - path: LizardLFrontLegPlatform001
+        weight: 1
+      - path: LizardLLegPlatform001
+        weight: 1
+      - path: LizardPelvis001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001/LizardLLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001/LizardRRearLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003/LizardLFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003/LizardRFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardTail1
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: LizardRFrontLegPlatform001
+        weight: 1
+      - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: loutre
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 85
+      lastFrame: 205
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Lizard001
+        weight: 1
+      - path: LizardLFrontLegPlatform001
+        weight: 1
+      - path: LizardLLegPlatform001
+        weight: 1
+      - path: LizardPelvis001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001/LizardLLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001/LizardRRearLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003/LizardLFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003/LizardRFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardTail1
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: LizardRFrontLegPlatform001
+        weight: 1
+      - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: loutre
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: DashRight
+      takeName: Take 001
+      firstFrame: 210
+      lastFrame: 220
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Lizard001
+        weight: 1
+      - path: LizardLFrontLegPlatform001
+        weight: 1
+      - path: LizardLLegPlatform001
+        weight: 1
+      - path: LizardPelvis001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001/LizardLLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001/LizardRRearLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003/LizardLFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003/LizardRFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardTail1
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: LizardRFrontLegPlatform001
+        weight: 1
+      - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: loutre
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: DashLeft
+      takeName: Take 001
+      firstFrame: 220
+      lastFrame: 230
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Lizard001
+        weight: 1
+      - path: LizardLFrontLegPlatform001
+        weight: 1
+      - path: LizardLLegPlatform001
+        weight: 1
+      - path: LizardPelvis001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001/LizardLLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001/LizardRRearLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003/LizardLFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003/LizardRFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardTail1
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: LizardRFrontLegPlatform001
+        weight: 1
+      - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: loutre
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: BackFlip
+      takeName: Take 001
+      firstFrame: 253
+      lastFrame: 294
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Lizard001
+        weight: 1
+      - path: LizardLFrontLegPlatform001
+        weight: 1
+      - path: LizardLLegPlatform001
+        weight: 1
+      - path: LizardPelvis001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardLLegThigh001/LizardLLegCalf001/LizardLLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001
+        weight: 1
+      - path: LizardPelvis001/LizardRRearLegThigh001/LizardRRearLegCalf001/LizardRRearLegAnkle003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardLFrontLegCollarbone001/LizardLFrontLegUpper001/LizardLFrontLeg003/LizardLFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardNeck001/LizardHead001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003
+        weight: 1
+      - path: LizardPelvis001/LizardSpine003/LizardSpine004/LizardRibcage001/LizardRFrontLegCollarbone001/LizardRFrontLegUpper001/LizardRFrontLeg003/LizardRFrontLegPalm003
+        weight: 1
+      - path: LizardPelvis001/LizardTail1
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2
+        weight: 1
+      - path: LizardPelvis001/LizardTail1/LizardTail2/LizardTail3
+        weight: 1
+      - path: LizardRFrontLegPlatform001
+        weight: 1
+      - path: LizardRRearLegPlatform001
+        weight: 1
+      - path: loutre
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.06
+    globalScale: 0.07
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

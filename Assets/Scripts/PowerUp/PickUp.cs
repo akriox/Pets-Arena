@@ -7,13 +7,14 @@ public class PickUp : MonoBehaviour {
 	public float rotationSpeed;
 	public float duration;
     private Vector3 rotationVector;
-	private bool pickedUp = false;
+	private bool pickedUp;
 
 	public string effectTag;
 
     private AudioSource _audioSource;
 
 	void Start () {
+		pickedUp = false;
 		rotationVector = new Vector3 (0, rotationSpeed, 0);
         _audioSource = GetComponent<AudioSource>();
 	}
@@ -31,10 +32,10 @@ public class PickUp : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.layer == 11 && !pickedUp) {
-			pickedUp = true;
 			PowerUp p = other.GetComponent<PowerUp>();
 			if(!p.available && !p.activated){
-                _audioSource.Play();
+				_audioSource.Play();
+				pickedUp = true;
                 p.available = true;
 				p.setEffect(effectTag);
                 GetComponent<MeshRenderer>().enabled = false; // hide mesh before destroying
