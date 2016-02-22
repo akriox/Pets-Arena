@@ -44,7 +44,10 @@ public class CharacterSelectController : MonoBehaviour {
 		
 	void SwitchCharacter(int direction, int playerNumber){
 		bool switched = false;
-		int indexOfSelected = Characters.FindIndex (a => a.name == PlayerSelectedCharacters [playerNumber].name);
+		int indexOfSelected = -1;
+		if(PlayerSelectedCharacters [playerNumber] != null)
+			indexOfSelected = Characters.FindIndex (a => a.name == PlayerSelectedCharacters [playerNumber].name);
+
 		while (!switched) {
 			indexOfSelected += direction;
 

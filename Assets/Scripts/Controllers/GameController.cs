@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class GameController : MonoBehaviour {
 
@@ -163,7 +164,16 @@ public class GameController : MonoBehaviour {
 		HUD.UpdateBlueGauge(blueScore);
         blueTotem.fill();
     }
-		
+
+	public void ChangeTrailColors(GameObject player, int index){
+		TrailRenderer tr = player.GetComponent<TrailRenderer> ();
+		SerializedObject so = new SerializedObject (tr);
+		for(int i = 0; i < 5; i++)
+			so.FindProperty ("m_Colors.m_Color["+i+"]").colorValue = outlineColors [index];
+		player.GetComponent<TrailRenderer> ().material.SetColor ("_TintColor", outlineColors [index]);
+		so.ApplyModifiedProperties ();
+	}
+
 	public void InstantiatePlayers(){
 		GameObject player;
 		for (int i = 0; i < 4; i++) {
@@ -171,9 +181,12 @@ public class GameController : MonoBehaviour {
 			player.transform.Rotate (playerRotations [i]);
 			player.name = _characterSelectController.FinalSelections [i];
 			player.tag = "P"+(i+1);
-			player.GetComponent<Renderer>().material.SetColor ("_OutlineColor", outlineColors [i]);
+			player.GetComponentInChildren<SkinnedMeshRenderer> ().material.SetColor("_OutlineColor", outlineColors[i]);
 			player.GetComponent<PowerUp>().powerUI = GameObject.Find(powerUpHudNames[i]).GetComponent<Image>();
-			player.GetComponent<Player>().sideDashHud = GameObject.Find(sideDashHudNames[i]).GetComponents<Image>();
+			ChangeTrailColors (player, i);
+			player.GetComponent<Player>().sideDashHud = GameObject.Find(sideDashHudNames[i]).GetComponentsInChildren<Image>();;
+			player.GetComponent<PlayerUserControl> ().playerNumber = i + 1;
 		}
+		Destroy (_characterSelectController.gameObject);
 	}
 }
