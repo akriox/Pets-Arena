@@ -23,7 +23,7 @@ public class EventController : MonoBehaviour {
 	private float speed = 5.0f;
 	private List<Vector3> multiBallSpawnPositions;
 	private List<GameObject> fakeBalls = new List<GameObject>();
-	private bool multiball = false;
+	public static bool multiball = false;
 	
 	public UnityEngine.Object FakeBallPrefab;
 	private BallController _ballController;
@@ -40,7 +40,7 @@ public class EventController : MonoBehaviour {
 
 		pool = new string[count];
 		pool[0] = "TrapBall";
-		pool[1] = "BouncyBall";
+		pool[1] = "StealthBall";
 		pool[2] = "StretchBall";
 		pool[3] = "SwitchedZones";
 		pool [4] = "MultiBall";
@@ -62,8 +62,8 @@ public class EventController : MonoBehaviour {
 			case "TrapBall":
 				TrapBall ();
 				break;
-			case "BouncyBall":
-				BouncyBall ();
+			case "StealthBall":
+				StealthBall ();
 				break;
 			case "StretchBall":
 				StretchBall();
@@ -91,23 +91,27 @@ public class EventController : MonoBehaviour {
 		}
 	}
 
-	void BouncyBall(){
+	void StealthBall(){
 		if (Time.time - this.timestamp <= currentEffect.duration) {
 			eventUI.enabled = true;
-			_ballController.bouncy = true;
+			_ballController.stealthed = true;
+			/*
 			_ballController.bouncePower *= 2.0f;
 			_ball.GetComponent<Collider>().material.bounciness = 0.9f;
 			_ball.GetComponent<Collider>().material.staticFriction = 0.3f;
 			_ball.GetComponent<Collider>().material.dynamicFriction = 0.3f;
 			_ball.GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Average;
+			*/
 		} else {
 			eventUI.enabled = false;
-			_ballController.bouncy = false;
+			_ballController.stealthed = false;
+			/*
 			_ballController.bouncePower *= 0.5f;
 			_ball.GetComponent<Collider>().material.bounciness = 0.5f;
 			_ball.GetComponent<Collider>().material.staticFriction = 0.6f;
 			_ball.GetComponent<Collider>().material.dynamicFriction = 0.6f;
 			_ball.GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Minimum;
+			*/
 			this.activated = false;
 		}
 	}

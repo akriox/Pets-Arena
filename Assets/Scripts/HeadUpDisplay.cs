@@ -7,6 +7,7 @@ public class HeadUpDisplay {
 	private string spritesPath = "2D/HUD/Gauges/hudGaugeFinale_";
 
 	private Text message;
+	private Image spriteMessage;
 
 	private Image greenScoreGauge;
 	private Image blueScoreGauge;
@@ -22,6 +23,7 @@ public class HeadUpDisplay {
 
 	public void Init(){
 		message = GameObject.FindGameObjectWithTag("MessageHUD").GetComponent<Text>();
+		spriteMessage = GameObject.FindGameObjectWithTag("MessageSprite").GetComponent<Image>();
 
 		gaugeUnit = GameController.victoryScore / 25.0f;
 
@@ -63,5 +65,17 @@ public class HeadUpDisplay {
 		yield return new WaitForSeconds(duration);
 		message.text = "";
 		message.enabled = false;
+	}
+
+	public void DisplaySprite(Sprite s){
+		spriteMessage.color = Color.white;
+		spriteMessage.sprite = s;
+	}
+
+	public IEnumerator DisplaySprite(Sprite s, float duration){
+		spriteMessage.sprite = s;
+		spriteMessage.color = Color.white;
+		yield return new WaitForSeconds(duration);
+		spriteMessage.color = Color.clear;
 	}
 }

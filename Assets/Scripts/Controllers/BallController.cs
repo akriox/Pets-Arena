@@ -13,12 +13,13 @@ public class BallController : MonoBehaviour {
 	public float kickPower;
 
 	public bool trapped = false;
-	public bool bouncy = false;
+	public bool stealthed = false;
 	public enum Zone {R, G, B, Y, N};
 	public Zone currentZone;
 
 	private Material defaultMat;
     public Material ballTrappedMat;
+	public Material stealthMat;
 
     public TrailRenderer trail { get; set; }
     private Behaviour halo;
@@ -50,15 +51,10 @@ public class BallController : MonoBehaviour {
             GetComponent<Renderer>().material = defaultMat;
             halo.enabled = false;
         }
-
-        /*
-		if (bouncy){
-
-        }
-		else{
-
-        }
-        */
+			
+		if (stealthed) GetComponent<Renderer>().material = stealthMat;
+		else GetComponent<Renderer>().material = defaultMat;
+		if(!EventController.multiball) trail.enabled = stealthed;
     }
 
 	void OnCollisionEnter(Collision col)

@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour {
 
 	private BallController _ballController;
 	private HeadUpDisplay HUD;
+	private Sprite[] countDownSprites;
 
 	public float redScore { get; set; }
     public float greenScore { get; set; }
@@ -35,15 +36,16 @@ public class GameController : MonoBehaviour {
     public static float victoryScore = 15.0f;
     public static float scoringRate = 0.01f;
 
-	public static int countdown = 3;
+	public static int countdown = 4;
 
     void Awake() {
 		HUD = new HeadUpDisplay();
 		HUD.Init();
+		countDownSprites = Resources.LoadAll<Sprite>("2D/HUD/CountDown");
 
 		matchIsOver = false;
 		scoringDirection = 1;
-		//_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
+		_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
 
 		playerPositions.Add (new Vector3 (-20.0f, 1.0f, 12.0f));
 		playerPositions.Add (new Vector3 (20.0f, 1.0f, 12.0f));
@@ -60,7 +62,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Start(){
-		//InstantiatePlayers ();
+		InstantiatePlayers ();
 		StartCoroutine (Countdown ());
 	}
 
@@ -123,11 +125,10 @@ public class GameController : MonoBehaviour {
 	}
 
 	private IEnumerator Countdown(){
-		for (int i = countdown; i >= 1; i--) {
-			HUD.DisplayMessage(i.ToString());
+		for (int i = 0; i < countdown; i++) {
+			StartCoroutine( HUD.DisplaySprite(countDownSprites[i], 1.0f) );
 			yield return new WaitForSeconds(1.0f);
 		}
-		StartCoroutine(HUD.DisplayMessage("Go !", 2.0f));
 		matchHasStarted = true;
 	}
 

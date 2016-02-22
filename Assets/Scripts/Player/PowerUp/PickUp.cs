@@ -28,6 +28,14 @@ public class PickUp : MonoBehaviour {
 		Vector3 pos = transform.position;
 		pos.y =  Mathf.Clamp(transform.position.y, 2.0f, 10.0f);
 		transform.position = pos;
+
+		RaycastHit hitInfo;
+		if (Physics.Raycast(transform.position, Vector3.down, out hitInfo))
+		{
+			if(hitInfo.collider.tag == "Obstacle"){
+				transform.Translate(new Vector3(2f, 0f, 2f));
+			}
+		}
 	}
 
 	void OnTriggerEnter(Collider other) {

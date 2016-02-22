@@ -42,7 +42,7 @@ public class SpawnController : MonoBehaviour {
 	List<Vector2> EventPositions = new List<Vector2>();
 
 	//hauteur de spawn des objets
-	public float SpawnHeight;
+	private float SpawnHeight = 8.0f;
 
     //pool commun d'armes
     private string[] pool;
@@ -78,7 +78,7 @@ public class SpawnController : MonoBehaviour {
 		_redPlayer = GameObject.FindGameObjectWithTag ("P4");
 
 		DiceFaces = new string[DiceFacesNumber];
-		FillDie ();
+		FillDice ();
 
         poolIndex = 0;
         pool = new string[PowerUp.count];
@@ -102,14 +102,14 @@ public class SpawnController : MonoBehaviour {
         }
     }
 
-	void FillDie(){
+	void FillDice(){
 		for (int i = 0; i<EventFacesNumber; i++)
 			DiceFaces[i] = "e";
 		for (int j = EventFacesNumber-1; j<(EventFacesNumber+WeaponFacesNumber); j++)
 			DiceFaces[j] = "w";
 	}
 
-	string RollDie(){
+	string RollDice(){
 		return DiceFaces[UnityEngine.Random.Range(0, DiceFacesNumber-1)];
 	}
 
@@ -187,7 +187,7 @@ public class SpawnController : MonoBehaviour {
 	}
 
 	void SpawnItem(){
-		if (RollDie () == "e" && !_eventController.activated) {
+		if (RollDice () == "e" && !_eventController.activated) {
 			Destroy(previousEvent);
 			Vector2 randomEventPosition = EventPositions[UnityEngine.Random.Range(0, EventPositions.Count-1)];
 			Vector3 spawnPos = new Vector3(randomEventPosition.x, SpawnHeight, randomEventPosition.y);
