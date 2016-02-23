@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     private Rigidbody _rb;
 
+	public int playerIndex { get; set; }
+
 	public float paralyzedTime;
 	private float currentParalyzedTime;
 
@@ -30,7 +32,6 @@ public class Player : MonoBehaviour
 
     public int sideDashCount { get; private set; }
     private int maxSideDashStack = 2;
-	public Image[] sideDashHud;
 
 	public bool attacking = false;
 	public bool paralyzed = false;
@@ -62,6 +63,10 @@ public class Player : MonoBehaviour
         sideDashCount = maxSideDashStack;
     }
 
+	void Start(){
+		playerIndex = GetComponent<PlayerUserControl>().playerNumber;
+	}
+
     void Update() {
 
         sideDashRefresh += Time.deltaTime;
@@ -69,8 +74,7 @@ public class Player : MonoBehaviour
             addSideDashStack(1);
             sideDashRefresh = 0.0f;
         }
-		sideDashHud[0].color = sideDashCount > 0 ? Color.white : Color.clear;
-		sideDashHud[1].color = sideDashCount > 1 ? Color.white : Color.clear;
+		HeadUpDisplay.UpdateSideDash(playerIndex, sideDashCount);
 
         if (repulsed){
             repulsedTimer += Time.deltaTime;

@@ -1,22 +1,15 @@
 fileFormatVersion: 2
-guid: 7206e0c2f7cb9c64188a7c943dfffbcf
-timeCreated: 1452347996
+guid: 942f4f4d3a86af040859493a4421e3dd
+timeCreated: 1456221288
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cylinder001
-    100004: Ellipse001
     400000: //RootNode
-    400002: Cylinder001
-    400004: Ellipse001
-    2300000: Cylinder001
-    2300002: Ellipse001
-    3300000: Cylinder001
-    3300002: Ellipse001
-    4300000: Ellipse001
-    4300002: Cylinder001
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: WeaponItem
   materials:
     importMaterials: 0
     materialName: 0
@@ -59,7 +52,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

@@ -14,10 +14,10 @@ public class CharacterSelectController : MonoBehaviour {
 		public int Direction;
 	}
 
-	public string[] CharacterNames = new string[4];
-	public AnimationState[] AnimationStates = new AnimationState[4];
-	public bool[] CanMove = {true, true, true, true};
-	List<Vector3> ReferencePositions = new List<Vector3>();
+	private string[] CharacterNames = { "Axolotl", "Leopard", "Fennec", "Loutre" };
+	private AnimationState[] AnimationStates = new AnimationState[4];
+	private bool[] CanMove = {true, true, true, true};
+	private List<Vector3> ReferencePositions = new List<Vector3>();
 
 	public List<GameObject> Characters = new List<GameObject>();
 	public Dictionary<string, bool> CharacterAvailability = new Dictionary<string, bool> ();
@@ -76,8 +76,7 @@ public class CharacterSelectController : MonoBehaviour {
 		CanMove [playerNumber] = false;
 		AnimationStates [playerNumber] = state;
 	}
-
-	// Update is called once per frame
+		
 	void Update () {
 		Gamepads = GamepadInput.Instance.gamepads;
 
@@ -89,8 +88,9 @@ public class CharacterSelectController : MonoBehaviour {
 			if (AnimationStates [i].Animating)
 				Animate (i, AnimationStates[i].Direction);
 		}
-			
-		menu.pressStartImg.enabled = AllPlayersReady ();
+
+		if(menu != null)
+			menu.pressStartImg.enabled = AllPlayersReady ();
 
 		if(Input.GetKeyDown(KeyCode.A))
 			Select (0);

@@ -51,7 +51,7 @@ public class PlayerUserControl : MonoBehaviour
 				_powerUp.timestamp = Time.time;
 				_powerUp.activated = true;
 				_powerUp.available = false;
-				_powerUp.powerUI.color = Color.clear;
+				_powerUp.powerUpImg.color = Color.clear;
 			}
 		}
 	}
@@ -98,6 +98,7 @@ public class PlayerUserControl : MonoBehaviour
                     else {
                         sideDashTimer = 0.0f;
                         player.sideDashingAllowed = false;
+						player.attacking = false;
                         player.removeSideDashStack(1);
                     }
                 }

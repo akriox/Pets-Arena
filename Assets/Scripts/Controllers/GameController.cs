@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 
+	public bool debugging;
+
 	private BallController _ballController;
 	private HeadUpDisplay HUD;
 	private Sprite[] countDownSprites;
@@ -15,21 +17,21 @@ public class GameController : MonoBehaviour {
     public float blueScore { get; set; }
     public float yellowScore { get; set; }
 
-	public Totem redTotem;
-    public Totem greenTotem;
-    public Totem blueTotem;
-    public Totem yellowTotem;
+	/// <summary>
+	/// [0]: GreenTotem, [1]: BlueTotem, [2]: YellowTotem, [3]: RedTotem
+	/// </summary>
+	public Totem[] totems;
 
+	private string characterPrefabPath = "Prefabs/GameCharacters/";
 	private string[] powerUpHudNames = {"GreenPower", "BluePower", "YellowPower", "RedPower"};
-	private string[] sideDashHudNames = {"GreenSideDash", "BlueSideDash", "YellowSideDash", "RedSideDash"};
-	private Color[] outlineColors = {new Color(58f/255f, 1f, 32f/255f), new Color(6f/255f, 193f/255f, 1f), new Color(234f/255f, 209f/255f, 0f), new Color(1f, 6f/255f, 6f/255f)};
+	private Color[] outlineColors = { new Color(58f/255f, 1f, 32f/255f), new Color(6f/255f, 193f/255f, 1f), new Color(234f/255f, 209f/255f, 0f), new Color(1f, 6f/255f, 6f/255f) };
 	private Material[] trailMat;
 
 	private CharacterSelectController _characterSelectController;
 	private List<Vector3> playerPositions = new List<Vector3> ();
 	private List<Vector3> playerRotations = new List<Vector3> ();
 
-	public static bool matchHasStarted = false;
+	public static bool matchHasStarted;
 	private bool matchIsOver;
 
 	public static bool switchedZones = false;
@@ -47,6 +49,7 @@ public class GameController : MonoBehaviour {
 		trailMat = Resources.LoadAll<Material>("Materials/Characters/Trails");
 
 		matchIsOver = false;
+		matchHasStarted = false;
 		scoringDirection = 1;
 
 		playerPositions.Add (new Vector3 (-20.0f, 1.0f, 12.0f));
@@ -62,8 +65,10 @@ public class GameController : MonoBehaviour {
 		GameObject ballGo = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = ballGo.GetComponent<BallController> ();
 
-//		_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
-//		InstantiatePlayers ();
+		if(!debugging){
+			_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
+			InstantiatePlayers ();
+		}
 	}
 
 	void Start(){
@@ -138,28 +143,12 @@ public class GameController : MonoBehaviour {
 		matchHasStarted = true;
 	}
 
-    private void IncreaseYellowScore()
-    {
-        yellowScore += scoringDirection * scoringRate;
-        if (yellowScore <= 0) yellowScore = 0;
-		HUD.UpdateYellowGauge(yellowScore);
-        yellowTotem.fill();
-    }
-
-    private void IncreaseRedScore()
-    {
-        redScore += scoringDirection * scoringRate;
-        if (redScore <= 0) redScore = 0;
-		HUD.UpdateRedGauge(redScore);
-        redTotem.fill();
-    }
-
     private void IncreaseGreenScore()
     {
         greenScore += scoringDirection * scoringRate;
         if (greenScore <= 0) greenScore = 0;
 		HUD.UpdateGreenGauge(greenScore);
-        greenTotem.fill();
+		totems[0].fill();
     }
 
     private void IncreaseBlueScore()
@@ -167,34 +156,50 @@ public class GameController : MonoBehaviour {
         blueScore += scoringDirection * scoringRate;
         if (blueScore <= 0) blueScore = 0;
 		HUD.UpdateBlueGauge(blueScore);
-        blueTotem.fill();
+		totems[1].fill();
     }
-		
+
+	private void IncreaseYellowScore()
+	{
+		yellowScore += scoringDirection * scoringRate;
+		if (yellowScore <= 0) yellowScore = 0;
+		HUD.UpdateYellowGauge(yellowScore);
+		totems[2].fill();
+	}
+
+	private void IncreaseRedScore()
+	{
+		redScore += scoringDirection * scoringRate;
+		if (redScore <= 0) redScore = 0;
+		HUD.UpdateRedGauge(redScore);
+		totems[3].fill();
+	}
+
 	public void InstantiatePlayers(){
 		GameObject player;
+		string animalName;
 		for (int i = 0; i < 4; i++) {
-			player = (GameObject) Instantiate (Resources.Load ("Prefabs/Characters/"+_characterSelectController.FinalSelections[i]), playerPositions[i], Quaternion.identity);
+			animalName = _characterSelectController.FinalSelections[i];
+
+			player = (GameObject) Instantiate (Resources.Load (characterPrefabPath + animalName), playerPositions[i], Quaternion.identity);
 			player.transform.Rotate (playerRotations [i]);
-			player.name = _characterSelectController.FinalSelections [i];
+			player.name = animalName;
 			player.GetComponent<PlayerUserControl> ().playerNumber = i + 1;
-			player.tag = "P"+(i+1);
+			player.tag = "P" + (i+1);
 
 			//Colors
 			player.GetComponentInChildren<SkinnedMeshRenderer> ().material.SetColor("_OutlineColor", outlineColors[i]);
 			player.GetComponent<LineRenderer>().SetColors(outlineColors[i], outlineColors[i]);
 			player.GetComponent<TrailRenderer>().material = trailMat[i];
+			player.GetComponentInChildren<PowerUpHalo>().setColor(i+1);
 
 			//HUD
-			player.GetComponent<PowerUp>().powerUI = GameObject.Find(powerUpHudNames[i]).GetComponent<Image>();
-			player.GetComponent<Player>().sideDashHud = GameObject.Find(sideDashHudNames[i]).GetComponentsInChildren<Image>();;
+			player.GetComponent<PowerUp>().powerUpImg = GameObject.Find(powerUpHudNames[i]).GetComponent<Image>();
+			HUD.SetPortrait(i+1, animalName);
+
+			//Totem
+			totems[i].setHead(animalName);
 		}
-
-		HUD.SetPortraits(_characterSelectController.FinalSelections);
-
-		greenTotem.setHead(_characterSelectController.FinalSelections[0]);
-		blueTotem.setHead(_characterSelectController.FinalSelections[1]);
-		yellowTotem.setHead(_characterSelectController.FinalSelections[2]);
-		redTotem.setHead(_characterSelectController.FinalSelections[3]);
 
 		Destroy(_characterSelectController.gameObject);
 	}
