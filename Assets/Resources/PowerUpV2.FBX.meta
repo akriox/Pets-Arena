@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 486868a044b7fa44380b892656418011
-timeCreated: 1456221843
+guid: 942f4f4d3a86af040859493a4421e3dd
+timeCreated: 1456221288
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,11 +9,9 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: wood_sign
-    7400000: Take 001
-    9500000: //RootNode
+    4300000: WeaponItem
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
@@ -36,7 +34,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 22
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -70,7 +68,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
