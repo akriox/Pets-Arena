@@ -7,11 +7,6 @@ public class Totem : MonoBehaviour {
     public GameObject gauge;
     public GameObject[] notches;
 
-	public static string headAxolotl = "Totem_Head_Axolotl";
-	public static string headFennec = "Totem_Head_Fennec";
-	public static string headLeopard = "Totem_Head_Leopard";
-	public static string headLoutre = "Totem_Head_Loutre";
-
     private Vector3 gaugeEndPos;
     private Vector3 newPos;
     private Vector3 rotationVector;
@@ -58,13 +53,14 @@ public class Totem : MonoBehaviour {
         notches[index].transform.Rotate(rotationVector);
     }
 
-	public void setHead(string headName)
+	public void setHead(string animalName)
 	{
-		GameObject[] head = heads.GetComponentsInChildren<GameObject>();
+		MeshRenderer[] head = heads.GetComponentsInChildren<MeshRenderer>();
+		string headName = "Totem_Head_" + animalName;
 		for(int i = 0; i < head.Length; i++)
 		{
-			if(head[i].name == headName) head[i].SetActive(true);
-			else head[i].SetActive(false);
+			if(head[i].gameObject.name == headName) head[i].enabled = true;
+			else head[i].enabled = false;
 		}
 	}
 }

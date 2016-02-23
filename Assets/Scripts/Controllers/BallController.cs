@@ -47,14 +47,15 @@ public class BallController : MonoBehaviour {
             GetComponent<Renderer>().material = ballTrappedMat;
             halo.enabled = true;
         }
+		else if (stealthed){
+			GetComponent<Renderer>().material = stealthMat;
+		}
         else {
             GetComponent<Renderer>().material = defaultMat;
             halo.enabled = false;
         }
-			
-		if (stealthed) GetComponent<Renderer>().material = stealthMat;
-		else GetComponent<Renderer>().material = defaultMat;
-		if(!EventController.multiball) trail.enabled = stealthed;
+
+		if(!EventController.multiball) trail.enabled = !stealthed;
     }
 
 	void OnCollisionEnter(Collision col)

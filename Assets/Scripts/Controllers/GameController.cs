@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 
@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour {
 	private string[] powerUpHudNames = {"GreenPower", "BluePower", "YellowPower", "RedPower"};
 	private string[] sideDashHudNames = {"GreenSideDash", "BlueSideDash", "YellowSideDash", "RedSideDash"};
 	private Color[] outlineColors = {new Color(58f/255f, 1f, 32f/255f), new Color(6f/255f, 193f/255f, 1f), new Color(234f/255f, 209f/255f, 0f), new Color(1f, 6f/255f, 6f/255f)};
-	private string[] playerTags = { "P1", "P2", "P3", "P4" };
+	private Material[] trailMat;
 
 	private CharacterSelectController _characterSelectController;
 	private List<Vector3> playerPositions = new List<Vector3> ();
@@ -44,9 +44,10 @@ public class GameController : MonoBehaviour {
 		HUD.Init();
 		countDownSprites = Resources.LoadAll<Sprite>("2D/HUD/CountDown");
 
+		trailMat = Resources.LoadAll<Material>("Materials/Characters/Trails");
+
 		matchIsOver = false;
 		scoringDirection = 1;
-		_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
 
 		playerPositions.Add (new Vector3 (-20.0f, 1.0f, 12.0f));
 		playerPositions.Add (new Vector3 (20.0f, 1.0f, 12.0f));
@@ -60,10 +61,12 @@ public class GameController : MonoBehaviour {
 
 		GameObject ballGo = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = ballGo.GetComponent<BallController> ();
+
+		_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
+		InstantiatePlayers ();
 	}
 
 	void Start(){
-		InstantiatePlayers ();
 		StartCoroutine (Countdown ());
 	}
 
@@ -74,26 +77,28 @@ public class GameController : MonoBehaviour {
 		}
 
         if (Input.GetKeyDown(KeyCode.Escape))
-            Application.LoadLevel(0);
+			SceneManager.LoadScene("MainMenu");
+		/*
         if (Input.GetKeyDown(KeyCode.R))
-            Application.LoadLevel(Application.loadedLevel);
+			SceneManager.LoadScene("LD_Forest");
+		*/
 	}
 
 	private void victoryCheck(){
-		if(yellowScore >= victoryScore){
-			HUD.DisplayMessage("Yellow wins !");
-			matchIsOver = true;
-		}
-		else if(redScore >= victoryScore){
-			HUD.DisplayMessage("Red wins !");
-			matchIsOver = true;
-		}
-		else if(greenScore >= victoryScore){
-			HUD.DisplayMessage("Green wins !");
+		if(greenScore >= victoryScore){
+			HUD.DisplaySprite(HUD.winnerSprite[0]);
 			matchIsOver = true;
 		}
 		else if(blueScore >= victoryScore){
-			HUD.DisplayMessage("Blue wins !");
+			HUD.DisplaySprite(HUD.winnerSprite[1]);
+			matchIsOver = true;
+		}
+		else if(yellowScore >= victoryScore){
+			HUD.DisplaySprite(HUD.winnerSprite[2]);
+			matchIsOver = true;
+		}
+		else if(redScore >= victoryScore){
+			HUD.DisplaySprite(HUD.winnerSprite[3]);
 			matchIsOver = true;
 		}
 	}
@@ -164,29 +169,33 @@ public class GameController : MonoBehaviour {
 		HUD.UpdateBlueGauge(blueScore);
         blueTotem.fill();
     }
-
-	public void ChangeTrailColors(GameObject player, int index){
-		TrailRenderer tr = player.GetComponent<TrailRenderer> ();
-		SerializedObject so = new SerializedObject (tr);
-		for(int i = 0; i < 5; i++)
-			so.FindProperty ("m_Colors.m_Color["+i+"]").colorValue = outlineColors [index];
-		player.GetComponent<TrailRenderer> ().material.SetColor ("_TintColor", outlineColors [index]);
-		so.ApplyModifiedProperties ();
-	}
-
+		
 	public void InstantiatePlayers(){
 		GameObject player;
 		for (int i = 0; i < 4; i++) {
 			player = (GameObject) Instantiate (Resources.Load ("Prefabs/Characters/"+_characterSelectController.FinalSelections[i]), playerPositions[i], Quaternion.identity);
 			player.transform.Rotate (playerRotations [i]);
 			player.name = _characterSelectController.FinalSelections [i];
-			player.tag = "P"+(i+1);
-			player.GetComponentInChildren<SkinnedMeshRenderer> ().material.SetColor("_OutlineColor", outlineColors[i]);
-			player.GetComponent<PowerUp>().powerUI = GameObject.Find(powerUpHudNames[i]).GetComponent<Image>();
-			ChangeTrailColors (player, i);
-			player.GetComponent<Player>().sideDashHud = GameObject.Find(sideDashHudNames[i]).GetComponentsInChildren<Image>();;
 			player.GetComponent<PlayerUserControl> ().playerNumber = i + 1;
+			player.tag = "P"+(i+1);
+
+			//Colors
+			player.GetComponentInChildren<SkinnedMeshRenderer> ().material.SetColor("_OutlineColor", outlineColors[i]);
+			player.GetComponent<LineRenderer>().SetColors(outlineColors[i], outlineColors[i]);
+			player.GetComponent<TrailRenderer>().material = trailMat[i];
+
+			//HUD
+			player.GetComponent<PowerUp>().powerUI = GameObject.Find(powerUpHudNames[i]).GetComponent<Image>();
+			player.GetComponent<Player>().sideDashHud = GameObject.Find(sideDashHudNames[i]).GetComponentsInChildren<Image>();;
 		}
-		Destroy (_characterSelectController.gameObject);
+
+		HUD.SetPortraits(_characterSelectController.FinalSelections);
+
+		greenTotem.setHead(_characterSelectController.FinalSelections[0]);
+		blueTotem.setHead(_characterSelectController.FinalSelections[1]);
+		yellowTotem.setHead(_characterSelectController.FinalSelections[2]);
+		redTotem.setHead(_characterSelectController.FinalSelections[3]);
+
+		Destroy(_characterSelectController.gameObject);
 	}
 }

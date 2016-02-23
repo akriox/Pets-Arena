@@ -6,7 +6,7 @@ public class PowerUp : MonoBehaviour {
 	
 	public Image powerUI;
 
-	private Behaviour _playerHalo;
+    private Behaviour _playerHalo;
 
 	public bool available {get; set;}
 	public bool activated {get; set;}
@@ -33,6 +33,7 @@ public class PowerUp : MonoBehaviour {
 		activated = false;
 
 		_playerHalo = (Behaviour) GetComponent ("Halo");
+
 		_ball = GameObject.FindGameObjectWithTag("Ball");
 
 		line = GetComponent<LineRenderer>();

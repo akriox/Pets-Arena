@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour {
 	
 	public static CameraController Instance {get; private set;}
 	
-	private Camera _camera;
+	//private Camera _camera;
 	private Vector3 FinalPosition = new Vector3(0f, 40.2f, -23.4f);
 	private Quaternion FinalRotation = Quaternion.Euler(62.9028f, 0f, 0f);
 
@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour {
 	}
 	
 	public void Start(){
-		_camera = Camera.main;
+		//_camera = Camera.main;
 	}
 
 	public void PlaceCamera(){

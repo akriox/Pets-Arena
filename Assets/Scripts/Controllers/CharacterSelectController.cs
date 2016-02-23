@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.SceneManagement;
 
 public class CharacterSelectController : MonoBehaviour {
@@ -27,6 +26,7 @@ public class CharacterSelectController : MonoBehaviour {
 	public string[] FinalSelections = {"null", "null", "null", "null"};
 	private List<GamepadDevice> Gamepads = new List<GamepadDevice>();
 
+	public CharacterSelectMenu menu;
 
 	void Awake(){
 
@@ -89,13 +89,25 @@ public class CharacterSelectController : MonoBehaviour {
 			if (AnimationStates [i].Animating)
 				Animate (i, AnimationStates[i].Direction);
 		}
+			
+		if(AllPlayersReady()){
 
-//		if (AllPlayersReady ())
-//			print ("READY");
+		}
 
+		if(Input.GetKeyDown(KeyCode.A))
+			Select (0);
+		if(Input.GetKeyDown(KeyCode.Z))
+			Select (1);
+		if(Input.GetKeyDown(KeyCode.E))
+			Select (2);
+		if(Input.GetKeyDown(KeyCode.R))
+			Select (3);
+
+		/*
 		if (Input.GetKeyUp(KeyCode.Space)) {
 			SceneManager.LoadScene ("LD_Forest");
 		}
+		*/
 	}
 
 	void HandlePlayerInput (int playerNumber)
@@ -109,16 +121,16 @@ public class CharacterSelectController : MonoBehaviour {
 				Select (playerNumber);
 		}
 
-		if (Gamepads [playerNumber].GetButtonUp (GamepadButton.Action2) && FinalSelections[playerNumber] != "null")
+		if (Gamepads[playerNumber].GetButtonUp (GamepadButton.Action2) && FinalSelections[playerNumber] != "null")
 			Cancel (playerNumber);
 
 		if(Gamepads [playerNumber].GetButtonUp(GamepadButton.Start) && AllPlayersReady())
-			//Load the game scene
-			print("ready");
+			SceneManager.LoadScene ("LD_Forest");
 	}
 
 	void Select(int playerNumber){
-		PlayerSelectedCharacters [playerNumber].transform.Rotate(new Vector3(0, 50, 0));
+		PlayerSelectedCharacters [playerNumber].GetComponentInChildren<Animator>().SetBool("BackFlip", true);
+		menu.UpdatePlayerStateSprite(playerNumber, 1);
 		FinalSelections[playerNumber] = PlayerSelectedCharacters [playerNumber].name;
 		CharacterAvailability [PlayerSelectedCharacters [playerNumber].name] = false;
 		KeepFromSelecting (playerNumber);
@@ -133,7 +145,7 @@ public class CharacterSelectController : MonoBehaviour {
 	}
 
 	void Cancel(int playerNumber){
-		PlayerSelectedCharacters [playerNumber].transform.Rotate(new Vector3(0, -50, 0));
+		menu.UpdatePlayerStateSprite(playerNumber, 0);
 		FinalSelections[playerNumber] = "null";
 		CharacterAvailability [PlayerSelectedCharacters [playerNumber].name] = true;
 		CanMove [playerNumber] = true;

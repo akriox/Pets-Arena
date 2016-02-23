@@ -19,13 +19,31 @@ public class HeadUpDisplay {
 	private Sprite[] yellowGaugeSprites;
 	private Sprite[] redGaugeSprites;
 
+
+	///<summary>
+	///	[0]: Green, [1]: Blue, [2]: Yellow, [3]: Red
+	///</summary>
+	public Sprite[] winnerSprite;
+
+	private Image[] portraitImages;
+	private Sprite[] portraitSprites;
+
 	private float gaugeUnit;
 
 	public void Init(){
 		message = GameObject.FindGameObjectWithTag("MessageHUD").GetComponent<Text>();
 		spriteMessage = GameObject.FindGameObjectWithTag("MessageSprite").GetComponent<Image>();
 
+		winnerSprite = Resources.LoadAll<Sprite>("2D/HUD/Winner");
+
 		gaugeUnit = GameController.victoryScore / 25.0f;
+
+		portraitSprites = Resources.LoadAll<Sprite>("2D/HUD/Portraits");
+		portraitImages = new Image[4];
+		portraitImages[0] = GameObject.FindGameObjectWithTag("GreenPortrait").GetComponent<Image>();
+		portraitImages[1] = GameObject.FindGameObjectWithTag("BluePortrait").GetComponent<Image>();
+		portraitImages[2] = GameObject.FindGameObjectWithTag("YellowPortrait").GetComponent<Image>(); 
+		portraitImages[3] = GameObject.FindGameObjectWithTag("RedPortrait").GetComponent<Image>();
 
 		greenScoreGauge = GameObject.FindGameObjectWithTag("GreenScoreGauge").GetComponent<Image>();
 		blueScoreGauge = GameObject.FindGameObjectWithTag("BlueScoreGauge").GetComponent<Image>();
@@ -77,5 +95,16 @@ public class HeadUpDisplay {
 		spriteMessage.color = Color.white;
 		yield return new WaitForSeconds(duration);
 		spriteMessage.color = Color.clear;
+	}
+
+	public void SetPortraits(string[] animalNames){
+		for(int i = 0; i < animalNames.Length; i++){
+			int j = 0;
+			while(animalNames[i] != portraitSprites[j].name){
+				j++;
+			}
+			portraitImages[i].sprite = portraitSprites[j];
+			j = 0;
+		}
 	}
 }

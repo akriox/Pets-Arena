@@ -43,7 +43,7 @@ public class EventController : MonoBehaviour {
 		pool[1] = "StealthBall";
 		pool[2] = "StretchBall";
 		pool[3] = "SwitchedZones";
-		pool [4] = "MultiBall";
+		pool[4] = "MultiBall";
 
 		multiBallSpawnPositions = new List<Vector3> ();
 		multiBallSpawnPositions.Add(new Vector3(0f, 12.9f, 4.36f));
