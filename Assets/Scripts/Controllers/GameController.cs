@@ -62,8 +62,8 @@ public class GameController : MonoBehaviour {
 		GameObject ballGo = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = ballGo.GetComponent<BallController> ();
 
-		_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
-		InstantiatePlayers ();
+//		_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
+//		InstantiatePlayers ();
 	}
 
 	void Start(){

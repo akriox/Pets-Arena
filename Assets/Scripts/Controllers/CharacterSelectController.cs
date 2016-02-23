@@ -90,9 +90,7 @@ public class CharacterSelectController : MonoBehaviour {
 				Animate (i, AnimationStates[i].Direction);
 		}
 			
-		if(AllPlayersReady()){
-
-		}
+		menu.pressStartImg.enabled = AllPlayersReady ();
 
 		if(Input.GetKeyDown(KeyCode.A))
 			Select (0);

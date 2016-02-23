@@ -7,6 +7,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 
 	public Image[] playerStateImg;
 	public Image howToPlayImg;
+	public Image pressStartImg;
 
 	private Sprite[] player1Sprites;
 	private Sprite[] player2Sprites;

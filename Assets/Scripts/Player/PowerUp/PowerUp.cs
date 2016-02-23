@@ -6,7 +6,7 @@ public class PowerUp : MonoBehaviour {
 	
 	public Image powerUI;
 
-    private Behaviour _playerHalo;
+	private GameObject _playerHalo;
 
 	public bool available {get; set;}
 	public bool activated {get; set;}
@@ -32,7 +32,7 @@ public class PowerUp : MonoBehaviour {
 		available = false;
 		activated = false;
 
-		_playerHalo = (Behaviour) GetComponent ("Halo");
+		_playerHalo = transform.Find ("WeaponEffect").gameObject;
 
 		_ball = GameObject.FindGameObjectWithTag("Ball");
 
@@ -50,7 +50,7 @@ public class PowerUp : MonoBehaviour {
 	}
 
 	void Update(){
-		_playerHalo.enabled = available;
+		_playerHalo.SetActive (available);
 	}
 
 	void FixedUpdate () {
