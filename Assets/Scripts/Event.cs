@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Event : MonoBehaviour {
 
-	private float rotation = -90.0f;
+	public float rotation = -90.0f;
 	private Vector3 rotationVector;
 
 	private EventController _eventController;
