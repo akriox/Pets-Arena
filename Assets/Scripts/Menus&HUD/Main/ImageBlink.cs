@@ -2,21 +2,21 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TextBlink : MonoBehaviour{
+public class ImageBlink : MonoBehaviour{
 
-    private Text text;
+	private Image img;
     private float blinkTimer = 0.0f;
 
     public void Start(){
-        text = GetComponent<Text>();
+		img = GetComponent<Image>();
         blinkTimer = Time.time;
     }
 
     public void Update(){
         if (Time.time - blinkTimer > 0.5f){
-            var color = text.color;
+            var color = img.color;
             color.a = color.a == 0 ? 1 : 0;
-            text.color = color;
+            img.color = color;
             blinkTimer = Time.time;
         }
     }
