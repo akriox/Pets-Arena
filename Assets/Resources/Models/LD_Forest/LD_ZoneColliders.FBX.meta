@@ -1,15 +1,32 @@
 fileFormatVersion: 2
-guid: 66f244a84a4c1b74cb815a5593b474f1
-timeCreated: 1456326349
+guid: 878aa0f46415eef4891ca3b43b9c2d56
+timeCreated: 1454533307
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Collider
+    100000: Forest_ZoneBlue001_Collider
+    100002: Forest_ZoneGreen001_Collider
+    100004: Forest_ZoneRed001_Collider
+    100006: Forest_ZoneYellow001_Collider
+    100008: //RootNode
+    400000: Forest_ZoneBlue001_Collider
+    400002: Forest_ZoneGreen001_Collider
+    400004: Forest_ZoneRed001_Collider
+    400006: Forest_ZoneYellow001_Collider
+    400008: //RootNode
+    2300000: Forest_ZoneBlue001_Collider
+    2300002: Forest_ZoneGreen001_Collider
+    2300004: Forest_ZoneRed001_Collider
+    2300006: Forest_ZoneYellow001_Collider
+    3300000: Forest_ZoneBlue001_Collider
+    3300002: Forest_ZoneGreen001_Collider
+    3300004: Forest_ZoneRed001_Collider
+    3300006: Forest_ZoneYellow001_Collider
+    4300000: Forest_ZoneBlue001_Collider
+    4300002: Forest_ZoneGreen001_Collider
+    4300004: Forest_ZoneYellow001_Collider
+    4300006: Forest_ZoneRed001_Collider
   materials:
     importMaterials: 0
     materialName: 0
@@ -34,7 +51,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 8.5
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

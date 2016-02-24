@@ -131,6 +131,7 @@ public class GameController : MonoBehaviour {
 			    break;
 				
 		    case BallController.Zone.N:
+				HUD.UpdateGaugesGlows(-1);
 			    break;
 		}
 	}
@@ -147,7 +148,7 @@ public class GameController : MonoBehaviour {
     {
         greenScore += scoringDirection * scoringRate;
         if (greenScore <= 0) greenScore = 0;
-		HUD.UpdateGreenGauge(greenScore);
+		HUD.UpdatePlayerGauge(0, greenScore);
 		totems[0].fill();
     }
 
@@ -155,7 +156,7 @@ public class GameController : MonoBehaviour {
     {
         blueScore += scoringDirection * scoringRate;
         if (blueScore <= 0) blueScore = 0;
-		HUD.UpdateBlueGauge(blueScore);
+		HUD.UpdatePlayerGauge(1, blueScore);
 		totems[1].fill();
     }
 
@@ -163,7 +164,7 @@ public class GameController : MonoBehaviour {
 	{
 		yellowScore += scoringDirection * scoringRate;
 		if (yellowScore <= 0) yellowScore = 0;
-		HUD.UpdateYellowGauge(yellowScore);
+		HUD.UpdatePlayerGauge(2, yellowScore);
 		totems[2].fill();
 	}
 
@@ -171,7 +172,7 @@ public class GameController : MonoBehaviour {
 	{
 		redScore += scoringDirection * scoringRate;
 		if (redScore <= 0) redScore = 0;
-		HUD.UpdateRedGauge(redScore);
+		HUD.UpdatePlayerGauge(3, redScore);
 		totems[3].fill();
 	}
 

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerUserControl : MonoBehaviour
 {
@@ -47,7 +46,7 @@ public class PlayerUserControl : MonoBehaviour
 			player.anim.SetBool("DashLeft", dashLeft && !dashRight && player.attacking);
 
 			if(GamepadInput.Instance.gamepads[playerNumber-1].GetButtonDown(GamepadButton.Action2) && _powerUp.available){
-                player.PlaySound(player.audioClips[3], false);
+                //player.PlaySound(player.audioClips[4], false);
 				_powerUp.timestamp = Time.time;
 				_powerUp.activated = true;
 				_powerUp.available = false;

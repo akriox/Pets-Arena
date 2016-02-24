@@ -9,115 +9,92 @@ public class HeadUpDisplay {
 	private Text message;
 	private Image spriteMessage;
 
-	/*
-	private Image greenGaugeHighlight;
-	private Image blueGaugeHighlight;
-	private Image yellowGaugeHighlight;
-	private Image redGaugeHighlight;
-	*/
+	private string[] playerColors = { "Green", "Blue", "Yellow", "Red" };
 
-	private Image greenScoreGauge;
-	private Image blueScoreGauge;
-	private Image yellowScoreGauge;
-	private Image redScoreGauge;
+	///<summary>
+	///	[0]: Green, [1]: Blue, [2]: Yellow, [3]: Red
+	///</summary>
+	private GameObject[] playerHUD;
 
-	private Sprite[] greenGaugeSprites;
-	private Sprite[] blueGaugeSprites;
-	private Sprite[] yellowGaugeSprites;
-	private Sprite[] redGaugeSprites;
+	///<summary>
+	///	[0]: Green, [1]: Blue, [2]: Yellow, [3]: Red
+	///</summary>
+	private Image[] playerGaugeGlow;
 
-	private static Image[] greenSideDash;
-	private static Image[] blueSideDash;
-	private static Image[] yellowSideDash;
-	private static Image[] redSideDash;
+	///<summary>
+	///	[0]: Green, [1]: Blue, [2]: Yellow, [3]: Red
+	///</summary>
+	private Image[] playerScoreGauge;
+
+
+	///<summary>
+	///	[0][]: Green, [1][]: Blue, [2][]: Yellow, [3][]: Red
+	///</summary>
+	private Sprite[][] playerGaugeSprites;
+
+	///<summary>
+	///	[0][]: Green, [1][]: Blue, [2][]: Yellow, [3][]: Red
+	///</summary>
+	private static Image[][] playerSideDash;
 
 	///<summary>
 	///	[0]: Green, [1]: Blue, [2]: Yellow, [3]: Red
 	///</summary>
 	public Sprite[] winnerSprite;
 
+	///<summary>
+	///	[0][]: Green, [1][]: Blue, [2][]: Yellow, [3][]: Red
+	///</summary>
+	private Sprite[][] playerPortraitSprites;
+
 	private string portraitSpritesPath = "2D/HUD/Portraits/";
 	private Image[] portraitImages;
-	private Sprite[] greenPortraitSprites;
-	private Sprite[] bluePortraitSprites;
-	private Sprite[] yellowPortraitSprites;
-	private Sprite[] redPortraitSprites;
 
 	private float gaugeUnit;
 
 	public void Init(){
-		message = GameObject.FindGameObjectWithTag("MessageHUD").GetComponent<Text>();
+		message = GameObject.FindGameObjectWithTag("MessageText").GetComponent<Text>();
 		spriteMessage = GameObject.FindGameObjectWithTag("MessageSprite").GetComponent<Image>();
 
 		winnerSprite = Resources.LoadAll<Sprite>("2D/HUD/Winner");
 
 		gaugeUnit = GameController.victoryScore / 25.0f;
 
+		playerHUD = new GameObject[4];
+		playerScoreGauge = new Image[4];
+		playerGaugeGlow = new Image[4];
+		playerSideDash = new Image[4][];
+		playerGaugeSprites = new Sprite[4][];
+		playerPortraitSprites = new Sprite[4][];
 		portraitImages = new Image[4];
-		portraitImages[0] = GameObject.FindGameObjectWithTag("GreenPortrait").GetComponent<Image>();
-		portraitImages[1] = GameObject.FindGameObjectWithTag("BluePortrait").GetComponent<Image>();
-		portraitImages[2] = GameObject.FindGameObjectWithTag("YellowPortrait").GetComponent<Image>();
-		portraitImages[3] = GameObject.FindGameObjectWithTag("RedPortrait").GetComponent<Image>();
 
-		greenPortraitSprites = Resources.LoadAll<Sprite>(portraitSpritesPath + "Green");
-		bluePortraitSprites = Resources.LoadAll<Sprite>(portraitSpritesPath + "Blue");
-		yellowPortraitSprites = Resources.LoadAll<Sprite>(portraitSpritesPath + "Yellow");
-		redPortraitSprites = Resources.LoadAll<Sprite>(portraitSpritesPath + "Red");
-
-		greenScoreGauge = GameObject.FindGameObjectWithTag("GreenScoreGauge").GetComponent<Image>();
-		blueScoreGauge = GameObject.FindGameObjectWithTag("BlueScoreGauge").GetComponent<Image>();
-		yellowScoreGauge = GameObject.FindGameObjectWithTag("YellowScoreGauge").GetComponent<Image>();
-		redScoreGauge = GameObject.FindGameObjectWithTag("RedScoreGauge").GetComponent<Image>();
-
-		/*
-		greenGaugeHighlight = GameObject.FindGameObjectWithTag("GreenScoreGauge").GetComponentInChildren<Image>();
-		blueGaugeHighlight = GameObject.FindGameObjectWithTag("BlueScoreGauge").GetComponentInChildren<Image>();
-		yellowGaugeHighlight = GameObject.FindGameObjectWithTag("YellowScoreGauge").GetComponentInChildren<Image>();
-		redGaugeHighlight = GameObject.FindGameObjectWithTag("RedScoreGauge").GetComponentInChildren<Image>();
-		*/
-
-		greenSideDash = GameObject.Find("GreenSideDash").GetComponentsInChildren<Image>();
-		blueSideDash = GameObject.Find("BlueSideDash").GetComponentsInChildren<Image>();
-		yellowSideDash = GameObject.Find("YellowSideDash").GetComponentsInChildren<Image>();
-		redSideDash = GameObject.Find("RedSideDash").GetComponentsInChildren<Image>();
-
-		greenGaugeSprites = Resources.LoadAll<Sprite>(spritesPath + "GREEN");
-		blueGaugeSprites = Resources.LoadAll<Sprite>(spritesPath + "BLUE");
-		yellowGaugeSprites = Resources.LoadAll<Sprite>(spritesPath + "YELLOW");
-		redGaugeSprites = Resources.LoadAll<Sprite>(spritesPath + "RED");
+		for(int i = 0; i < 4; i++){
+			playerHUD[i] = GameObject.FindGameObjectWithTag(playerColors[i] + "PlayerHUD");
+			portraitImages[i] = playerHUD[i].transform.Find(playerColors[i] + "Portrait").GetComponent<Image>();
+			playerScoreGauge[i] = playerHUD[i].transform.Find(playerColors[i] + "ScoreGauge").GetComponent<Image>();
+			playerGaugeGlow[i] = playerHUD[i].transform.Find(playerColors[i] + "ScoreGaugeGlow").GetComponent<Image>();
+			playerSideDash[i] = playerHUD[i].transform.Find(playerColors[i] + "SideDash").GetComponentsInChildren<Image>();
+			playerPortraitSprites[i] = Resources.LoadAll<Sprite>(portraitSpritesPath + playerColors[i]);
+			playerGaugeSprites[i] = Resources.LoadAll<Sprite>(spritesPath + playerColors[i]);
+		}
 	}
 
-	public void UpdateGreenGauge(float score){
-		greenScoreGauge.sprite = greenGaugeSprites[(int)(score/gaugeUnit)];
+	public void UpdatePlayerGauge(int playerIndex, float score){
+		playerScoreGauge[playerIndex].sprite = playerGaugeSprites[playerIndex][(int)(score/gaugeUnit)];
+		UpdateGaugesGlows(playerIndex);
 	}
-
-	public void UpdateBlueGauge(float score){
-		blueScoreGauge.sprite = blueGaugeSprites[(int)(score/gaugeUnit)];
-	}
-
-	public void UpdateYellowGauge(float score){
-		yellowScoreGauge.sprite = yellowGaugeSprites[(int)(score/gaugeUnit)];
-	}
-
-	public void UpdateRedGauge(float score){
-		redScoreGauge.sprite = redGaugeSprites[(int)(score/gaugeUnit)];
+		
+	public void UpdateGaugesGlows(int playerIndex){
+		for(int i = 0; i < 4; i++){
+			playerGaugeGlow[i].enabled = false;
+		}
+		if(playerIndex != -1)
+			playerGaugeGlow[playerIndex].enabled = true;
 	}
 
 	public static void UpdateSideDash(int playerIndex, int chargeCount){
-		switch(playerIndex){
-			case 1: greenSideDash[0].color = chargeCount > 0 ? Color.white : Color.clear;
-					greenSideDash[1].color = chargeCount > 1 ? Color.white : Color.clear;
-					break;	
-			case 2: blueSideDash[0].color = chargeCount > 0 ? Color.white : Color.clear;
-					blueSideDash[1].color = chargeCount > 1 ? Color.white : Color.clear;
-					break;	
-			case 3: yellowSideDash[0].color = chargeCount > 0 ? Color.white : Color.clear;
-					yellowSideDash[1].color = chargeCount > 1 ? Color.white : Color.clear;
-					break;	
-			case 4: redSideDash[0].color = chargeCount > 0 ? Color.white : Color.clear;
-					redSideDash[1].color = chargeCount > 1 ? Color.white : Color.clear;
-					break;	
-		}
+		playerSideDash[playerIndex-1][0].color = chargeCount > 0 ? Color.white : Color.clear;
+		playerSideDash[playerIndex-1][1].color = chargeCount > 1 ? Color.white : Color.clear;
 	}
 
 	public void DisplayMessage(string msg){
@@ -147,19 +124,12 @@ public class HeadUpDisplay {
 
 	public void SetPortrait(int playerIndex, string animalName){
 		int index = -1;
-		Sprite[] tmpSprite = new Sprite[4];
-		switch(playerIndex){
-			case 1: tmpSprite = greenPortraitSprites; break;
-			case 2: tmpSprite = bluePortraitSprites; break;
-			case 3: tmpSprite = yellowPortraitSprites; break;
-			case 4: tmpSprite = redPortraitSprites; break;
-		}
 		switch(animalName){
 			case "Axolotl": index = 0; break;
 			case "Fennec": index = 1; break;
 			case "Leopard": index = 2; break;
 			case "Loutre": index = 3; break;
 		}
-		portraitImages[playerIndex-1].sprite = tmpSprite[index];
+		portraitImages[playerIndex-1].sprite = playerPortraitSprites[playerIndex-1][index];
 	}
 }

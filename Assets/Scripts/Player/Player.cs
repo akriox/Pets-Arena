@@ -48,6 +48,10 @@ public class Player : MonoBehaviour
     public GameObject stunAnimGo;
 
     private AudioSource _audioSource;
+
+	/// <summary>
+	/// [0]: DashForward, [1]: SideDash, [2]: Stun
+	/// </summary>
     public AudioClip[] audioClips;
 
 	void Awake() {
@@ -90,6 +94,7 @@ public class Player : MonoBehaviour
 			stunAnimGo.SetActive(true);
 			transform.RotateAround(transform.position, transform.up, 5.0f);
 			currentParalyzedTime += Time.deltaTime;
+			PlaySound(audioClips[2], false);
         }
         else {
             paralyzed = false;
@@ -117,7 +122,7 @@ public class Player : MonoBehaviour
     }
 
     public void Dash(Vector3 moveDirection){
-        //PlaySound(audioClips[0], false);
+		PlaySound(audioClips[0], false);
         if (moveDirection == Vector3.zero)
             _rb.velocity = new Vector3(transform.forward.x * dashSpeed, _rb.velocity.y, transform.forward.z * dashSpeed);
         else
@@ -125,7 +130,7 @@ public class Player : MonoBehaviour
     }
 
 	public void DashAttack(Vector3 dir){
-        //PlaySound(audioClips[1], false);
+        PlaySound(audioClips[1], false);
         _rb.velocity = dir * dashSpeed;
 	}
 
@@ -153,7 +158,7 @@ public class Player : MonoBehaviour
     public IEnumerator ignoreObstacles(Collision col)
     {
         Physics.IgnoreCollision(this.GetComponent<Collider>(), col.collider, true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         Physics.IgnoreCollision(this.GetComponent<Collider>(), col.collider, false);
     }
 
@@ -162,7 +167,7 @@ public class Player : MonoBehaviour
 		if (col.gameObject.layer == 11) {
 			Player p = col.gameObject.GetComponent<Player>();
 			
-			if(p.attacking && !paralyzed){
+			if(p.attacking && !paralyzed && !immune){
 				paralyzed = true;
 				anim.SetTrigger("Stun");
 			}
