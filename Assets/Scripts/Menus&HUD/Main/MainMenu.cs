@@ -6,6 +6,10 @@ public class MainMenu : MonoBehaviour {
     public GameObject optionsPanel;
     public GameObject quitPopUp;
 
+	public void Awake(){
+		Cursor.visible = false;
+	}
+
     public void Update()
     {
         if (Input.GetAxis("Cancel") != 0)

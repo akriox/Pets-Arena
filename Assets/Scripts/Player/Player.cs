@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
 	/// [0]: DashForward, [1]: SideDash, [2]: Stun
 	/// </summary>
     public AudioClip[] audioClips;
+	private bool stunSoundPlayed;
 
 	void Awake() {
         _rb = GetComponent<Rigidbody>();
@@ -94,13 +95,17 @@ public class Player : MonoBehaviour
 			stunAnimGo.SetActive(true);
 			transform.RotateAround(transform.position, transform.up, 5.0f);
 			currentParalyzedTime += Time.deltaTime;
-			PlaySound(audioClips[2], false);
+			if(!stunSoundPlayed) {
+				PlaySound(audioClips[2], false);
+				stunSoundPlayed = true;
+			}
         }
         else {
             paralyzed = false;
             currentParalyzedTime = 0;
 			_mat.SetColor("_Color", defaultColor);
 			stunAnimGo.SetActive(false);
+			stunSoundPlayed = false;
         }
 
         if (dashing == false && currentDashCooldown < dashCooldown)
@@ -152,7 +157,7 @@ public class Player : MonoBehaviour
     {
         _audioSource.clip = clip;
         _audioSource.loop = loop;
-        if (! _audioSource.isPlaying) _audioSource.Play();
+		if (! _audioSource.isPlaying) _audioSource.Play();
     }
 
     public IEnumerator ignoreObstacles(Collision col)

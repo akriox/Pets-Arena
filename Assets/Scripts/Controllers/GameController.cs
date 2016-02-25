@@ -147,10 +147,11 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void updateScore (){
+		if(switchedZones) hideRunes();
 		switch (_ballController.currentZone) {
 		    case BallController.Zone.R:
                 if (!switchedZones) IncreaseRedScore();
-                else IncreaseGreenScore();
+				else IncreaseGreenScore();
 			    break;
 				
 		    case BallController.Zone.G:
