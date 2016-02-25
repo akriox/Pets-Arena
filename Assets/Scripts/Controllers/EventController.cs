@@ -35,7 +35,7 @@ public class EventController : MonoBehaviour {
 		
 		_ball = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = _ball.GetComponent<BallController>();
-		_woodSign = GameObject.Find ("wood_sign").GetComponent<EventSign>();
+		_woodSign = GameObject.Find ("EventSign").GetComponent<EventSign>();
 		initScale = _ball.transform.localScale;
 
 		pool = new string[count];

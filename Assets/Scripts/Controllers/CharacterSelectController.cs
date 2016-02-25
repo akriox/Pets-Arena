@@ -172,4 +172,11 @@ public class CharacterSelectController : MonoBehaviour {
 			Destroy (PlayerSwitchingCharacters [playerNumber]);
 		}
 	}
+
+	void OnLevelWasLoaded(int loadedLevel){
+		if(loadedLevel == 1){
+			GameObject winner = GameObject.Find("Winner");
+			Destroy(winner);
+		}
+	}
 }

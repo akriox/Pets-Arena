@@ -15,7 +15,7 @@ public class Event : MonoBehaviour {
 	
 	void Start () {
 		_eventController = GameObject.FindGameObjectWithTag("GameController").GetComponent<EventController>();
-		_woodSign = GameObject.Find ("wood_sign").GetComponent<EventSign>();
+		_woodSign = GameObject.Find ("EventSign").GetComponent<EventSign>();
 		rotationVector = new Vector3 (rotation, 0, 0);
 		transform.Rotate (rotationVector);
 	}

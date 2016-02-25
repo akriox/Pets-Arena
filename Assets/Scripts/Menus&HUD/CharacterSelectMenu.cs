@@ -17,6 +17,9 @@ public class CharacterSelectMenu : MonoBehaviour {
 	private Sprite[] player4Sprites;
 
 	void Start () {	
+		pressStartImg.enabled = false;
+		howToPlayImg.enabled = false;
+		quitPopUpImg.enabled = false;
 		player1Sprites = Resources.LoadAll<Sprite>(spritePath + "Player1");
 		player2Sprites = Resources.LoadAll<Sprite>(spritePath + "Player2");
 		player3Sprites = Resources.LoadAll<Sprite>(spritePath + "Player3");

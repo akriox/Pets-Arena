@@ -86,11 +86,12 @@ public class GameController : MonoBehaviour {
 
 	void Update(){
 		if (!matchIsOver){
-			updateScore ();
+			if(Time.timeScale > 0f) updateScore ();
 			victoryCheck ();
 		}
 		else{
 			if(!loadingWinScene){
+				GetComponent<AudioSource>().Play();
 				loadingWinScene = true;
 				StartCoroutine(LoadWinScene());	
 			}

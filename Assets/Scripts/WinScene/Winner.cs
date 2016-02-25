@@ -35,7 +35,7 @@ public class Winner : MonoBehaviour {
 	}
 
 	private IEnumerator LoadCharSelectScene(){
-		yield return new WaitForSeconds(10.0f);
+		yield return new WaitForSeconds(15.0f);
 		SceneManager.LoadScene("CharacterSelect");
 	}
 }

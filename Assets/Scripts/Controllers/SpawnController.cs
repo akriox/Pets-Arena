@@ -52,22 +52,22 @@ public class SpawnController : MonoBehaviour {
 		_gameController = gameObject.GetComponent<GameController> ();
 		_eventController = gameObject.GetComponent<EventController> ();
 
-		EventPositions.Add(new Vector2 (21.2f, 9.5f));
+		EventPositions.Add(new Vector2 (5f, 9.5f));
 		EventPositions.Add(new Vector2 (-8.85f, 9.5f));
 		EventPositions.Add(new Vector2 (3.35f, 9.5f));
-		EventPositions.Add(new Vector2 (16.38f, 9.5f));
-		EventPositions.Add(new Vector2 (-21.23f, 0.69f));
+		EventPositions.Add(new Vector2 (8f, 9.5f));
+		EventPositions.Add(new Vector2 (-10f, 0.69f));
 		EventPositions.Add(new Vector2 (-9.23f, 0.69f));
 		EventPositions.Add(new Vector2 (4.04f, 0.69f));
-		EventPositions.Add(new Vector2 (15.79f, 17f));
-		EventPositions.Add(new Vector2 (-20.89f, -8.27f));
+		EventPositions.Add(new Vector2 (8f, 17f));
+		EventPositions.Add(new Vector2 (-10f, -8.27f));
 		EventPositions.Add(new Vector2 (-9.31f, -8.27f));
 		EventPositions.Add(new Vector2 (3.87f, -8.27f));
 		EventPositions.Add(new Vector2 (15.87f, -8.27f));
-		EventPositions.Add(new Vector2 (-21.23f, -17.06f));
-		EventPositions.Add(new Vector2 (-8.81f, -17.06f));
+		EventPositions.Add(new Vector2 (-10f, -17.06f));
+		EventPositions.Add(new Vector2 (-5f, -17.06f));
 		EventPositions.Add(new Vector2 (3.78f, -17.06f));
-		EventPositions.Add(new Vector2 (16.03f, -17.06f));
+		EventPositions.Add(new Vector2 (5f, -17.06f));
 	}
 
 	// Use this for initialization
