@@ -24,18 +24,19 @@ public class CharacterSelectMenu : MonoBehaviour {
 	}
 
 	void Update () {
-		for(int i = 0; i < GamepadInput.Instance.gamepads.Count; i++){
-			if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action4)){
-				howToPlayImg.enabled = !howToPlayImg.enabled;
-			}
-			if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action2)){
-				howToPlayImg.enabled = false;
-			}
-			if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Back)){
-				quitPopUpImg.enabled = !quitPopUpImg.enabled;
-			}
+		if(howToPlayImg != null && quitPopUpImg != null){
+			for(int i = 0; i < GamepadInput.Instance.gamepads.Count; i++){
+				if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action4)){
+					howToPlayImg.enabled = !howToPlayImg.enabled;
+				}
+				if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action2)){
+					howToPlayImg.enabled = false;
+				}
+					
+				if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Back)){
+					quitPopUpImg.enabled = !quitPopUpImg.enabled;
+				}
 
-			if(quitPopUpImg != null){
 				if(quitPopUpImg.enabled){
 					if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action1)){
 						Application.Quit();
