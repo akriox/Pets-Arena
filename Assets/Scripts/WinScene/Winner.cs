@@ -12,7 +12,8 @@ public class Winner : MonoBehaviour {
 	}
 
 	void Update(){
-		for(int i = 0; i < 4; i++){
+		int playerCount = GamepadInput.Instance.gamepads.Count;
+		for(int i = 0; i < playerCount; i++){
 			if(sceneLoaded){
 				if( GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action2)
 				|| GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Back)

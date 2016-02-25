@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour {
 	/// [0]: GreenTotem, [1]: BlueTotem, [2]: YellowTotem, [3]: RedTotem
 	/// </summary>
 	public Totem[] totems;
+	public List<GameObject> Runes;
 
 	public Image PauseMenu;
 
@@ -166,8 +167,9 @@ public class GameController : MonoBehaviour {
                 else IncreaseBlueScore();
 			    break;
 				
-		    case BallController.Zone.N:
-				HUD.UpdateGaugesGlows(-1);
+			case BallController.Zone.N:
+				HUD.UpdateGaugesGlows (-1);
+				hideRunes ();
 			    break;
 		}
 	}
@@ -186,6 +188,8 @@ public class GameController : MonoBehaviour {
         if (greenScore <= 0) greenScore = 0;
 		HUD.UpdatePlayerGauge(0, greenScore);
 		totems[0].fill();
+		if (!Runes[0].activeSelf)
+			Runes [0].SetActive (true);
     }
 
     private void IncreaseBlueScore()
@@ -194,6 +198,8 @@ public class GameController : MonoBehaviour {
         if (blueScore <= 0) blueScore = 0;
 		HUD.UpdatePlayerGauge(1, blueScore);
 		totems[1].fill();
+		if (!Runes[1].activeSelf)
+			Runes [1].SetActive (true);
     }
 
 	private void IncreaseYellowScore()
@@ -202,6 +208,8 @@ public class GameController : MonoBehaviour {
 		if (yellowScore <= 0) yellowScore = 0;
 		HUD.UpdatePlayerGauge(2, yellowScore);
 		totems[2].fill();
+		if (!Runes[2].activeSelf)
+			Runes [2].SetActive (true);
 	}
 
 	private void IncreaseRedScore()
@@ -210,8 +218,16 @@ public class GameController : MonoBehaviour {
 		if (redScore <= 0) redScore = 0;
 		HUD.UpdatePlayerGauge(3, redScore);
 		totems[3].fill();
+		if (!Runes[3].activeSelf)
+			Runes [3].SetActive (true);
 	}
 
+	private void hideRunes(){
+		for (int i = 0; i < 4; i++) {
+			if(Runes[i].activeSelf)
+				Runes [i].SetActive (false);
+		}
+	}
 	private void InstantiatePlayers(){
 		string animalName;
 		for (int i = 0; i < 4; i++) {
