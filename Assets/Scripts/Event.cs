@@ -8,11 +8,14 @@ public class Event : MonoBehaviour {
 
 	private EventController _eventController;
 
+	private EventSign _woodSign;
+
 	public string effectTag;
 	public float duration;
 	
 	void Start () {
 		_eventController = GameObject.FindGameObjectWithTag("GameController").GetComponent<EventController>();
+		_woodSign = GameObject.Find ("wood_sign").GetComponent<EventSign>();
 		rotationVector = new Vector3 (rotation, 0, 0);
 		transform.Rotate (rotationVector);
 	}
@@ -32,10 +35,11 @@ public class Event : MonoBehaviour {
 			if(!_eventController.activated){
 				_eventController.activated = true;
 				_eventController.timestamp = Time.time;
-
 				EventController.Effect e = new EventController.Effect ();
 				e.duration = duration;
 				e.tag = effectTag;
+				_woodSign.ChangeTexture (effectTag);
+				_woodSign.ToggleAnimation ();
 				_eventController.setEffect(e);
 				
 				Destroy (this.gameObject);	

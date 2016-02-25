@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class EventController : MonoBehaviour {
 
-	public Text eventUI;
-
 	public bool activated { get; set; }
 	public float timestamp {get; set;}
 
@@ -27,6 +25,7 @@ public class EventController : MonoBehaviour {
 	
 	public UnityEngine.Object FakeBallPrefab;
 	private BallController _ballController;
+	private EventSign _woodSign;
 
 	public static string[] pool;
 	public static int count = 5;
@@ -36,6 +35,7 @@ public class EventController : MonoBehaviour {
 		
 		_ball = GameObject.FindGameObjectWithTag("Ball");
 		_ballController = _ball.GetComponent<BallController>();
+		_woodSign = GameObject.Find ("wood_sign").GetComponent<EventSign>();
 		initScale = _ball.transform.localScale;
 
 		pool = new string[count];
@@ -80,11 +80,10 @@ public class EventController : MonoBehaviour {
 
 	void TrapBall(){
 		if (Time.time - this.timestamp <= currentEffect.duration) {
-			eventUI.enabled = true;
 			_ballController.trapped = true;
 			GameController.scoringDirection = -1;
 		} else {
-			eventUI.enabled = false;
+			_woodSign.ToggleAnimation();
 			_ballController.trapped = false;
 			GameController.scoringDirection = 1;
 			this.activated = false;
@@ -93,7 +92,6 @@ public class EventController : MonoBehaviour {
 
 	void StealthBall(){
 		if (Time.time - this.timestamp <= currentEffect.duration) {
-			eventUI.enabled = true;
 			_ballController.stealthed = true;
 			/*
 			_ballController.bouncePower *= 2.0f;
@@ -103,7 +101,7 @@ public class EventController : MonoBehaviour {
 			_ball.GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Average;
 			*/
 		} else {
-			eventUI.enabled = false;
+			_woodSign.ToggleAnimation();
 			_ballController.stealthed = false;
 			/*
 			_ballController.bouncePower *= 0.5f;
@@ -118,13 +116,12 @@ public class EventController : MonoBehaviour {
 
 	void StretchBall() {
 		if(Time.time - timestamp <= currentEffect.duration){
-			eventUI.enabled = true;
 			scaleFactor = Mathf.Clamp01(scaleFactor + speed * Time.deltaTime);
 			Vector3 stretchScale = new Vector3(initScale.x, initScale.y*1.5f, initScale.z);
 			_ball.transform.localScale = Vector3.Slerp(initScale, stretchScale, scaleFactor);
 		}
 		else{
-			eventUI.enabled = false;
+			_woodSign.ToggleAnimation();
 			_ball.transform.localScale = initScale;
 			this.activated = false;
 		}
@@ -132,11 +129,10 @@ public class EventController : MonoBehaviour {
 
 	void SwitchedZones(){
 		if(Time.time - timestamp <= currentEffect.duration){
-			eventUI.enabled = true;
 			GameController.switchedZones = true;
 		}
 		else{
-			eventUI.enabled = false;
+			_woodSign.ToggleAnimation();
 			GameController.switchedZones = false;
 			this.activated = false;
 		}
@@ -166,7 +162,7 @@ public class EventController : MonoBehaviour {
             }
             fakeBalls.Clear();
 			this.activated = false;
-			eventUI.enabled = false;
+			_woodSign.ToggleAnimation();
 			multiball = false;
             _ballController.trail.enabled = true;
         }
@@ -184,7 +180,6 @@ public class EventController : MonoBehaviour {
 	
 	public void setEffect(Effect e){
 		currentEffect = e;
-		eventUI.text = e.tag;
 	}
 
 	public static void shufflePool(){
