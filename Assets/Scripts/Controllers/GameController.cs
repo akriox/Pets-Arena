@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour {
 	/// </summary>
 	public Totem[] totems;
 
+	public Image PauseMenu;
+
 	private string characterPrefabPath = "Prefabs/GameCharacters/";
 	private string[] powerUpHudNames = {"GreenPower", "BluePower", "YellowPower", "RedPower"};
 	private Color[] outlineColors = { new Color(58f/255f, 1f, 32f/255f), new Color(6f/255f, 193f/255f, 1f), new Color(234f/255f, 209f/255f, 0f), new Color(1f, 6f/255f, 6f/255f) };
@@ -81,13 +83,33 @@ public class GameController : MonoBehaviour {
 			victoryCheck ();
 		}
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-			SceneManager.LoadScene("MainMenu");
-		/*
-        if (Input.GetKeyDown(KeyCode.R))
-			SceneManager.LoadScene("LD_Forest");
-		*/
+		int GamepadCount = GamepadInput.Instance.gamepads.Count;
+
+		for (int i = 0; i < GamepadCount; i++) {
+			if (GamepadInput.Instance.gamepads [i].GetButtonDown (GamepadButton.Start))
+				PauseMenu.enabled = togglePause ();
+			if (PauseMenu.enabled && GamepadInput.Instance.gamepads [i].GetButtonDown (GamepadButton.Back)) {
+				togglePause ();
+				SceneManager.LoadScene ("CharacterSelect");
+			}
+		}
 	}
+
+
+	bool togglePause()
+	{
+		if(Time.timeScale == 0f)
+		{
+			Time.timeScale = 1f;
+			return(false);
+		}
+		else
+		{
+			Time.timeScale = 0f;
+			return(true);    
+		}
+	}
+
 
 	private void victoryCheck(){
 		if(greenScore >= victoryScore){
