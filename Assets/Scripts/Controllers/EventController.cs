@@ -14,7 +14,7 @@ public class EventController : MonoBehaviour {
 	}
 	
 	public Effect currentEffect;
-
+	public GameObject Arrows;
 	private GameObject _ball;
 	public Vector3 initScale {get; set;}
 	private float scaleFactor = 0.0f;
@@ -129,9 +129,12 @@ public class EventController : MonoBehaviour {
 
 	void SwitchedZones(){
 		if(Time.time - timestamp <= currentEffect.duration){
+			if(!Arrows.activeSelf)
+				Arrows.gameObject.SetActive(true);
 			GameController.switchedZones = true;
 		}
 		else{
+			Arrows.gameObject.SetActive(false);
 			_woodSign.ToggleAnimation();
 			GameController.switchedZones = false;
 			this.activated = false;

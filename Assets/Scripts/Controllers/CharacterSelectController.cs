@@ -43,38 +43,40 @@ public class CharacterSelectController : MonoBehaviour {
 	}
 		
 	void SwitchCharacter(int direction, int playerNumber){
-		bool switched = false;
-		int indexOfSelected = -1;
-		if(PlayerSelectedCharacters [playerNumber] != null)
-			indexOfSelected = Characters.FindIndex (a => a.name == PlayerSelectedCharacters [playerNumber].name);
+		if (!AnimationStates [playerNumber].Animating) {
+			bool switched = false;
+			int indexOfSelected = -1;
+			if(PlayerSelectedCharacters [playerNumber] != null)
+				indexOfSelected = Characters.FindIndex (a => a.name == PlayerSelectedCharacters [playerNumber].name);
 
-		while (!switched) {
-			indexOfSelected += direction;
+			while (!switched) {
+				indexOfSelected += direction;
 
-			if (indexOfSelected < 0)
-				indexOfSelected = 3;
-			else if (indexOfSelected > 3)
-				indexOfSelected = 0;
+				if (indexOfSelected < 0)
+					indexOfSelected = 3;
+				else if (indexOfSelected > 3)
+					indexOfSelected = 0;
 
-			if (CharacterAvailability [Characters [indexOfSelected].name])
-				switched = true;
+				if (CharacterAvailability [Characters [indexOfSelected].name])
+					switched = true;
+			}
+
+			GameObject newSelectedCharacter = Characters [indexOfSelected];
+
+			Vector3 spawnPosition = new Vector3(-direction*SpawnDistance, PlayerSelectedCharacters [playerNumber].transform.position.y, PlayerSelectedCharacters [playerNumber].transform.position.z);
+			Quaternion q = PlayerSelectedCharacters [playerNumber].transform.rotation;
+			newSelectedCharacter = Instantiate (newSelectedCharacter, spawnPosition, q) as GameObject;
+			newSelectedCharacter.name = Characters [indexOfSelected].name;
+
+			PlayerSwitchingCharacters [playerNumber] = PlayerSelectedCharacters [playerNumber];
+			PlayerSelectedCharacters [playerNumber] = newSelectedCharacter;
+
+			AnimationState state;
+			state.Animating = true;
+			state.Direction = direction;
+			CanMove [playerNumber] = false;
+			AnimationStates [playerNumber] = state;
 		}
-
-		GameObject newSelectedCharacter = Characters [indexOfSelected];
-
-		Vector3 spawnPosition = new Vector3(-direction*SpawnDistance, PlayerSelectedCharacters [playerNumber].transform.position.y, PlayerSelectedCharacters [playerNumber].transform.position.z);
-		Quaternion q = PlayerSelectedCharacters [playerNumber].transform.rotation;
-		newSelectedCharacter = Instantiate (newSelectedCharacter, spawnPosition, q) as GameObject;
-		newSelectedCharacter.name = Characters [indexOfSelected].name;
-
-		PlayerSwitchingCharacters [playerNumber] = PlayerSelectedCharacters [playerNumber];
-		PlayerSelectedCharacters [playerNumber] = newSelectedCharacter;
-
-		AnimationState state;
-		state.Animating = true;
-		state.Direction = direction;
-		CanMove [playerNumber] = false;
-		AnimationStates [playerNumber] = state;
 	}
 		
 	void Update () {
@@ -137,7 +139,7 @@ public class CharacterSelectController : MonoBehaviour {
 
 	void KeepFromSelecting(int playerNumber){
 		for (int i = 0; i < 4; i++) {
-			if (i != playerNumber && PlayerSelectedCharacters [playerNumber].name == PlayerSelectedCharacters [i].name)
+			if (i != playerNumber && PlayerSelectedCharacters [playerNumber].name == PlayerSelectedCharacters [i].name  )
 				SwitchCharacter (1, i);
 		}
 	}
