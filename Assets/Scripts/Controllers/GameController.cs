@@ -8,10 +8,13 @@ public class GameController : MonoBehaviour {
 
 	public bool debugging;
 
+	private GameObject[] players;
+
 	private BallController _ballController;
 	private HeadUpDisplay HUD;
 	private Sprite[] countDownSprites;
 
+	private int winnerIndex = -1;
 	public float redScore { get; set; }
     public float greenScore { get; set; }
     public float blueScore { get; set; }
@@ -69,6 +72,7 @@ public class GameController : MonoBehaviour {
 
 		if(!debugging){
 			_characterSelectController = GameObject.Find("Character Select Controller").GetComponent<CharacterSelectController>();
+			players = new GameObject[4];
 			InstantiatePlayers ();
 		}
 	}
@@ -82,6 +86,9 @@ public class GameController : MonoBehaviour {
 			updateScore ();
 			victoryCheck ();
 		}
+		else{
+			StartCoroutine(LoadWinScene());	
+		}
 
 		int GamepadCount = GamepadInput.Instance.gamepads.Count;
 
@@ -94,8 +101,7 @@ public class GameController : MonoBehaviour {
 			}
 		}
 	}
-
-
+		
 	bool togglePause()
 	{
 		if(Time.timeScale == 0f)
@@ -109,24 +115,27 @@ public class GameController : MonoBehaviour {
 			return(true);    
 		}
 	}
-
-
+		
 	private void victoryCheck(){
 		if(greenScore >= victoryScore){
 			HUD.DisplaySprite(HUD.winnerSprite[0]);
 			matchIsOver = true;
+			winnerIndex = 0;
 		}
 		else if(blueScore >= victoryScore){
 			HUD.DisplaySprite(HUD.winnerSprite[1]);
 			matchIsOver = true;
+			winnerIndex = 1;
 		}
 		else if(yellowScore >= victoryScore){
 			HUD.DisplaySprite(HUD.winnerSprite[2]);
 			matchIsOver = true;
+			winnerIndex = 2;
 		}
 		else if(redScore >= victoryScore){
 			HUD.DisplaySprite(HUD.winnerSprite[3]);
 			matchIsOver = true;
+			winnerIndex = 3;
 		}
 	}
 
@@ -198,26 +207,25 @@ public class GameController : MonoBehaviour {
 		totems[3].fill();
 	}
 
-	public void InstantiatePlayers(){
-		GameObject player;
+	private void InstantiatePlayers(){
 		string animalName;
 		for (int i = 0; i < 4; i++) {
 			animalName = _characterSelectController.FinalSelections[i];
 
-			player = (GameObject) Instantiate (Resources.Load (characterPrefabPath + animalName), playerPositions[i], Quaternion.identity);
-			player.transform.Rotate (playerRotations [i]);
-			player.name = animalName;
-			player.GetComponent<PlayerUserControl> ().playerNumber = i + 1;
-			player.tag = "P" + (i+1);
+			players[i] = (GameObject) Instantiate (Resources.Load (characterPrefabPath + animalName), playerPositions[i], Quaternion.identity);
+			players[i].transform.Rotate (playerRotations [i]);
+			players[i].name = animalName;
+			players[i].GetComponent<PlayerUserControl> ().playerNumber = i + 1;
+			players[i].tag = "P" + (i+1);
 
 			//Colors
-			player.GetComponentInChildren<SkinnedMeshRenderer> ().material.SetColor("_OutlineColor", outlineColors[i]);
-			player.GetComponent<LineRenderer>().SetColors(outlineColors[i], outlineColors[i]);
-			player.GetComponent<TrailRenderer>().material = trailMat[i];
-			player.GetComponentInChildren<PowerUpHalo>().setColor(i+1);
+			players[i].GetComponentInChildren<SkinnedMeshRenderer> ().material.SetColor("_OutlineColor", outlineColors[i]);
+			players[i].GetComponent<LineRenderer>().SetColors(outlineColors[i], outlineColors[i]);
+			players[i].GetComponent<TrailRenderer>().material = trailMat[i];
+			players[i].GetComponentInChildren<PowerUpHalo>().setColor(i+1);
 
 			//HUD
-			player.GetComponent<PowerUp>().powerUpImg = GameObject.Find(powerUpHudNames[i]).GetComponent<Image>();
+			players[i].GetComponent<PowerUp>().powerUpImg = GameObject.Find(powerUpHudNames[i]).GetComponent<Image>();
 			HUD.SetPortrait(i+1, animalName);
 
 			//Totem
@@ -225,5 +233,13 @@ public class GameController : MonoBehaviour {
 		}
 
 		Destroy(_characterSelectController.gameObject);
+	}
+
+	private IEnumerator LoadWinScene(){
+		GameObject winner = (GameObject) Instantiate(Resources.Load ("Prefabs/Winner"), Vector3.zero, Quaternion.identity);
+		winner.name = "Winner";
+		winner.GetComponent<Winner>().animalName = players[winnerIndex].name;
+		yield return new WaitForSeconds(5.0f);
+		SceneManager.LoadScene("Win");
 	}
 }
