@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Winner : MonoBehaviour {
 
+	#pragma warning disable 219
 	public string animalName;
 	private bool sceneLoaded = false;
 
