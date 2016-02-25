@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class CharacterSelectMenu : MonoBehaviour {
 
 	public Image[] playerStateImg;
+	public Image quitPopUpImg;
 	public Image howToPlayImg;
 	public Image pressStartImg;
 
@@ -30,9 +31,19 @@ public class CharacterSelectMenu : MonoBehaviour {
 			if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action2)){
 				howToPlayImg.enabled = false;
 			}
+			if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Back)){
+				quitPopUpImg.enabled = !quitPopUpImg.enabled;
+			}
+
+			if(quitPopUpImg.enabled){
+				if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action1)){
+					Application.Quit();
+				}
+				if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action2)){
+					quitPopUpImg.enabled = false;
+				}
+			}
 		}
-		if(Input.GetKeyDown(KeyCode.Escape))
-			SceneManager.LoadScene("MainMenu");
 	}
 
 	public void UpdatePlayerStateSprite(int PlayerIndex, int SpriteIndex){
