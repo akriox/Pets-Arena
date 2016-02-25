@@ -35,12 +35,14 @@ public class CharacterSelectMenu : MonoBehaviour {
 				quitPopUpImg.enabled = !quitPopUpImg.enabled;
 			}
 
-			if(quitPopUpImg.enabled){
-				if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action1)){
-					Application.Quit();
-				}
-				if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action2)){
-					quitPopUpImg.enabled = false;
+			if(quitPopUpImg != null){
+				if(quitPopUpImg.enabled){
+					if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action1)){
+						Application.Quit();
+					}
+					if(GamepadInput.Instance.gamepads[i].GetButtonDown(GamepadButton.Action2)){
+						quitPopUpImg.enabled = false;
+					}
 				}
 			}
 		}

@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
 	private HeadUpDisplay HUD;
 	private Sprite[] countDownSprites;
 
+	private bool loadingWinScene;
 	private int winnerIndex = -1;
 	public float redScore { get; set; }
     public float greenScore { get; set; }
@@ -55,6 +56,7 @@ public class GameController : MonoBehaviour {
 
 		matchIsOver = false;
 		matchHasStarted = false;
+		loadingWinScene = false;
 		scoringDirection = 1;
 
 		playerPositions.Add (new Vector3 (-20.0f, 1.0f, 12.0f));
@@ -87,7 +89,10 @@ public class GameController : MonoBehaviour {
 			victoryCheck ();
 		}
 		else{
-			StartCoroutine(LoadWinScene());	
+			if(!loadingWinScene){
+				loadingWinScene = true;
+				StartCoroutine(LoadWinScene());	
+			}
 		}
 
 		int GamepadCount = GamepadInput.Instance.gamepads.Count;
