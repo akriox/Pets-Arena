@@ -13,7 +13,7 @@ public class ImageBlink : MonoBehaviour{
     }
 
     public void Update(){
-        if (Time.time - blinkTimer > 0.5f){
+        if (Time.time - blinkTimer > 1.0f){
             var color = img.color;
             color.a = color.a == 0 ? 1 : 0;
             img.color = color;
