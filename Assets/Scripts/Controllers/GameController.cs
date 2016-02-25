@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour {
 	public static bool matchHasStarted;
 	private bool matchIsOver;
 
-	public static bool switchedZones = false;
+	public static bool switchedZones;
 	public static int scoringDirection = 1;
     public static float victoryScore = 15.0f;
     public static float scoringRate = 0.01f;
@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour {
 
 		trailMat = Resources.LoadAll<Material>("Materials/Characters/Trails");
 
+		switchedZones = false;
 		matchIsOver = false;
 		matchHasStarted = false;
 		loadingWinScene = false;
@@ -147,7 +148,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void updateScore (){
-		if(switchedZones) hideRunes();
+		hideRunes();
 		switch (_ballController.currentZone) {
 		    case BallController.Zone.R:
                 if (!switchedZones) IncreaseRedScore();
@@ -171,7 +172,6 @@ public class GameController : MonoBehaviour {
 				
 			case BallController.Zone.N:
 				HUD.UpdateGaugesGlows (-1);
-				hideRunes ();
 			    break;
 		}
 	}
