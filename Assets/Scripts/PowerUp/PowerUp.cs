@@ -60,6 +60,7 @@ public class PowerUp : MonoBehaviour {
 					activated = _attractBall.runEffect(_ball, transform.position, timestamp, line);
 					break;
 				case "RepulsiveWave":
+					StartCoroutine(RepulsiveWaveParticles());
 					activated = _repulsiveWave.runEffect(this.gameObject, transform.position, transform.forward);
 					break;
 				case "GlobalStun":
@@ -89,5 +90,12 @@ public class PowerUp : MonoBehaviour {
 		}
 		powerUpImg.color = Color.white;
 		currentEffect = tag;
+	}
+
+	private IEnumerator RepulsiveWaveParticles(){
+		GameObject go = (GameObject) Instantiate(Resources.Load("Prefabs/RepulsiveWaveParticles"), this.transform.position, Quaternion.identity);
+		go.GetComponent<ParticleSystem>().playbackSpeed = 5f;
+		yield return new WaitForSeconds(1.0f);
+		Destroy(go);
 	}
 }

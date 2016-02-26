@@ -4,7 +4,7 @@ using System.Collections;
 public class AttractBall {
 
 	public static string effectTag = "AttractBall";
-	private float duration = 2.0f;
+	private float duration = 3.0f;
 	private float gravityPull = 20.0f;
 
 	public bool runEffect(GameObject ball, Vector3 origin, float timestamp, LineRenderer line){

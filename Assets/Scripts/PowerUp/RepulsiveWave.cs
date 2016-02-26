@@ -18,7 +18,7 @@ public class RepulsiveWave {
                 if (hit.collider.gameObject.name != caster.name){
                     Vector3 dir = hit.transform.position - origin;
                     hit.rigidbody.AddForce(dir.normalized * waveForce, ForceMode.Impulse);
-                    playerScript = hit.collider.gameObject.GetComponent<Player>();
+					playerScript = hit.collider.gameObject.GetComponent<Player>();
                     playerScript.repulsed = true;
                 }
             }

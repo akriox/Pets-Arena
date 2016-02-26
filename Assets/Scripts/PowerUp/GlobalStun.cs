@@ -24,8 +24,10 @@ public class GlobalStun {
 	public bool runEffect(){
 		int i;
 		for(i = 0; i < targets.Count; i++){	
-			targets[i].paralyzed = true;
-			targets[i].anim.SetTrigger("Stun");
+			if(!targets[i].paralyzed && !targets[i].immune){
+				targets[i].paralyzed = true;
+				targets[i].anim.SetTrigger("Stun");
+			}
 		}
 		return false;
 	}

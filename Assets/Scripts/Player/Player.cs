@@ -55,6 +55,10 @@ public class Player : MonoBehaviour
     public AudioClip[] audioClips;
 	private bool stunSoundPlayed;
 
+	private bool stuck;
+	private Vector3 lastPosition;
+	private float checkPosTimeStamp;
+
 	void Awake() {
         _rb = GetComponent<Rigidbody>();
 
@@ -70,9 +74,17 @@ public class Player : MonoBehaviour
 
 	void Start(){
 		playerIndex = GetComponent<PlayerUserControl>().playerNumber;
+		stuck = false;
+		lastPosition = transform.position;
 	}
 
     void Update() {
+
+		lastPosition = transform.position;
+		if(Time.time - checkPosTimeStamp > 5.0f){
+			checkPosTimeStamp = Time.time;
+			stuck = (lastPosition == transform.position);
+		}
 
         sideDashRefresh += Time.deltaTime;
         if (sideDashRefresh >= sideDashCooldown){
@@ -185,5 +197,12 @@ public class Player : MonoBehaviour
 
         if (col.gameObject.tag == "Ball" && dashing)
 			currentDashTime = dashTime;
+	}
+
+	void OnTriggerStay(Collider other){
+		if(other.gameObject.tag == "SafeGuard" && stuck){
+			transform.Translate(Vector3.forward * 2f);
+			stuck = false;
+		}
 	}
 }
